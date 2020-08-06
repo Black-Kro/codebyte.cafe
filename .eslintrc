@@ -1,0 +1,16 @@
+{
+    "extends": [
+        "eslint:recommended",
+        // "plugin:vue/recommended"
+    ],
+    "rules": {
+        "vue/valid-v-model": "off",
+        "vue/html-indent": [
+            "warn", 4, {
+                "attribute": 1,
+                "baseIndent": 1
+            }
+        ],
+        "indent": "off"
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "strict": true,
+      "jsx": "preserve",
+      "importHelpers": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "baseUrl": ".",
+      "paths": {
+        "/@app/*": ["src/*"],
+        "/@app/composables/": ["src/shared/composables"],
+        "/@app/composables/*": ["src/shared/composables/*"],
+        "/@app/components/": ["src/shared/components"],
+        "/@app/components/*": ["src/shared/components/*"],
+        "/@app/services/": ["src/shared/services"],
+        "/@app/services/*": ["src/shared/services/*"],
+        "/@app/store/": ["src/shared/store"],
+        "/@app/store/*": ["src/shared/store/*"],
+        "/@app/router/": ["src/shared/router"],
+        "/@app/router/*": ["src/shared/router/*"],
+        "/@app/styles/": ["src/shared/styles"],
+        "/@app/styles/*": ["src/shared/styles/*"],
+      },
+      "lib": [
+        "esnext",
+        "dom",
+        "dom.iterable",
+        "scripthost"
+      ]
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.vue",
+      "tests/**/*.ts",
+      "tests/**/*.tsx"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }

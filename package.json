@@ -1,0 +1,28 @@
+{
+  "name": "codebyte-client",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "autoprefixer": "^9.8.5",
+    "eslint": "^7.5.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.26.10",
+    "tailwindcss": "^1.5.2",
+    "typescript": "^3.9.7",
+    "vite": "^1.0.0-rc.3"
+  },
+  "dependencies": {
+    "@black-kro/ui": "^0.1.31",
+    "@vueuse/core": "^4.0.0-beta.2",
+    "axios": "^0.19.2",
+    "firebase": "^7.17.1",
+    "nprogress": "^0.2.0",
+    "vue": "^3.0.0-rc.4",
+    "vuex": "4.0.0-beta.4"
+  }
+}

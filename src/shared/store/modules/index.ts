@@ -1,0 +1,1 @@
+export { AuthenticationModule as auth } from './authentication';
