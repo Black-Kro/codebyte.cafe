@@ -1,0 +1,1 @@
+export { default as AppPostBox } from './PostBox.vue';

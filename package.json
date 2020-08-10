@@ -17,7 +17,7 @@
     "vite": "^1.0.0-rc.3"
   },
   "dependencies": {
-    "@black-kro/ui": "^0.1.31",
+    "@black-kro/ui": "^0.1.33",
     "@vueuse/core": "^4.0.0-beta.2",
     "axios": "^0.19.2",
     "firebase": "^7.17.1",

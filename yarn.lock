@@ -37,12 +37,13 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@black-kro/ui@^0.1.31":
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.31.tgz#fb044e381d0f4801c6aa75523648533002590e1d"
-  integrity sha512-MmNfmXWtjYvoWH19m307sgJlQDPivudnRvvJRm1jXD+zq3K0L+q2m7xUj4fb0TiUZ/E0LKXahf8g6Zd9ZHMgPQ==
+"@black-kro/ui@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.33.tgz#e5d95da87fe0620ced2574c0ec4b4d8124a1004c"
+  integrity sha512-bnbwVZhwQKHikl/Kvew2gdNeE3jL+G1UWjEMralZt0ZIoidkS1skfz/Ha/WuKA8fRWI2RN/kQVuGhRcAhNgj0A==
   dependencies:
     "@vueuse/core" "^4.0.0-beta.2"
+    focus-trap "^5.1.0"
     vue "3.0.0-rc.4"
     vue-router "4.0.0-beta.3"
 
@@ -1531,6 +1532,14 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
+focus-trap@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-5.1.0.tgz#64a0bfabd95c382103397dbc96bfef3a3cf8e5ad"
+  integrity sha512-CkB/nrO55069QAUjWFBpX6oc+9V90Qhgpe6fBWApzruMq5gnlh90Oo7iSSDK7pKiV5ugG6OY2AXM5mxcmL3lwQ==
+  dependencies:
+    tabbable "^4.0.0"
+    xtend "^4.0.1"
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
@@ -2947,6 +2956,11 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+tabbable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-4.0.0.tgz#5bff1d1135df1482cf0f0206434f15eadbeb9261"
+  integrity sha512-H1XoH1URcBOa/rZZWxLxHCtOdVUEev+9vo5YdYhC9tCY4wnybX+VQrCYuy9ubkg69fCBxCONJOSLGfw0DWMffQ==
+
 table@^5.2.3:
   version "5.4.6"
   resolved "https://registry.yarnpkg.com/table/-/table-5.4.6.tgz#1292d19500ce3f86053b05f0e8e7e4a3bb21079e"
@@ -3251,7 +3265,7 @@ xmlhttprequest@1.8.0:
   resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
   integrity sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=
 
-xtend@^4.0.2:
+xtend@^4.0.1, xtend@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
