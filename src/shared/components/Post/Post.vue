@@ -3,8 +3,8 @@
         <div class="flex flex-row items-center p-4">
             <kro-avatar :src="user.photoURL" />
             <div class="flex flex-col ml-4">
-                <span>{{user.displayName}}</span>
-                <span class="text-xs text-secondary font-medium">{{user.email}} · {{format(post.created)}}</span>
+                <span>{{post.author.profile.displayName}}</span>
+                <span class="text-xs text-secondary font-medium">@{{post.author.username}} · {{format(post.created)}}</span>
             </div>
             <span class="flex-1"></span>
             <kro-button icon="chevron-down"></kro-button>

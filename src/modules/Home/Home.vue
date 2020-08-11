@@ -48,6 +48,14 @@
                     userId
                     content
                     created
+                    author {
+                        userId
+                        username
+                        created
+                        profile {
+                            displayName
+                        }
+                    }
                 }
             }
         }
