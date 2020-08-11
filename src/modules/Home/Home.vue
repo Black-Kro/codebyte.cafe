@@ -42,7 +42,7 @@
     export const { getters } = useStore();
     export const { start, loading, error, result } = useQuery(gql`
         {
-            posts {
+            posts(order_by: { created:DESC }) {
                 nodes {
                     postId
                     userId

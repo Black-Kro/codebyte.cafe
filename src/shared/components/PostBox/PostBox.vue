@@ -15,18 +15,46 @@
         <div class="p-4 pt-2 flex flex-row">
             <kro-button icon="photo"></kro-button>
             <span class="flex-1"></span>
-            <kro-button :disabled="text.length === 0" primary><kro-icon icon="send" />Post</kro-button>
+            <kro-button @click="createPost" :disabled="text.length === 0" primary><kro-icon icon="send" />Post</kro-button>
         </div>
+        {{text}}
     </div>
 </template>
 
 <script lang="ts" setup>
     import { ref } from 'vue';
     import { useStore } from 'vuex';
+    import { useMutation } from '/@app/gql/composable';
+    import gql from 'graphql-tag';
 
     export { randomQuote } from './data/quotes';
-
     export const text = ref('');
+
+
+    export const { mutate, loading, onError, onDone } = useMutation(gql`
+        mutation createPost($content: String!) {
+            createPost(input: {
+                content: $content
+            }) {
+                content
+            }
+        }
+    `, { variables: {
+        content: text.value
+    }})
+
+    export const createPost = () => {
+        mutate({ content: text.value });
+    };
+
+    onDone(() => {
+        text.value = '';
+    });
+
+    onError((error) => {
+        console.error(error);
+        alert('Error, Check Console');
+    })
 
     export const { getters } = useStore();
 
