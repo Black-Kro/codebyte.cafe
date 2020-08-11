@@ -27,7 +27,6 @@
             <div class="grid gap-2 py-2" style="--kro-button-background: var(--kro-background)">
                 <kro-button @click="signin('GOOGLE')"><kro-icon icon="google"/>Sign In with Google</kro-button>
                 <kro-button @click="signin('GITHUB')"><kro-icon icon="github"/>Sign In with Github</kro-button>
-                <kro-button @click="signin('TWITTER')"><kro-icon icon="twitter"/>Sign In with Twitter</kro-button>
             </div>
         </kro-surface>
     </div>
