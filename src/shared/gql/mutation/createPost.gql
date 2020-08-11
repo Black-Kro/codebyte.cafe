@@ -1,0 +1,13 @@
+mutation createPost($content: String!) {
+    createPost(input: { content: $content }) {
+        author {
+            userId
+            username
+            profile {
+                displayName
+                bio
+                
+            }
+        }
+    }
+}

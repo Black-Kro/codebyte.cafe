@@ -15,9 +15,8 @@
         <div class="p-4 pt-2 flex flex-row">
             <kro-button icon="photo"></kro-button>
             <span class="flex-1"></span>
-            <kro-button @click="createPost" :disabled="text.length === 0" primary><kro-icon icon="send" />Post</kro-button>
+            <kro-button :loading="loading" @click="createPost" :disabled="text.length === 0" primary><kro-icon icon="send" />Post</kro-button>
         </div>
-        {{text}}
     </div>
 </template>
 
@@ -37,6 +36,7 @@
                 content: $content
             }) {
                 content
+                
             }
         }
     `, { variables: {

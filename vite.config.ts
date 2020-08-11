@@ -5,7 +5,13 @@ const path = require('path');
 module.exports = {
     optimizeDeps: [
         // '@vue/apollo-composable'
+        'fast-json-stable-stringify'
     ],
+    rollupInputOptions: {
+        external: [
+            'react'
+        ]
+    },
     alias: {
         '/@app/composables/': path.resolve(__dirname, './src/shared/composables'),
         '/@app/components/': path.resolve(__dirname, './src/shared/components'),
