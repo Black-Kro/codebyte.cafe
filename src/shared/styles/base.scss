@@ -3,3 +3,27 @@
 
 @import './nprogress.scss';
 @import './patches.scss';
+
+input::placeholder {
+    color: var(--kro-foreground-secondary);
+}
+
+.text-primary {
+    color: var(--kro-foreground);
+}
+
+.text-secondary {
+    color: var(--kro-foreground-secondary);
+}
+
+.text-disabled {
+    color: var(--kro-foreground-disabled);
+}
+
+.bg-primary {
+    background-color: var(--kro-background);
+}
+
+.bg-secondary {
+    background-color: var(--kro-background-secondary);
+}

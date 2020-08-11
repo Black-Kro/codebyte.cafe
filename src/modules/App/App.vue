@@ -5,24 +5,38 @@
             v-model:is-drawer-open="isDrawerOpen">
             <template #toolbar>
                 <kro-toolbar raised>
-                    <div class="flex px-4 flex-row container items-center mx-auto">
-                        <kro-button
-                            class="mr-4"
-                            v-if="isDrawerHidden"
-                            @click="isDrawerOpen = !isDrawerOpen" 
-                            icon="menu" />
+                    <div class="[ container mx-auto px-4 ] [ grid grid-cols-9 gap-4 items-center ]">
+                        <div class="col-span-2">
+                            <router-link to="/" style="color: var(--kro-foreground);" class="text-xl font-black">
+                                <img class="block h-8" src="/@app/shared/assets/Logo.svg" /> 
+                            </router-link>
+                        </div>
 
-                        <router-link to="/" style="color: var(--kro-foreground);" class="text-xl font-black">
-                            Codebyte
-                        </router-link>
-                        <span class="flex-1"></span>
+                        <div class="col-span-5">
+                            <app-auth-suspense>
+                                <template #authenticated>
+                                    <the-search></the-search>
+                                </template>
+                            </app-auth-suspense>
+                        </div>
 
-                        <div class="grid grid-flow-col gap-2 items-center">
-                            <kro-button icon="notifications" />
+                        <div class="grid grid-flow-col gap-2 items-center justify-end col-span-2">
                             <kro-button icon="invert" @click="toggleThemeMode()" />
 
                             <app-auth-suspense>
                                 <template #authenticated>
+
+                                    <kro-menu left>
+                                        <template #activator="{ open }">
+                                            <kro-button @click="open" icon="notifications" />
+                                        </template>
+                                        <template #default>
+                                            <div class="py-4 w-64">
+                                                Some Menu Content
+                                            </div>
+                                        </template>
+                                    </kro-menu>
+
                                     <kro-menu left>
                                         <template #activator="{ open }">
                                             <kro-avatar class="cursor-pointer" @click="open" :src="getters['auth/user'].photoURL" />
@@ -67,30 +81,11 @@
                     </div>
                 </kro-toolbar>
             </template>
-            <!-- <template #drawer v-if="getters['auth/isAuthenticated']">
-                <div class="[ app-drawer-container ] [ py-4 h-full flex flex-col items-center gap-4 ]">
-                    <router-link to="/" class="flex flex-col items-center text-current">
-                        <kro-icon icon="feed" />
-                        <span class="text-xs font-medium mt-1">My Feed</span>
-                    </router-link>
-                    <router-link to="/" class="flex flex-col items-center text-current">
-                        <kro-icon icon="explore" />
-                        <span class="text-xs font-medium mt-1">Explore</span>
-                    </router-link>
-                    <router-link to="/" class="flex flex-col items-center text-current">
-                        <kro-icon icon="settings" />
-                        <span class="text-xs font-medium mt-1">Settings</span>
-                    </router-link>
-
-                    <span class="flex-1"></span>
-                    <router-link to="/" class="flex flex-col items-center text-current">
-                        <kro-avatar class="cursor-pointer w-8 h-8" @click="open" :src="getters['auth/user'].photoURL" />
-                        <span class="text-xs font-medium mt-1">Profile</span>
-                    </router-link>
-                </div>
-            </template> -->
             <template #default>
                 <router-view></router-view>
+                <kro-button @click="elevate" class="[ return-to-top ] [ rounded-full w-12 h-12 fixed ]">
+                    <kro-icon icon="arrow-up-thick" />
+                </kro-button>
             </template>
             <template #footer>
                 <footer class="container mx-auto p-4 flex flex-row justify-center">
@@ -103,12 +98,16 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { useStore } from 'vuex';
     import { useTheme } from '@black-kro/ui';
+    import { TheSearch } from './components';
+    import { useElevator } from '/@app/composables/useElevator';
 
     export const { toggleThemeMode } = useTheme();
     export const { dispatch, getters } = useStore();
+
+    export const { elevate } = useElevator();
 
     // Listen for authentication changes
     dispatch('auth/init');
@@ -120,10 +119,16 @@
 
     export default {
         name: 'App',
+        components: { TheSearch }
     }
 </script>
 
 <style lang="scss">
-    
+
+    .return-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        border: 1px solid var(--kro-divider);
+    }
 
 </style>

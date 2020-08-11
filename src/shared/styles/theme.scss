@@ -12,11 +12,11 @@ $DefaultTheme: (
         'divider': #eaeaea,
         'shadow': 0 0 0 1px #eaeaea,
             
-        'primary': #4c3ff9,
+        'primary': #6da696,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
-        'primary-foreground': #4c3ff9,
-        'accent': #8fbcbb,
+        'primary-foreground': hsl(163, 24%, 18%),
+        'accent': #61efce,
 
         'error': hsl(0, 100%, 66%),
         'error-foreground': hsl(218, 27%, 94%),
@@ -38,13 +38,14 @@ $DefaultTheme: (
         
         // 'divider': rgba(255, 255, 255, .075),
         'divider': #181818,
-        'shadow': 0 0 1px 0 #181818,
+        'shadow': 0 0 0 1px #181818,
         // 'shadow': rgba(0, 0, 0, 0.12) 0px 3px 6px 0px,
             
-        'primary': #ffd152,
+        // 'primary': #ffd152,
+        'primary': #6da696,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
-        'primary-foreground': #343233,
+        'primary-foreground': hsl(163, 24%, 18%),
         'accent': #61efce,
 
         'error': hsl(0, 100%, 66%),
