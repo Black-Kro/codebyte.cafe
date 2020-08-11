@@ -10,7 +10,7 @@ export const useElevator = () => {
     const mainAudio = new Audio('/@app/shared/assets/music/elevator.mp3');
     mainAudio.setAttribute('preload', 'true');
     mainAudio.setAttribute('loop', 'true');
-    mainAudio.volume = 0.15;
+    mainAudio.volume = 0.1;
 
     const endAudio = new Audio('/@app/shared/assets/music/ding.mp3');
     endAudio.setAttribute('preload', 'true');
