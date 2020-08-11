@@ -4,14 +4,14 @@
             <kro-avatar :src="user.photoURL" />
             <div class="flex flex-col ml-4">
                 <span>{{user.displayName}}</span>
-                <span class="text-xs text-secondary font-medium">{{user.email}} · Just Now</span>
+                <span class="text-xs text-secondary font-medium">{{user.email}} · {{format(post.created)}}</span>
             </div>
             <span class="flex-1"></span>
             <kro-button icon="chevron-down"></kro-button>
         </div>
 
         <div class="px-4 py-2">
-            Some Post Content I guess
+            <slot />
         </div>
 
         <div class="[ app-post-controls ] [ p-4 flex flex-row gap-2 ]">
@@ -24,11 +24,13 @@
 
 <script lang="ts" setup>
     import { useStore } from 'vuex';
+    export { format } from 'timeago.js';
 
     export default {
         name: 'AppPost',
         props: {
-            user: Object
+            user: Object,
+            post: Object,
         }
     }
 

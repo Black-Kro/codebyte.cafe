@@ -1,6 +1,10 @@
 import { Module } from 'vuex';
+import { useAxios } from '/@app/composables/';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
+
+const { get } = useAxios();
 
 interface AuthenticationModuleState {
     user: any;
@@ -56,7 +60,21 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                 .onIdTokenChanged(user => {
                     if (user) {
                         commit('setUser', user);
-                        commit('setStatus', 'AUTHENTICATED');
+                        
+                        // Check if the profile has been created yet.
+                        get('https://api.codebyte.cafe/api/profile/status')
+                            .then(response => {
+                                const { data } = response;
+                                if (!data.profileCreated) {
+                                    commit('setStatus', 'INCOMPLETE');
+                                } else {
+                                    commit('setStatus', 'AUTHENTICATED');
+                                }
+
+                            })
+                            .catch(error => {
+                                commit('setStatus', 'UNAUTHENTICATED');
+                            });
                     }
                     else {
                         commit('setUser', null);

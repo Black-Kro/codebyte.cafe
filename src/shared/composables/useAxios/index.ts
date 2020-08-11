@@ -25,5 +25,3 @@ export const useAxios = (authenticate: boolean = true) => {
 
     return instance;
 };
-
-const {  } = useAxios();

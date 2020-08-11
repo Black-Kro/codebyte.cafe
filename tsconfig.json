@@ -25,6 +25,8 @@
         "/@app/router/*": ["src/shared/router/*"],
         "/@app/styles/": ["src/shared/styles"],
         "/@app/styles/*": ["src/shared/styles/*"],
+        "/@app/gql/": ["src/shared/gql"],
+        "/@app/gql/*": ["src/shared/gql/*"],
       },
       "lib": [
         "esnext",
