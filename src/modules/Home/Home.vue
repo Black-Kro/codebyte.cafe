@@ -3,20 +3,7 @@
         <kro-surface :padded="false">
             <app-post-box></app-post-box>
             <kro-divider class="m-0" />
-
             <app-post-feed></app-post-feed>
-
-            <!-- <template v-for="post in posts">
-                <app-post :post="post" :user="getters['auth/user']">
-                    {{post.content}}
-                </app-post>
-                <kro-divider class="m-0" />
-            </template>
-
-            <div v-if="loading" class="flex flex-row items-center justify-center p-4">
-                <kro-spinner></kro-spinner>
-            </div> -->
-
         </kro-surface>
 
         <template #right>
@@ -38,33 +25,8 @@
     import { ref } from 'vue';
     import { useStore } from 'vuex';
     import { useAxios } from '/@app/composables/';
-    // import { useQuery, useResult } from '/@app/gql/composable';
-    // import gql from 'graphql-tag';
 
     export const { getters } = useStore();
-    // export const { start, loading, error, result } = useQuery(gql`
-    //     {
-    //         posts(order_by: { created:DESC }) {
-    //             nodes {
-    //                 postId
-    //                 userId
-    //                 content
-    //                 created
-    //                 author {
-    //                     userId
-    //                     username
-    //                     created
-    //                     profile {
-    //                         displayName
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `);
-
-    // export const posts = useResult(result, null, data => data.posts.nodes);
-
 
     export default {
         name: 'Home',

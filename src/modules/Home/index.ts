@@ -4,8 +4,8 @@ import { isAuthenticated } from '/@app/router/guards';
 export const homeRoutes: RouteRecordRaw[] = [
     {
         path: '/',
-        component: () => import('./Home.vue'),
         beforeEnter: isAuthenticated,
+        component: () => import('./Home.vue'),
         meta: {
             title: 'Home',
         }
@@ -19,9 +19,24 @@ export const homeRoutes: RouteRecordRaw[] = [
     },
     {
         path: '/people',
+        beforeEnter: isAuthenticated,
         component: () => import('./People.vue'),
         meta: {
             title: 'People',
         },
     },
+    {
+        path: '/privacy-policy',
+        component: () => import('./PrivacyPolicy.vue'),
+        meta: {
+            title: 'Privacy Policy',
+        }
+    },
+    {
+        path: '/terms-of-service',
+        component: () => import('./TermsOfService.vue'),
+        meta: {
+            title: 'Terms of Service',
+        }
+    }
 ]

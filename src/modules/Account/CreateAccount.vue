@@ -18,41 +18,50 @@
                     label="Bio" 
                     multiline
                     v-model="bio" />
-                <kro-button :disabled="username.length === 0 || nickname.length === 0" primary>Create Account</kro-button>
+                <kro-button :loading="loading" :disabled="username.length === 0 || nickname.length === 0" primary>Create Account</kro-button>
             </form>
         </kro-surface>
     </div>
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
     import { useRouter } from 'vue-router';
     import { useAxios } from '/@app/composables/';
+    import { useStore } from 'vuex';
 
     export const username = ref('');
     export const nickname = ref('');
     export const bio = ref('');
+    export const loading = ref(false);
+
+    const { getters } = useStore();
 
     export const errors = ref('');
 
     export const avatarSeed = Math.random() * 100;
 
     const { post } = useAxios();
-    const { replace } = useRouter();
+    const { replace, push } = useRouter();
 
     export const createAccount = async () => {
         try {
+            loading.value = true;
             const response = await post('https://api.codebyte.cafe/api/profile/create', {
                 username: username.value,
                 displayName: nickname.value,
                 bio: bio.value,
             });
 
-            console.log(response);
-            console.log(response.data);
-
-            replace('/');
+            watch(() => getters['auth/status'], () => {
+                if (getters['auth/status'] === 'AUTHENTICATED' || getters['auth/status'] === 'INCOMPLETE') {
+                    loading.value = false;
+                    push({ path: '/' });
+                }
+            });
+            replace({ path: '/' });
         } catch (error) {
+            loading.value = false;
             console.log(error);
             errors.value = error;
         }

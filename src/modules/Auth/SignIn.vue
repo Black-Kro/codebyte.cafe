@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto h-full p-4 flex items-center justify-center">
+    <div class="container mx-auto h-full p-4 flex flex-col items-center justify-center">
         <kro-surface class="max-w-sm w-full">
             <kro-avatar class="w-24 h-24 mx-auto" :src="`https://avatars.dicebear.com/api/bottts/${avatarSeed}.svg`" />
 
@@ -29,11 +29,16 @@
                 <kro-button @click="signin('GITHUB')"><kro-icon icon="github"/>Sign In with Github</kro-button>
             </div>
         </kro-surface>
+        <div class="p-4 text-sm flex flex-row">
+            <a rel="noreferrer noopener" target="_blank" href="/privacy-policy">Privacy Policy</a>
+            <span class="mx-2">·</span>
+            <a rel="noreferrer noopener" target="_blank" href="/privacy-policy">Terms of Service</a>
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
 
@@ -58,8 +63,12 @@
                 provider: provider,
             });
 
-            loading.value = false;
-            push('/');
+            watch(() => getters['auth/status'], () => {
+                if (getters['auth/status'] === 'AUTHENTICATED' || getters['auth/status'] === 'INCOMPLETE') {
+                    loading.value = false;
+                    push({ path: '/' });
+                }
+            });
         } catch (error) {
             loading.value = false;
         }

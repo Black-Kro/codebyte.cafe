@@ -4,7 +4,7 @@ import { isAuthenticated } from '/@app/router/guards';
 export const accountRoutes: RouteRecordRaw[] = [
     {
         path: '/settings',
-        component: () => import('./Settings.vue'),
+        component: () => import('./Settings/Settings.vue'),
         beforeEnter: isAuthenticated,
         meta: {
             title: 'Settings',

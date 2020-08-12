@@ -61,20 +61,26 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                     if (user) {
                         commit('setUser', user);
                         
-                        // Check if the profile has been created yet.
-                        get('https://api.codebyte.cafe/api/profile/status')
-                            .then(response => {
-                                const { data } = response;
-                                if (!data.profileCreated) {
-                                    commit('setStatus', 'INCOMPLETE');
-                                } else {
-                                    commit('setStatus', 'AUTHENTICATED');
-                                }
+                        if (localStorage.getItem('codebyte-profile-created')) {
+                            commit('setStatus', 'AUTHENTICATED');
+                        } else {
+                            // Check if the profile has been created yet.
+                            get('https://api.codebyte.cafe/api/profile/status')
+                                .then(response => {
+                                    const { data } = response;
+                                    if (!data.profileCreated) {
+                                        commit('setStatus', 'INCOMPLETE');
+                                    } else {
+                                        commit('setStatus', 'AUTHENTICATED');
+                                        localStorage.setItem('codebyte-profile-created', 'true');
+                                    }
+    
+                                })
+                                .catch(error => {
+                                    commit('setStatus', 'UNAUTHENTICATED');
+                                });
+                        }
 
-                            })
-                            .catch(error => {
-                                commit('setStatus', 'UNAUTHENTICATED');
-                            });
                     }
                     else {
                         commit('setUser', null);
@@ -124,7 +130,7 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                 .signOut()
                 .then(() => {
                     commit('setUser', null);
-                
+                    localStorage.removeItem('codebyte-profile-created');
                     // To ensure we clear all the data from the window, reload the page.
                     location.reload();
 

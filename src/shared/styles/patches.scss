@@ -4,5 +4,9 @@ body {
 
 .kro-surface {
     --kro-slider-track-color: var(--kro-divider);
-    
+}
+
+.kro-textfield__pseudo-label,
+.kro-select__pseudo-label {
+    background: var(--kro-background-secondary) !important;
 }

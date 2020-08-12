@@ -1,28 +1,43 @@
 import { watch } from 'vue';
 import { store } from '/@app/store/';
 
-export const isNotAuthenticated = (to, from, next) => {
-    const { getters } = store;
-    
-    if (getters['auth/status'] === 'AUTHENTICATED') {
-        return next({ path: '/' });
+const { getters } = store;
+
+export const isNotAuthenticated = async (to, from) => {
+
+    const status = await waitForStatusResolution();
+
+    if (status === 'AUTHENTICATED') {
+        return { path: '/' };
     }
     
-    if (getters['auth/status'] === 'UNAUTHENTICATED') {
-        return next()
+    if (status === 'UNAUTHENTICATED') {
+        return;
     }
-    
-    if (getters['auth/status'] === 'PENDING') {
-        const stop = watch(() => getters['auth/status'], () => {            
+
+};
+
+const waitForStatusResolution = () => {
+    return new Promise((resolve, reject) => {
+        if (getters['auth/status'] !== 'PENDING') {
+            return resolve(getters['auth/status']);
+        }
+
+        const stop = watch(() => getters['auth/status'], () => {
             if (getters['auth/status'] === 'AUTHENTICATED') {
                 stop();
-                return next({ path: '/' });
+                return resolve(getters['auth/status']);
             }
-
+            
+            if (getters['auth/status'] === 'INCOMPLETE') {
+                stop();
+                return resolve(getters['auth/status']);
+            }
+            
             if (getters['auth/status'] === 'UNAUTHENTICATED') {
                 stop();
-                return next();
+                return resolve(getters['auth/status']);
             }
         });
-    }
+    });
 };

@@ -89,8 +89,21 @@
             </template>
             <template #footer>
                 <footer class="container mx-auto p-4 flex flex-row justify-center">
-                    <!-- Footer Content Goes Here -->
-                    <span class="text-sm">&copy; {{new Date().getFullYear()}} Codebyte</span>
+                    <div class="flex flex-col justify-center items-center content-center">
+                        <img class="opacity-75" class="block h-8" src="/@app/shared/assets/Logo.svg" />
+                        <div class="py-2 text-sm">
+                            <router-link class="text-current" to="/">About</router-link>
+                            <span class="mx-2">·</span>
+                            <router-link class="text-current" to="/">Help</router-link>
+                            <span class="mx-2">·</span>
+                            <router-link class="text-current" to="/">Blog</router-link>
+                            <span class="mx-2">·</span>
+                            <router-link class="text-current" to="/terms-of-service">Terms of Service</router-link>
+                            <span class="mx-2">·</span>
+                            <router-link class="text-current" to="/privacy-policy">Privacy Policy</router-link>
+                        </div>
+                        <span class="text-xs font-medium">&copy; {{new Date().getFullYear()}} Codebyte</span>
+                    </div>
                 </footer>
             </template>
         </kro-layout>

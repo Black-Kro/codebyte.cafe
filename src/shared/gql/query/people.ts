@@ -16,3 +16,30 @@ export const getPeople = gql`
         }
     }
 `;
+
+export const getMe = gql`
+    query getMe {
+        me {
+            userId
+            username
+            email
+            created
+            roles
+            banDate
+            banReason
+            banned
+            profile {
+                avatar
+                bio
+                displayName
+                headerImage
+                id
+                links {
+                    id
+                    link
+                    service
+                }
+            }
+        }
+    }
+`;
