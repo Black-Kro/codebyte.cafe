@@ -90,7 +90,7 @@
             <template #footer>
                 <footer class="container mx-auto p-4 flex flex-row justify-center">
                     <div class="flex flex-col justify-center items-center content-center">
-                        <img class="opacity-75" class="block h-8" src="/@app/shared/assets/Logo.svg" />
+                        <img class="block h-8 opacity-75" src="/@app/shared/assets/Logo.svg" />
                         <div class="py-2 text-sm">
                             <router-link class="text-current" to="/">About</router-link>
                             <span class="mx-2">·</span>

@@ -3,7 +3,6 @@
     <div>
         <kro-list-item>
             <template #icon><kro-icon icon="theme-light-dark" /></template>
-            <icon />
             Theme
             <template #subtitle>Light theme, dark theme, or auto</template>
             <template #action>
