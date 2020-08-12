@@ -96,7 +96,7 @@
                             <span class="mx-2">·</span>
                             <router-link class="text-current" to="/">Help</router-link>
                             <span class="mx-2">·</span>
-                            <router-link class="text-current" to="/">Blog</router-link>
+                            <a href="https://blog.codebyte.cafe/" rel="noreferrer noopener" target="_blank" class="text-current" to="/">Blog</a>
                             <span class="mx-2">·</span>
                             <router-link class="text-current" to="/terms-of-service">Terms of Service</router-link>
                             <span class="mx-2">·</span>

@@ -7,11 +7,27 @@
                 <span class="text-xs text-secondary font-medium">@{{post.author.username}} · {{format(post.created)}}</span>
             </div>
             <span class="flex-1"></span>
-            <kro-button icon="chevron-down"></kro-button>
+            <kro-menu left>
+                <template #activator="{ open }">
+                    <kro-button @click="open" icon="chevron-down"></kro-button>
+                </template>
+                <div>
+                    <kro-list-item class="cursor-pointer">
+                        <template #icon><kro-icon icon="delete" /></template>
+                        Delete Post
+                    </kro-list-item>
+                </div>
+            </kro-menu>
         </div>
 
         <div class="px-4 py-2">
             <slot />
+        </div>
+
+        <div v-if="post.postMedia.length > 0">
+            <div v-for="image in post.postMedia">
+                <img :src="image.path" />
+            </div>
         </div>
 
         <div class="[ app-post-controls ] [ p-4 flex flex-row gap-2 ]">

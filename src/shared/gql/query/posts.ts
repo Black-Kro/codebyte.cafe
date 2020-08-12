@@ -7,6 +7,10 @@ export const getPosts = gql`
                 postId
                 content
                 created
+                postMedia {
+                    mediaId
+                    path
+                }
                 author {
                     userId
                     username
