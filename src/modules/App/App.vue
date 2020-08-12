@@ -5,14 +5,14 @@
             v-model:is-drawer-open="isDrawerOpen">
             <template #toolbar>
                 <kro-toolbar raised>
-                    <div class="[ container mx-auto px-4 ] [ grid grid-cols-9 gap-4 items-center ]">
+                    <div class="[ container mx-auto px-4 ] [ grid grid-cols-4 md:grid-cols-9 gap-4 items-center ]">
                         <div class="col-span-2">
                             <router-link to="/" style="color: var(--kro-foreground);" class="text-xl font-black">
                                 <img class="block h-8" src="/@app/shared/assets/Logo.svg" /> 
                             </router-link>
                         </div>
-
-                        <div class="col-span-5">
+                        
+                        <div class="col-span-5 hidden md:flex">
                             <app-auth-suspense>
                                 <template #authenticated>
                                     <the-search></the-search>

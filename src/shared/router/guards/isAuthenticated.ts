@@ -1,9 +1,10 @@
 import { watch } from 'vue';
 import { store } from '/@app/store/';
 
-export const isAuthenticated = (to, from, next) => {
+const { getters } = store;
 
-    const { getters } = store;
+export const isAuthenticated = async (to, from) => {
+    const status = await waitForStatusResolution();
 
     const whitelist = [
         ['/sign-in', 'UNAUTHENTICATED'],
@@ -16,41 +17,49 @@ export const isAuthenticated = (to, from, next) => {
      */
     for (const item of whitelist) {
         if (item[0] === to.path && item[1] === getters['auth/status'])
-            return next();
+            return {};
     }
 
     if (whitelist.indexOf(to.path) > -1)
-        return next();
+        return;
 
     
-    if (getters['auth/status'] === 'AUTHENTICATED') {
-        return next();
+    if (status === 'AUTHENTICATED') {
+        return;
     }
     
-    if (getters['auth/status'] === 'UNAUTHENTICATED') {
-        return next({ path: '/sign-in' })
+    if (status === 'UNAUTHENTICATED') {
+        return { path: '/sign-in' };
     }
 
-    if (getters['auth/status'] === 'INCOMPLETE') {
-        return next({ path: '/create-account' });
+    if (status === 'INCOMPLETE') {
+        return { path: '/create-account' };
     }
 
-    if (getters['auth/status'] === 'PENDING') {
-        const stop = watch(() => getters['auth/status'], () => {            
+};
+
+
+const waitForStatusResolution = () => {
+    return new Promise((resolve, reject) => {
+        if (getters['auth/status'] !== 'PENDING') {
+            return resolve(getters['auth/status']);
+        }
+
+        const stop = watch(() => getters['auth/status'], () => {
             if (getters['auth/status'] === 'AUTHENTICATED') {
                 stop();
-                return next();
+                return resolve(getters['auth/status']);
             }
-
+            
             if (getters['auth/status'] === 'INCOMPLETE') {
                 stop();
-                return next({ path: '/create-account' });
+                return resolve(getters['auth/status']);
             }
-
+            
             if (getters['auth/status'] === 'UNAUTHENTICATED') {
                 stop();
-                return next({ path: '/sign-in' })
+                return resolve(getters['auth/status']);
             }
         });
-    }
+    });
 };

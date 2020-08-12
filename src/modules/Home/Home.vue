@@ -4,7 +4,9 @@
             <app-post-box></app-post-box>
             <kro-divider class="m-0" />
 
-            <template v-for="post in posts">
+            <app-post-feed></app-post-feed>
+
+            <!-- <template v-for="post in posts">
                 <app-post :post="post" :user="getters['auth/user']">
                     {{post.content}}
                 </app-post>
@@ -13,7 +15,7 @@
 
             <div v-if="loading" class="flex flex-row items-center justify-center p-4">
                 <kro-spinner></kro-spinner>
-            </div>
+            </div> -->
 
         </kro-surface>
 
@@ -36,32 +38,32 @@
     import { ref } from 'vue';
     import { useStore } from 'vuex';
     import { useAxios } from '/@app/composables/';
-    import { useQuery, useResult } from '/@app/gql/composable';
-    import gql from 'graphql-tag';
+    // import { useQuery, useResult } from '/@app/gql/composable';
+    // import gql from 'graphql-tag';
 
     export const { getters } = useStore();
-    export const { start, loading, error, result } = useQuery(gql`
-        {
-            posts(order_by: { created:DESC }) {
-                nodes {
-                    postId
-                    userId
-                    content
-                    created
-                    author {
-                        userId
-                        username
-                        created
-                        profile {
-                            displayName
-                        }
-                    }
-                }
-            }
-        }
-    `);
+    // export const { start, loading, error, result } = useQuery(gql`
+    //     {
+    //         posts(order_by: { created:DESC }) {
+    //             nodes {
+    //                 postId
+    //                 userId
+    //                 content
+    //                 created
+    //                 author {
+    //                     userId
+    //                     username
+    //                     created
+    //                     profile {
+    //                         displayName
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // `);
 
-    export const posts = useResult(result, null, data => data.posts.nodes);
+    // export const posts = useResult(result, null, data => data.posts.nodes);
 
 
     export default {

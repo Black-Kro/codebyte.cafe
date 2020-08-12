@@ -1,0 +1,1 @@
+export { default as AppPostFeed } from './PostFeed.vue';

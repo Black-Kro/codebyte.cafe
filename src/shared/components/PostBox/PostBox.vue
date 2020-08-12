@@ -8,14 +8,14 @@
             </div>
         </div>
         <textarea 
-            v-model="text"
+            v-model="content"
             :placeholder="randomQuote()"
              @input="updateSize" 
              class="m-0 p-4 pt-0 block bg-transparent focus:outline-none w-full"></textarea>
         <div class="p-4 pt-2 flex flex-row">
             <kro-button icon="photo"></kro-button>
             <span class="flex-1"></span>
-            <kro-button :loading="loading" @click="createPost" :disabled="text.length === 0" primary><kro-icon icon="send" />Post</kro-button>
+            <kro-button :loading="loading" @click="postContent" :disabled="content.length === 0" primary><kro-icon icon="send" />Post</kro-button>
         </div>
     </div>
 </template>
@@ -23,38 +23,63 @@
 <script lang="ts" setup>
     import { ref } from 'vue';
     import { useStore } from 'vuex';
-    import { useMutation } from '/@app/gql/composable';
-    import gql from 'graphql-tag';
 
+    import { getPosts } from '/@app/gql/query';
+    import { createPost } from '/@app/gql/mutation';
+    import { useQuery, useMutation } from '/@app/gql/composable';
     export { randomQuote } from './data/quotes';
-    export const text = ref('');
 
+    export const content = ref('');
 
-    export const { mutate, loading, onError, onDone } = useMutation(gql`
-        mutation createPost($content: String!) {
-            createPost(input: {
-                content: $content
-            }) {
-                content
-                
-            }
-        }
-    `, { variables: {
-        content: text.value
-    }})
-
-    export const createPost = () => {
-        mutate({ content: text.value });
-    };
+    export const { mutate, loading, onDone, onError } = useMutation<any, { content: any }>(createPost);
+    const { refetch } = useQuery(getPosts, {  }, { fetchResults: false });
 
     onDone(() => {
-        text.value = '';
+        refetch();
+        content.value = '';
     });
 
     onError((error) => {
         console.error(error);
-        alert('Error, Check Console');
-    })
+        alert('Check console for errors');
+    });
+
+    export const postContent = () => {
+        mutate({ content: content.value });
+    };
+
+    // import { useMutation } from '/@app/gql/composable';
+    // import gql from 'graphql-tag';
+
+    // export { randomQuote } from './data/quotes';
+    // export const text = ref('');
+
+
+    // export const { mutate, loading, onError, onDone } = useMutation(gql`
+    //     mutation createPost($content: String!) {
+    //         createPost(input: {
+    //             content: $content
+    //         }) {
+    //             content
+                
+    //         }
+    //     }
+    // `, { variables: {
+    //     content: text.value
+    // }})
+
+    // export const createPost = () => {
+    //     mutate({ content: text.value });
+    // };
+
+    // onDone(() => {
+    //     text.value = '';
+    // });
+
+    // onError((error) => {
+    //     console.error(error);
+    //     alert('Error, Check Console');
+    // })
 
     export const { getters } = useStore();
 

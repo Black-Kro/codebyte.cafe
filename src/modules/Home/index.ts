@@ -11,10 +11,17 @@ export const homeRoutes: RouteRecordRaw[] = [
         }
     },
     {
-        path: '/About',
+        path: '/about',
         component: () => import('./About.vue'),
         meta: {
             title: 'About',
+        },
+    },
+    {
+        path: '/people',
+        component: () => import('./People.vue'),
+        meta: {
+            title: 'People',
         },
     },
 ]

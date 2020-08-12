@@ -4,3 +4,4 @@ export { AppPost } from './Post';
 export { AppDefaultLayout } from './Layouts';
 export { TheNavigation } from './TheNavigation';
 export { TheFooter } from './TheFooter';
+export { AppPostFeed } from './PostFeed';

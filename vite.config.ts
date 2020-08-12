@@ -1,5 +1,5 @@
 import { UserConfig } from 'vite';
-
+import graphql from 'rollup-plugin-graphql';
 const path = require('path');
 
 module.exports = {
@@ -8,9 +8,7 @@ module.exports = {
         'fast-json-stable-stringify'
     ],
     rollupInputOptions: {
-        external: [
-            'react'
-        ]
+        
     },
     alias: {
         '/@app/composables/': path.resolve(__dirname, './src/shared/composables'),

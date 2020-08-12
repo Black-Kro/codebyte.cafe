@@ -649,29 +649,7 @@
     "@vue/compiler-core" "3.0.0-rc.5"
     "@vue/shared" "3.0.0-rc.5"
 
-"@vue/compiler-sfc@^3.0.0-rc.1":
-  version "3.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.0.0-rc.4.tgz#cdd8154c3a6a4dc34405fbdb75db4a55db2fae26"
-  integrity sha512-zY2F+mk5y9TDF2kzLVU9JmI55sNJQEXmI3STuSbyaSKun2Tfhw4A43AY/TXTI2aHuIWBXnZWzjBG/29SMZxvNQ==
-  dependencies:
-    "@babel/parser" "^7.10.4"
-    "@babel/types" "^7.10.4"
-    "@vue/compiler-core" "3.0.0-rc.4"
-    "@vue/compiler-dom" "3.0.0-rc.4"
-    "@vue/compiler-ssr" "3.0.0-rc.4"
-    "@vue/shared" "3.0.0-rc.4"
-    consolidate "^0.15.1"
-    estree-walker "^2.0.1"
-    hash-sum "^2.0.0"
-    lru-cache "^5.1.1"
-    magic-string "^0.25.7"
-    merge-source-map "^1.1.0"
-    postcss "^7.0.27"
-    postcss-modules "^3.1.0"
-    postcss-selector-parser "^6.0.2"
-    source-map "^0.6.1"
-
-"@vue/compiler-sfc@^3.0.0-rc.5":
+"@vue/compiler-sfc@3.0.0-rc.5", "@vue/compiler-sfc@^3.0.0-rc.5":
   version "3.0.0-rc.5"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.0.0-rc.5.tgz#374e52a6fbf8fb9aee1213026050a0f1c496fecf"
   integrity sha512-huoIFEfFCJxHcpoByAUQti7CIwJdHPLJXKuy2HG7J1B+IEKugtBdF50CLH35ZD8dWM0nyOMFFqTbO7i6CCjL3Q==
@@ -692,14 +670,6 @@
     postcss-modules "^3.1.0"
     postcss-selector-parser "^6.0.2"
     source-map "^0.6.1"
-
-"@vue/compiler-ssr@3.0.0-rc.4":
-  version "3.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.0.0-rc.4.tgz#58d3446eda2cbdc38d983c0a8bbab7d182921149"
-  integrity sha512-wF2ooJ3wezOn4gZPHsdIOPobiyZaKHEOV7DPHnrCQSQb4uWk6XSnorifJQh88tN0fgYqjVNLBeNNhaCUFzF6KA==
-  dependencies:
-    "@vue/compiler-dom" "3.0.0-rc.4"
-    "@vue/shared" "3.0.0-rc.4"
 
 "@vue/compiler-ssr@3.0.0-rc.5":
   version "3.0.0-rc.5"
@@ -3526,7 +3496,12 @@ vue-router@4.0.0-beta.3:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.3.tgz#e46f45807023a4b8ce73a143a216b4c9ea3eb243"
   integrity sha512-3/cg3n46D9MO9u2nvtGE38gMyUxg8sjt6jMeZ6zbi9sRGAL0PaDHuKS+xWlOOLit7abP5MepNlh84t41gxtP8Q==
 
-vue@3.0.0-rc.4, vue@^3.0.0-rc.4:
+vue-router@4.0.0-beta.6:
+  version "4.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.6.tgz#7ddf4c00d1bee778fb8945f5e8ccb931b5885543"
+  integrity sha512-zF+reWzcM0ivbIAbjfCpDVYlvc4iQAi7rx5abLNUcNiJxuTMR0lEBoxamQcaewV4sJ+zskX6PYW3QM5/fRkPqA==
+
+vue@3.0.0-rc.4:
   version "3.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.0-rc.4.tgz#f17b32914c8add7f4792d618eb4f1358ff4222e8"
   integrity sha512-nBmuGl/M2LEHn5Db+9Xm0cJoC7yKpx+9RJJObVMLUB4ru7z+ysL4ugKuag+1ehvl6SnljbvYOcuQeGLLvKK07w==
@@ -3535,7 +3510,7 @@ vue@3.0.0-rc.4, vue@^3.0.0-rc.4:
     "@vue/runtime-dom" "3.0.0-rc.4"
     "@vue/shared" "3.0.0-rc.4"
 
-vue@^3.0.0-rc.5:
+vue@3.0.0-rc.5, vue@^3.0.0-rc.5:
   version "3.0.0-rc.5"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.0-rc.5.tgz#973175d45a892b3bd23ef5de7faa4add9c66275f"
   integrity sha512-8t8Y4sHMBGD5iLZ7JfBGmKBJlzesPoL+/nW9EV8s+4LwnKC4rGlRp+Lj2rcign4iQaj0GFaL7DrQ8IoOfVX6+w==
