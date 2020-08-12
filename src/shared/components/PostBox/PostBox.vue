@@ -29,7 +29,7 @@
         </div>
     </div>
     <div v-if="images.length > 0" class="[ app-post-box__images ] [ grid grid-cols-4 ]">
-        <div class="[ app-post-box__image ]" v-for="(image, i) in images" :key="image.name" class="flex flex-col items-center p-4">
+        <div class="[ app-post-box__image ] [ flex flex-col items-center p-4 ]" v-for="(image, i) in images" :key="image.name">
             <div class="relative">
                 <kro-button @click="removeImage(i)" class="[ app-post-box__image-remove ] w-8 h-8 rounded-full absolute top-0 right-0"><kro-icon icon="close" /></kro-button>
                 <img class="w-100 h-24 object-cover rounded-md" :src="image.url"/>
