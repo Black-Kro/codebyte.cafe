@@ -12,11 +12,11 @@ export const createPost = gql`
             postMedia {
                 mediaId
                 path
-                title
             }
             author {
                 userId
                 username
+                verified
                 profile {
                     id
                     avatar
@@ -28,4 +28,8 @@ export const createPost = gql`
     }
 `;
 
-// export const deletePost = gql`1
+export const deletePost = gql`
+    mutation deletePost($postId: Uuid!) {
+        deletePost(input: { postId: $postId })
+    }
+`;

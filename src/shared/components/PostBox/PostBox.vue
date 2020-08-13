@@ -5,7 +5,7 @@
                 <template #me="{ me }">
                     <kro-avatar :src="me.profile.avatar" />
                     <div class="ml-2 flex flex-col">
-                        <span>{{me.profile.displayName}}</span>
+                        <app-nickname :user="me"/>
                         <span class="text-xs font-medium text-secondary">@{{me.username}}</span>
                     </div>
                 </template>
@@ -57,12 +57,26 @@
 
     export const isLoading = ref(false);
 
-    export const { mutate, loading, onDone, onError } = useMutation<any, { content?: any, media?: any }>(createPost);
-    const { refetch } = useQuery(getPosts, {  }, { fetchResults: false });
+    export const { mutate, loading, onDone, onError } = useMutation<any, { content?: any, media?: any }>(createPost, { 
+        update(cache, { data }) {
+            const query = cache.readQuery({
+                query: getPosts
+            }) as any;
+
+            query.posts.nodes = [data.createPost, ...query.posts.nodes];
+
+            cache.writeQuery({
+                query: getPosts,
+                variables: {},
+                data: query
+            })
+            // console.log(cache, data);
+        }
+    });
+
     const { post } = useAxios();
 
     onDone(() => {
-        refetch();
         content.value = '';
         images.value = [];
         isLoading.value = false;

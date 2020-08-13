@@ -1,5 +1,5 @@
 <template>
-    <kro-app>
+    <kro-app class="pb-16 lg:pb-0">
         <kro-layout>
             <template #toolbar>
                 <the-toolbar></the-toolbar>

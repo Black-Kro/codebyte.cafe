@@ -6,6 +6,7 @@ export const getPeople = gql`
             userId
             username
             created
+            verified
             profile {
                 id
                 avatar
@@ -22,12 +23,12 @@ export const getMe = gql`
         me {
             userId
             username
-            email
             created
             roles
             banDate
             banReason
             banned
+            verified
             profile {
                 avatar
                 bio

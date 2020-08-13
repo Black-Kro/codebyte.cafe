@@ -15,9 +15,9 @@
                         <div class="h-12">
                             <kro-avatar class="[ app-sidebar-avatar ] block mx-auto h-24 w-24 transform -translate-y-1/2" :src="me.profile.avatar" />
                         </div>
-                        <div class="text-center pb-4 flex flex-col">
-                                    {{me.profile.displayName}}
-                                    <span class="text-xs font-medium text-secondary">@{{me.username}}</span>
+                        <div class="text-center pb-4 flex flex-col items-center">
+                            <app-nickname :user="me" />
+                            <span class="text-xs font-medium text-secondary">@{{me.username}}</span>
                         </div>
                     </template>
                 </app-me>

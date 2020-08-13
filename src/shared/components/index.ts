@@ -5,4 +5,4 @@ export { AppDefaultLayout } from './Layouts';
 export { TheNavigation } from './TheNavigation';
 export { TheFooter } from './TheFooter';
 export { AppPostFeed } from './PostFeed';
-export { AppMe } from './Me';
+export { AppMe, AppNickname } from './Me';
