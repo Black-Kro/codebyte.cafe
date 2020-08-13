@@ -3,16 +3,18 @@ import gql from 'graphql-tag';
 export const getPeople = gql`
     query getPeople {
         users {
-            userId
-            username
-            created
-            verified
-            profile {
-                id
-                avatar
-                bio
-                displayName
-                headerImage
+            nodes {
+                userId
+                username
+                created
+                verified
+                profile {
+                    id
+                    avatar
+                    bio
+                    displayName
+                    headerImage
+                }
             }
         }
     }

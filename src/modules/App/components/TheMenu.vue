@@ -1,7 +1,7 @@
 <template>
     <app-me>
         <template #me="{ me }">
-            <kro-menu>
+            <kro-menu left>
                 <template #activator="{ open }">
                     <kro-avatar
                         @click="open" 
