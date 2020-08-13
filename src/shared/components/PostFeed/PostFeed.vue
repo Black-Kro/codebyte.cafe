@@ -5,7 +5,7 @@
                 <app-post :post="post">
                     {{post.content}}
                 </app-post>
-                <kro-divider />
+                <kro-divider class="m-0" />
             </template>
         </div>
 

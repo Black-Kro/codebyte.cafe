@@ -40,11 +40,10 @@
     
     .the-navigation {
         @apply grid grid-flow-col h-12;
-        top: 0;
     }
     
     .the-navigation__link {
-        @apply flex p-4 text-current justify-center items-center;
+        @apply flex px-4 text-current justify-center items-center;
 
         &.router-link-active {
             color: var(--kro-primary);
@@ -71,7 +70,7 @@
         }
 
         .the-navigation__link {
-            @apply flex flex-row items-center justify-start;
+            @apply flex p-4 flex-row items-center justify-start;
 
             span {
                 @apply block ml-4;
