@@ -23,7 +23,7 @@
                 <span>Profile</span>
             </router-link>
         </app-me>
-        <router-link class="[ the-navigation__link ] [ hidden lg:flex ] []"  to="/settings">
+        <router-link class="[ the-navigation__link ] [] []"  to="/settings">
             <kro-icon icon="settings" />
             <span>Settings</span>
         </router-link>
