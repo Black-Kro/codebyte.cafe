@@ -4,7 +4,7 @@ export const getPeople = gql`
     query getPeople {
         users {
             nodes {
-                userId
+                id
                 username
                 created
                 verified
@@ -23,7 +23,7 @@ export const getPeople = gql`
 export const getMe = gql`
     query getMe {
         me {
-            userId
+            id
             username
             created
             roles
@@ -32,11 +32,11 @@ export const getMe = gql`
             banned
             verified
             profile {
+                id
                 avatar
                 bio
                 displayName
                 headerImage
-                id
                 links {
                     id
                     link

@@ -6,7 +6,7 @@ export const getPosts = gql`
             edges {
                 cursor
                 node {
-                    postId
+                    id
                 }
             }
             pageInfo {
@@ -14,15 +14,21 @@ export const getPosts = gql`
                 hasNextPage
             }
             nodes {
-                postId
+                id
                 content
                 created
+                likes
+                dislikes
+                reactions {
+                    id
+                    reactType
+                }
                 postMedia {
-                    mediaId
+                    id
                     path
                 }
                 author {
-                    userId
+                    id
                     username
                     verified
                     profile {

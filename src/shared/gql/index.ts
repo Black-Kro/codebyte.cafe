@@ -1,6 +1,14 @@
-import { ApolloClient, HttpLink, InMemoryCache, ApolloLink } from 'apollo-boost';
+import { ApolloClient, HttpLink, InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
 import { store } from '/@app/store/';
+
+import introspectionQueryResultData from '../../fragmentTypes.json';
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+    introspectionQueryResultData
+})
+
+console.log(introspectionQueryResultData);
 
 const httpLink = new HttpLink({
     uri: 'https://api.codebyte.cafe/graphql',
@@ -18,7 +26,7 @@ const context = setContext(async (operation, { headers }) => {
 })
 
 export const apolloClient = new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({ fragmentMatcher }),
     link: context.concat(httpLink),
     connectToDevTools: true,
 });

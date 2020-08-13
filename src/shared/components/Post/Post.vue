@@ -7,12 +7,12 @@
                 <span class="text-xs text-secondary font-medium">@{{post.author.username}} · {{format(post.created)}}</span>
             </div>
             <span class="flex-1"></span>
-            <kro-menu :key="post.postId" left>
+            <kro-menu :key="post.id" left>
                 <template #activator="{ open }">
                     <kro-button @click="open" icon="chevron-down"></kro-button>
                 </template>
                 <div>
-                    <kro-list-item @click="postDelete(post.postId)" class="cursor-pointer">
+                    <kro-list-item @click="postDelete(post.id)" class="cursor-pointer">
                         <template #icon><kro-icon icon="delete" /></template>
                         Delete Post
                     </kro-list-item>
@@ -33,8 +33,8 @@
         </kro-dialog>
 
         <div class="[ app-post-controls ] [ p-4 flex flex-row gap-2 ]">
-            <kro-button icon="thumb-up-outline"></kro-button>
-            <kro-button icon="thumb-down-outline"></kro-button>
+            <kro-button @click="react('LIKE')"><kro-icon icon="thumb-up-outline" />{{post.likes ? post.likes : ''}}</kro-button>
+            <kro-button @click="react('DISLIKE')"><kro-icon icon="thumb-down-outline" />{{post.dislikes ? post.dislikes : ''}}</kro-button>
             <kro-button icon="reply"></kro-button>
         </div>
     </div>
@@ -45,7 +45,7 @@
     import { useStore } from 'vuex';
     export { format } from 'timeago.js';
     import { useMutation } from '/@app/gql/composable';
-    import { deletePost } from '/@app/gql/mutation';
+    import { deletePost, reactToPost } from '/@app/gql/mutation';
     import { getPosts } from '/@app/gql/query';
     import { useDialog } from '@black-kro/ui';
 
@@ -76,7 +76,7 @@
                 variables: {},
             }) as any;
 
-            d.posts.nodes = d.posts.nodes.filter(post => post.postId !== props.post.postId);
+            d.posts.nodes = d.posts.nodes.filter(post => post.id !== props.post.id);
 
             cache.writeQuery({
                 query: getPosts,
@@ -101,12 +101,25 @@
                 }
             })
                 .then(() => {
-                    mutate({ postId: props.post.postId });
+                    mutate({ postId: props.post.id });
                 })
         } catch {
 
         }
 
+    };
+
+    /**
+     * Post Reactions
+     */
+
+    const { mutate: reactMutate } = useMutation<any, { postId: string, type: string }>(reactToPost, {
+
+    });
+
+    export const react = async (type) => {
+        reactMutate({ postId: props.post.id, type });
+        console.log(type)
     };
 
     export default {
@@ -129,7 +142,7 @@
     .app-post-controls {
 
         .kro-button {
-            width: 2rem;
+            // width: 2rem;
             height: 2rem;
 
             --kro-icon-size: 1.25rem;

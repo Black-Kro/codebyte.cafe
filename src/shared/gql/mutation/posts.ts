@@ -6,15 +6,17 @@ export const createPost = gql`
             content: $content,
             media: $media
         }) {
-            postId
+            id
             content
             created
+            likes
+            dislikes
             postMedia {
-                mediaId
+                id
                 path
             }
             author {
-                userId
+                id
                 username
                 verified
                 profile {
@@ -24,6 +26,24 @@ export const createPost = gql`
                     bio
                 }
             }
+        }
+    }
+`;
+
+export const reactToPost = gql`
+    mutation reactToPost($postId: Uuid!, $type: ReactTypeInput!) {
+        reactToPost(input: {
+            postId: $postId,
+            type: $type
+        }) {
+            id
+            likes
+            dislikes
+            reactions {
+                id
+                reactType
+            }
+            
         }
     }
 `;
