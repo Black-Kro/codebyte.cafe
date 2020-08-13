@@ -1,11 +1,22 @@
 import Axios from 'axios';
 import { store } from '/@app/store/';
 
-export const useAxios = (authenticate: boolean = true) => {
+const {
+    VITE_API_URL
+// @ts-ignore
+} = import.meta.env;
+
+console.log(VITE_API_URL);
+
+export const useAxios = (authenticate: boolean = true, useAPI: boolean = true) => {
     
     const instance = Axios.create();
 
     instance.interceptors.request.use(async config => {
+        if (useAPI) {
+            config.baseURL = VITE_API_URL;
+        }
+
         if (authenticate) {
             if (store.getters['auth/user']) {
                 const token = await store.getters['auth/user'].getIdToken();

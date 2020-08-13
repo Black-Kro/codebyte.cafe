@@ -20,6 +20,14 @@ input::placeholder {
     color: var(--kro-foreground-disabled);
 }
 
+.text-bg-primary {
+    color: var(--kro-background);
+}
+
+.text-bg-secondary {
+    color: var(--kro-secondary);
+}
+
 .bg-primary {
     background-color: var(--kro-background);
 }

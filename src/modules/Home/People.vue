@@ -2,7 +2,7 @@
     <app-default-layout>
         <kro-surface>
             <kro-list-item :to="`/@${person.username}`" v-for="person in people">
-                <template #icon><kro-avatar :src="person.profile.avatar" /></template>
+                <template #icon><kro-avatar :src="`${person.profile.avatar}?width=48&height=48`" /></template>
                 {{person.profile.displayName}}
                 <template #subtitle>@{{person.username}}</template>
             </kro-list-item>

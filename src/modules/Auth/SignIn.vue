@@ -2,7 +2,6 @@
     <div class="container mx-auto h-full p-4 flex flex-col items-center justify-center">
         <kro-surface class="max-w-sm w-full">
             <kro-avatar class="w-24 h-24 mx-auto" :src="`https://avatars.dicebear.com/api/bottts/${avatarSeed}.svg`" />
-
             <form @click.prevent="signin" class="grid gap-4 py-2">
                 <kro-textfield 
                     id="email" 
@@ -54,20 +53,21 @@
 
 
     export const signin = async (provider?) => {
-        loading.value = true
+        loading.value = true;
+
+        const stop = watch(() => getters['auth/status'], () => {
+            if (getters['auth/status'] === 'AUTHENTICATED' || getters['auth/status'] === 'INCOMPLETE') {
+                loading.value = false;
+                stop();
+                push({ path: '/' });
+            }
+        });
 
         try {
             await dispatch('auth/signIn', {
                 email: email.value,
                 password: password.value,
                 provider: provider,
-            });
-
-            watch(() => getters['auth/status'], () => {
-                if (getters['auth/status'] === 'AUTHENTICATED' || getters['auth/status'] === 'INCOMPLETE') {
-                    loading.value = false;
-                    push({ path: '/' });
-                }
             });
         } catch (error) {
             loading.value = false;

@@ -18,4 +18,20 @@ export const accountRoutes: RouteRecordRaw[] = [
             title: 'Create Account',
         }
     },
+    {
+        path: '/notifications',
+        component: () => import('./Notifications.vue'),
+        beforeEnter: isAuthenticated,
+        meta: {
+            title: 'Notifications',
+        }
+    },
+    {
+        path: '/@:username',
+        component: () => import('./Profile.vue'),
+        beforeEnter: isAuthenticated,
+        meta: {
+            title: 'Profile',
+        }
+    },
 ]

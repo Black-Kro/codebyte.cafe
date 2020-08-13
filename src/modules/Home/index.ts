@@ -18,6 +18,13 @@ export const homeRoutes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/help',
+        component: () => import('./Help.vue'),
+        meta: {
+            title: 'Help',
+        },
+    },
+    {
         path: '/people',
         beforeEnter: isAuthenticated,
         component: () => import('./People.vue'),

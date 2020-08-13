@@ -8,7 +8,7 @@ import { DefaultApolloClient } from '/@app/gql/composable';
 /**
  * Import Local Modules
  */
-import { App, homeRoutes, authRoutes, accountRoutes } from '/@app/modules/';
+import { App, homeRoutes, authRoutes, accountRoutes, exploreRoutes } from '/@app/modules/';
 
 import * as AppComponents from '/@app/components/';
 import { KroRouter } from '/@app/router/';
@@ -24,6 +24,7 @@ import '@black-kro/ui/dist/index.css';
 
 import '/@app/styles/base.scss';
 import '/@app/styles/theme.scss';
+import 'cropperjs/dist/cropper.min.css';
 
 createApp(App)
     .use(KroRouter, {
@@ -31,6 +32,7 @@ createApp(App)
             ...homeRoutes,
             ...authRoutes,
             ...accountRoutes,
+            ...exploreRoutes,
         ]
     })
     .provide(DefaultApolloClient, apolloClient)

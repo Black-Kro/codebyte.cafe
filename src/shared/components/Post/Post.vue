@@ -1,7 +1,7 @@
 <template>
     <div class="app-post">
         <div class="flex flex-row items-center p-4">
-            <kro-avatar :src="post.author.profile.avatar" />
+            <kro-avatar :src="`${post.author.profile.avatar}?width=48&height=48`" />
             <div class="flex flex-col ml-2">
                 <span>{{post.author.profile.displayName}}</span>
                 <span class="text-xs text-secondary font-medium">@{{post.author.username}} · {{format(post.created)}}</span>

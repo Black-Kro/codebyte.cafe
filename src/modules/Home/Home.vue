@@ -6,6 +6,7 @@
             <app-post-feed></app-post-feed>
         </kro-surface>
 
+
         <template #right>
             <kro-surface :padded="false">
                 <app-me>
@@ -31,6 +32,7 @@
     import { useAxios } from '/@app/composables/';
 
     export const { getters } = useStore();
+
 
     export default {
         name: 'Home',

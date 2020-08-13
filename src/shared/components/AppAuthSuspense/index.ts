@@ -11,6 +11,9 @@ export default defineComponent({
             if (getters['auth/status'] === 'PENDING' && slots.pending)
                 return slots.pending();
 
+            if (getters['auth/status'] === 'UNKNOWN' && slots.authenticated)
+                return slots.authenticated();
+
             if (getters['auth/status'] === 'AUTHENTICATED' && slots.authenticated)
                 return slots.authenticated();
 
