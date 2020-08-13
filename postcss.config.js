@@ -13,7 +13,7 @@ module.exports = {
                 return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || []
             },
             whitelist: ['html'],
-            whitelistPatterns: [ /-(leave|enter|appear)(|-(to|from|active))$/, /^(?!(|.*?:)cursor-move).+-move$/, /^router-link(|-exact)-active$/, /data-v-.*/, /kro/, /app/, /hljs/, /-webkit-scrollbar/ ],
+            whitelistPatterns: [ /-(leave|enter|appear)(|-(to|from|active))$/, /^(?!(|.*?:)cursor-move).+-move$/, /^router-link(|-exact)-active$/, /data-v-.*/, /inset-0/, /kro/, /line/, /dashed/, /point/, /cropper/, /pointer/, /app/, /hljs/, /-webkit-scrollbar/ ],
         }),
         autoprefixer(),
     ]

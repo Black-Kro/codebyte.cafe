@@ -1,3 +1,5 @@
-exports.default = {
-    purge: false,
+module.exports = {
+    purge: {
+        enabled: false,
+    },
 }
