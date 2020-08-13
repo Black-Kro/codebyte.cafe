@@ -1,5 +1,5 @@
 <template>
-    <kro-surface :padded="false" class="[ the-navigation ] [ relative lg:sticky py-2 ]">
+    <kro-surface :padded="false" class="[ the-navigation ] [ relative lg:sticky lg:py-2 ]">
         <router-link class="[ the-navigation__link ] [] []" exact to="/">
             <kro-icon icon="home" />
             <span>Home</span>
@@ -39,7 +39,7 @@
 <style lang="scss">
     
     .the-navigation {
-        @apply grid grid-flow-col h-16;
+        @apply grid grid-flow-col h-12;
         top: 0;
     }
     

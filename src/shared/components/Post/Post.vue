@@ -32,7 +32,7 @@
             <img :src="lightboxPreview" />
         </kro-dialog>
 
-        <div class="[ app-post-controls ] [ p-4 flex flex-row gap-2 ]">
+        <div class="[ app-post-controls ] [ p-4 grid fit gap-2 ]">
             <kro-button @click="react('LIKE')"><kro-icon icon="thumb-up-outline" />{{post.likes ? post.likes : ''}}</kro-button>
             <kro-button @click="react('DISLIKE')"><kro-icon icon="thumb-down-outline" />{{post.dislikes ? post.dislikes : ''}}</kro-button>
             <kro-button icon="reply"></kro-button>
@@ -141,9 +141,11 @@
 
     .app-post-controls {
 
+        grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+
         .kro-button {
             // width: 2rem;
-            height: 2rem;
+            // height: 2rem;
 
             --kro-icon-size: 1.25rem;
         }
