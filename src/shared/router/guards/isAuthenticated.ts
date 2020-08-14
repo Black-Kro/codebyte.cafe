@@ -17,7 +17,7 @@ export const isAuthenticated = async (to, from) => {
      */
     for (const item of whitelist) {
         if (item[0] === to.path && item[1] === getters['auth/status'])
-            return {};
+            return;
     }
 
     if (whitelist.indexOf(to.path) > -1)

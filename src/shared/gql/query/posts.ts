@@ -19,6 +19,8 @@ export const GET_POSTS = gql`
                 created
                 likes
                 dislikes
+                liked
+                disliked
                 reactions {
                     id
                     reactType

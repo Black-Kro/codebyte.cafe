@@ -11,6 +11,8 @@ export const CREATE_POST = gql`
             created
             likes
             dislikes
+            liked
+            disliked
             reactions {
                 id
                 reactType
@@ -46,11 +48,12 @@ export const REACT_TO_POST = gql`
             id
             likes
             dislikes
+            liked
+            disliked
             reactions {
                 id
                 reactType
             }
-            
         }
     }
 `;

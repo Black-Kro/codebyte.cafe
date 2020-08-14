@@ -1,7 +1,15 @@
 <template>
     <div class="[ app-post-footer ] [ p-4 grid fit gap-2 ]">
-        <kro-button @click="react('LIKE')"><kro-icon icon="thumb-up-outline" />{{post.likes ? post.likes : ''}}</kro-button>
-        <kro-button @click="react('DISLIKE')"><kro-icon icon="thumb-down-outline" />{{post.dislikes ? post.dislikes : ''}}</kro-button>
+        <kro-button 
+            :style="{ color: post.liked ? 'var(--kro-primary)' : null }"
+            @click="react(post.liked ? 'REMOVE' : 'LIKE')">
+            <kro-icon icon="thumb-up-outline" />{{post.likes ? post.likes : ''}}
+        </kro-button>
+        <kro-button 
+            :style="{ color: post.disliked ? 'var(--kro-primary)' : null }"
+            @click="react(post.disliked ? 'REMOVE' : 'DISLIKE')">
+            <kro-icon icon="thumb-down-outline" />{{post.dislikes ? post.dislikes : ''}}
+        </kro-button>
         <kro-button icon="reply"></kro-button>
     </div>
 </template>
@@ -14,7 +22,47 @@
     const { mutate: reactMutate } = useMutation<any, { postId: string, type: string }>(REACT_TO_POST);
 
     export const react = async (type) => {
-        reactMutate({ postId: props.post.id, type });
+        let newLikes = props.post.likes;
+        let newDislikes = props.post.dislikes;
+
+        if (type === 'REMOVE') {
+            if (props.post.liked)
+                newLikes--;
+
+            if (props.post.disliked) 
+                newDislikes--;
+        }
+
+        if (type === 'LIKE') {
+            newLikes++;
+
+            if (props.post.disliked) 
+                newDislikes--;
+        }
+
+        if (type === 'DISLIKE') {
+            if (props.post.liked)
+                newLikes--;
+
+            newDislikes++;
+        }
+
+        const reactions = [...props.post.reactions];
+
+
+        reactMutate({ postId: props.post.id, type }, {
+            optimisticResponse: {
+                reactToPost: {
+                    id: props.post.id,
+                    likes: newLikes,
+                    dislikes: newDislikes,
+                    liked: type === 'LIKE',
+                    disliked: type === 'DISLIKE',
+                    reactions: reactions,
+                    "__typename": "Post"
+                }
+            }
+        });
     };
 
     export default {
