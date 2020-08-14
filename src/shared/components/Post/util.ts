@@ -53,10 +53,12 @@ const TAG_MAPPINGS = {
                 to: `/${token.text}`,
                 class: 'app-renderer__a',
             };
-            const content = getHostName(token.href) || token.text;
-            const children = [];
-    
-            return { tag, props, content, children }
+            const content = token.text;
+            const children = [];    
+
+            return {
+                render: h(RouterLink, props, () => token.text)
+            }
         } else {
             const tag = 'a';
             const props = {
@@ -68,7 +70,7 @@ const TAG_MAPPINGS = {
             const content = getHostName(token.href) || token.text;
             const children = [];
     
-            return { tag, props, content, children }
+            return { tag, props, content, children, links: [ { href: token.href } ] }
         }
 
     },
@@ -169,8 +171,21 @@ const TAG_MAPPINGS = {
 }
 
 export const tokensToRenderFunction = (token) => {
-    const { tag, props, content, children } = TAG_MAPPINGS[token.type](token);
+    const { tag, props, content, children, render, links } = TAG_MAPPINGS[token.type](token);
     
+    let l = links || [];
+
+    if (render)
+        return { 
+            nodes: render,
+            links: [...l],
+        };
+
     const renderChildren = children.map(t => tokensToRenderFunction(t));
-    return h(tag, props, [content, ...renderChildren]);
+    const otherLinks = renderChildren.map(l => l.links).flat();
+    
+    return { 
+        nodes: h(tag, props, [content, ...renderChildren.map(n => n.nodes)]),
+        links: [...l, ...otherLinks] 
+    };
 };

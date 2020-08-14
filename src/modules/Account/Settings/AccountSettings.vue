@@ -5,6 +5,7 @@
             <avatar-uploader />
         </div>
         <div class="col-span-1 md:col-span-6 lg:col-gap-6 grid gap-4">
+            <header-settings></header-settings>
             <kro-textfield disabled label="Username" v-model="username" />
             <kro-textfield label="Nickname" v-model="nickname" />
             <kro-textfield label="Bio" multiline v-model="bio" />
@@ -19,6 +20,7 @@
 <script lang="ts" setup>
     import { ref, watch } from 'vue';
     import AvatarUploader from './AvatarUploader.vue';
+    import HeaderSettings from './HeaderSettings.vue';
 
     import { useAxios } from '/@app/composables/';
     import { GET_ME } from '/@app/gql/query';
@@ -43,7 +45,7 @@
 
     export default {
         name: 'AccountSettings',
-        components: { AvatarUploader }
+        components: { AvatarUploader, HeaderSettings }
     }
 </script>
 

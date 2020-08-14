@@ -10,7 +10,7 @@
             <template v-else>
                 <app-lazy-image
                     placeholder="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=12&q=80"
-                    src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                    :src="user.profile.headerImage"
                     :intrinsicWidth="1920"
                     :intrinsicHeight="1080"
                  />
@@ -26,8 +26,8 @@
                          <span class="text-xs font-bold text-secondary">@{{user.username}}</span>
                      </div>
                  </kro-toolbar>
-                 <div class="p-4">
-                     
+                 <div>
+                    <app-user-post-feed :username="user.username" />
                  </div>
             </template>
         </kro-surface>

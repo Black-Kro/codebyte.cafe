@@ -5,7 +5,7 @@
                 <the-toolbar></the-toolbar>
             </template>
             <template #default>
-                <router-view></router-view>
+                <router-view :key="$route.path"></router-view>
                 <kro-button @click="elevate" class="[ return-to-top ] [ rounded-full w-12 h-12 fixed ]">
                     <kro-icon icon="arrow-up-thick" />
                 </kro-button>

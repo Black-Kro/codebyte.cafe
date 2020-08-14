@@ -3,7 +3,7 @@
         <post-header 
             :post="post" />
 
-        <div class="[ post-renderer-content ] [ px-4 py-2 ]">
+        <div class="[ post-renderer-content ]">
             <post-renderer 
                 :content="post.content" />
         </div>
