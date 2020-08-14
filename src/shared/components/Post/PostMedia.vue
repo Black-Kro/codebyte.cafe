@@ -10,7 +10,7 @@
         </div>
     </div>
     <div>
-        <kro-dialog class="max-w-6xl" v-model="shouldOpenPreview">
+        <kro-dialog class="max-w-6xl app-preview__container" v-model="shouldOpenPreview">
                 <app-lazy-image 
                     v-if="preview"
                     :intrinsicWidth="preview.width"
@@ -52,6 +52,11 @@
     .app-preview-image {
         // width: auto;
         max-height: 80vh;
+    }
+
+    .app-preview__container {
+        padding: 0 !important;
+        overflow: hidden;
     }
 
 </style>
