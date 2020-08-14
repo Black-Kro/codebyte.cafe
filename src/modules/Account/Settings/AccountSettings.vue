@@ -21,12 +21,12 @@
     import AvatarUploader from './AvatarUploader.vue';
 
     import { useAxios } from '/@app/composables/';
-    import { getMe } from '/@app/gql/query';
-    import { updateProfile } from '/@app/gql/mutation';
+    import { GET_ME } from '/@app/gql/query';
+    import { UPDATE_PROFILE } from '/@app/gql/mutation';
     import { useQuery, useResult, useMutation } from '/@app/gql/composable';
     import Cropper from 'cropperjs';
 
-    const { result, loading, error, onResult } = useQuery(getMe);
+    const { result, loading, error, onResult } = useQuery(GET_ME);
     const me = useResult(result);
 
 

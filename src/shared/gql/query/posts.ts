@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const getPosts = gql`
+export const GET_POSTS = gql`
     query getPosts($cursor: String) {
         posts(order_by: { created:DESC }, first: 5, after: $cursor) {
             edges {
@@ -26,6 +26,9 @@ export const getPosts = gql`
                 postMedia {
                     id
                     path
+                    width
+                    height
+                    base64
                 }
                 author {
                     id

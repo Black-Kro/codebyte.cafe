@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const getPeople = gql`
+export const GET_PEOPLE = gql`
     query getPeople {
         users {
             nodes {
@@ -20,7 +20,7 @@ export const getPeople = gql`
     }
 `;
 
-export const getMe = gql`
+export const GET_ME = gql`
     query getMe {
         me {
             id

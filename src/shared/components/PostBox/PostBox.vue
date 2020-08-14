@@ -47,8 +47,8 @@
     import { useStore } from 'vuex';
 
     import { useAxios } from '/@app/composables/';
-    import { getPosts } from '/@app/gql/query';
-    import { createPost } from '/@app/gql/mutation';
+    import { GET_POSTS } from '/@app/gql/query';
+    import { CREATE_POST } from '/@app/gql/mutation';
     import { useQuery, useMutation } from '/@app/gql/composable';
     export { randomQuote } from './data/quotes';
 
@@ -57,20 +57,19 @@
 
     export const isLoading = ref(false);
 
-    export const { mutate, loading, onDone, onError } = useMutation<any, { content?: any, media?: any }>(createPost, { 
+    export const { mutate, loading, onDone, onError } = useMutation<any, { content?: any, media?: any }>(CREATE_POST, { 
         update(cache, { data }) {
             const query = cache.readQuery({
-                query: getPosts
+                query: GET_POSTS
             }) as any;
 
             query.posts.nodes = [data.createPost, ...query.posts.nodes];
 
             cache.writeQuery({
-                query: getPosts,
+                query: GET_POSTS,
                 variables: {},
                 data: query
             })
-            // console.log(cache, data);
         }
     });
 

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const createPost = gql`
+export const CREATE_POST = gql`
     mutation createPost($content: String, $media: [String]) {
         createPost(input: {
             content: $content,
@@ -11,9 +11,16 @@ export const createPost = gql`
             created
             likes
             dislikes
+            reactions {
+                id
+                reactType
+            }
             postMedia {
                 id
                 path
+                width
+                height
+                base64
             }
             author {
                 id
@@ -30,7 +37,7 @@ export const createPost = gql`
     }
 `;
 
-export const reactToPost = gql`
+export const REACT_TO_POST = gql`
     mutation reactToPost($postId: Uuid!, $type: ReactTypeInput!) {
         reactToPost(input: {
             postId: $postId,
@@ -48,7 +55,7 @@ export const reactToPost = gql`
     }
 `;
 
-export const deletePost = gql`
+export const DELETE_POST = gql`
     mutation deletePost($postId: Uuid!) {
         deletePost(input: { postId: $postId })
     }

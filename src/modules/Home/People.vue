@@ -14,10 +14,10 @@
 </template>
 
 <script lang="ts" setup>
-    import { getPeople } from '/@app/gql/query';
+    import { GET_PEOPLE } from '/@app/gql/query';
     import { useQuery, useResult } from '/@app/gql/composable';
 
-    export const { result, loading, error } = useQuery(getPeople);
+    export const { result, loading, error } = useQuery(GET_PEOPLE);
     export const people = useResult(result, null, data => data.users.nodes);
 
     export default {

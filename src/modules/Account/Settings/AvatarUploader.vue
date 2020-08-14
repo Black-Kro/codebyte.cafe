@@ -36,7 +36,7 @@
     import { ref } from 'vue';
     import { useDialog } from '@black-kro/ui';
     import { useMutation } from '/@app/gql/composable';
-    import { updateProfile } from '/@app/gql/mutation';
+    import { UPDATE_PROFILE } from '/@app/gql/mutation';
     import { uploadMedia } from '/@app/services/';
     import Cropper from 'cropperjs';
 
@@ -46,7 +46,7 @@
     export const target = ref();
     let cropper: Cropper;
 
-    const { mutate } = useMutation<any, { avatar: string }>(updateProfile);
+    const { mutate } = useMutation<any, { avatar: string }>(UPDATE_PROFILE);
     
     export const onChange = (e) => {
         if (e.target.files.length > 0) {

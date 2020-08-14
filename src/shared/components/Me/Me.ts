@@ -1,5 +1,5 @@
 import { defineComponent, h } from 'vue';
-import { getMe } from '/@app/gql/query';
+import { GET_ME } from '/@app/gql/query';
 import { useQuery, useResult } from '/@app/gql/composable';
 import { useStore } from 'vuex';
 
@@ -8,7 +8,7 @@ export default defineComponent({
     setup(props, { slots }) {
         const { getters } = useStore();
 
-        const { result, loading, error } = useQuery(getMe);
+        const { result, loading, error } = useQuery(GET_ME);
         const me = useResult(result, null, data => result.value.me);
 
         return () => {

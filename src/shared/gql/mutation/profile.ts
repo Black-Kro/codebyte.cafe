@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const updateProfile = gql`
+export const UPDATE_PROFILE = gql`
     mutation updateProfile($displayName: String, $bio: String, $avatar: Uuid, $headerImage: Uuid) {
         updateProfile(input: {
             displayName: $displayName,

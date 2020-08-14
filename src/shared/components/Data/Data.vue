@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { getMe } from '/@app/gql/query';
+    import { GET_ME } from '/@app/gql/query';
     
 
 

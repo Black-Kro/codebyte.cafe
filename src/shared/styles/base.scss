@@ -40,3 +40,14 @@ input[type=file], /* FF, IE7+, chrome (except button) */
 input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
     cursor: pointer; 
 }
+
+.app-renderer__p {
+    margin: 0;
+}
+
+.app-renderer__blockquote {
+    margin: 0;
+
+    border-left: 0.25rem solid var(--kro-primary);
+    padding: 0.25rem 0.25rem 0.25rem 0.5rem
+}

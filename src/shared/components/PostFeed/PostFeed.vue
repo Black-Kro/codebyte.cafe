@@ -2,9 +2,7 @@
     <div>
         <div v-if="posts">
             <template v-for="post in posts.nodes">
-                <app-post :post="post">
-                    {{post.content}}
-                </app-post>
+                <app-post :post="post"></app-post>
                 <kro-divider class="m-0" />
             </template>
         </div>
@@ -24,11 +22,11 @@
 
 <script lang="ts" setup>
     import { ref, watch } from 'vue';
-    import { getPosts } from '/@app/gql/query';
+    import { GET_POSTS } from '/@app/gql/query';
     import { useQuery, useResult } from '/@app/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
-    export const { result, loading, error, refetch, fetchMore } = useQuery(getPosts, {}, {
+    export const { result, loading, error, refetch, fetchMore } = useQuery(GET_POSTS, {}, {
         notifyOnNetworkStatusChange: true
     });
     export const posts = useResult(result, null, data => data.posts);

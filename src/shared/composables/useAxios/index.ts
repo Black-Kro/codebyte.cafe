@@ -6,8 +6,6 @@ const {
 // @ts-ignore
 } = import.meta.env;
 
-console.log(VITE_API_URL);
-
 export const useAxios = (authenticate: boolean = true, useAPI: boolean = true) => {
     
     const instance = Axios.create();

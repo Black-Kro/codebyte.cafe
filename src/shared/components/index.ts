@@ -5,4 +5,5 @@ export { AppDefaultLayout } from './Layouts';
 export { TheNavigation } from './TheNavigation';
 export { TheFooter } from './TheFooter';
 export { AppPostFeed } from './PostFeed';
+export { AppLazyImage } from './LazyImage';
 export { AppMe, AppNickname } from './Me';

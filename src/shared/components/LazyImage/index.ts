@@ -1,0 +1,1 @@
+export { default as AppLazyImage } from './LazyImage.vue';
