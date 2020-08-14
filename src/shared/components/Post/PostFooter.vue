@@ -47,9 +47,6 @@
             newDislikes++;
         }
 
-        const reactions = [...props.post.reactions];
-
-
         reactMutate({ postId: props.post.id, type }, {
             optimisticResponse: {
                 reactToPost: {
@@ -58,7 +55,6 @@
                     dislikes: newDislikes,
                     liked: type === 'LIKE',
                     disliked: type === 'DISLIKE',
-                    reactions: reactions,
                     "__typename": "Post"
                 }
             }

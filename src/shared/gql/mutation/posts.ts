@@ -13,10 +13,6 @@ export const CREATE_POST = gql`
             dislikes
             liked
             disliked
-            reactions {
-                id
-                reactType
-            }
             postMedia {
                 id
                 path
@@ -50,10 +46,6 @@ export const REACT_TO_POST = gql`
             dislikes
             liked
             disliked
-            reactions {
-                id
-                reactType
-            }
         }
     }
 `;

@@ -21,10 +21,6 @@ export const GET_POSTS = gql`
                 dislikes
                 liked
                 disliked
-                reactions {
-                    id
-                    reactType
-                }
                 postMedia {
                     id
                     path
@@ -69,10 +65,6 @@ export const GET_POSTS_BY_USER = gql`
                 dislikes
                 liked
                 disliked
-                reactions {
-                    id
-                    reactType
-                }
                 postMedia {
                     id
                     path
