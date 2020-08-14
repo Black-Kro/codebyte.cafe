@@ -18,7 +18,7 @@
                 <div class="w-full h-full flex flex-row items-center justify-center absolute top-0 left-0">
                     <kro-spinner v-if="loading" />
                 </div>
-                <input class="[ absolute z-10 w-full h-full opacity-0 top-0 cursor-pointer rounded-full ]" type="file" @change="onChange" />
+                <input class="[ absolute w-full h-full opacity-0 top-0 cursor-pointer rounded-full ]" type="file" @change="onChange" />
             </div>
         </app-me>
         <kro-dialog class="max-w-6xl" v-model="isCropping" persistent>
