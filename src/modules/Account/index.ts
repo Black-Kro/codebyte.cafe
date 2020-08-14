@@ -26,12 +26,4 @@ export const accountRoutes: RouteRecordRaw[] = [
             title: 'Notifications',
         }
     },
-    {
-        path: '/@:username',
-        component: () => import('./Profile.vue'),
-        beforeEnter: isAuthenticated,
-        meta: {
-            title: 'Profile',
-        }
-    },
 ]

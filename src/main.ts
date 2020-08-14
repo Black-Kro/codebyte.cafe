@@ -8,7 +8,13 @@ import { DefaultApolloClient } from '/@app/gql/composable';
 /**
  * Import Local Modules
  */
-import { App, homeRoutes, authRoutes, accountRoutes, exploreRoutes } from '/@app/modules/';
+import {
+    App, 
+    homeRoutes, 
+    authRoutes, 
+    accountRoutes, 
+    exploreRoutes,
+    profileRoutes } from '/@app/modules/';
 
 import * as AppComponents from '/@app/components/';
 import { KroRouter } from '/@app/router/';
@@ -33,6 +39,7 @@ createApp(App)
             ...authRoutes,
             ...accountRoutes,
             ...exploreRoutes,
+            ...profileRoutes,
         ]
     })
     .provide(DefaultApolloClient, apolloClient)

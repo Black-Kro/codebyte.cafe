@@ -46,3 +46,21 @@ export const GET_ME = gql`
         }
     }
 `;
+
+export const GET_USER_FROM_NAME = gql`
+    query userFromName($username: String) {
+        userFromName(input: { username: $username }) {
+            id
+            username
+            created
+            verified
+            profile {
+                id
+                avatar
+                bio
+                displayName
+                headerImage
+            }
+        }
+    }
+`;

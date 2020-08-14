@@ -1,13 +1,13 @@
 import { RouteRecordRaw } from 'vue-router';
-import { isNotAuthenticated } from '/@app/router/guards';
+import { isAuthenticated } from '/@app/router/guards';
 
-export const authRoutes: RouteRecordRaw[] = [
+export const profileRoutes: RouteRecordRaw[] = [
     {
-        path: '/',
+        path: '/@:username',
         component: () => import('./Profile.vue'),
-        beforeEnter: isNotAuthenticated,
+        beforeEnter: isAuthenticated,
         meta: {
             title: 'Profile',
-        },
+        }
     },
 ];
