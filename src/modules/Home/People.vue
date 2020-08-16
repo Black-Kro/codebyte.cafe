@@ -1,11 +1,15 @@
 <template>
     <app-default-layout>
-        <kro-surface>
-            <kro-list-item :to="`/@${person.username}`" v-for="person in people">
-                <template #icon><kro-avatar :src="`${person.profile.avatar}?width=48&height=48`" /></template>
-                <app-nickname :user="person" />
-                <template #subtitle>@{{person.username}}</template>
-            </kro-list-item>
+        <kro-surface :padded="false">
+
+            <user-identity
+                v-for="person in people"
+
+                :key="person.id"
+                :to="`/@${person.username}`"
+                :user="person"
+             />
+
             <div v-if="loading" class="p-4 flex flex-row justify-center">
                 <kro-spinner />
             </div>

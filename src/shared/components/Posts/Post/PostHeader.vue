@@ -1,23 +1,20 @@
 <template>
-    <div class="flex flex-row items-center p-4">
-        <kro-avatar :src="`${post.author.profile.avatar}?width=48&height=48`" />
-        <div class="flex flex-col ml-2">
-            <app-nickname :user="post.author" />
-            <span class="text-xs text-secondary font-medium">@{{post.author.username}} · {{format(post.created)}}</span>
-        </div>
-        <span class="flex-1"></span>
-        <kro-menu :key="post.id" left>
-            <template #activator="{ open }">
-                <kro-button @click="open" icon="chevron-down"></kro-button>
-            </template>
-            <div>
-                <kro-list-item @click="deletePost" class="cursor-pointer">
-                    <template #icon><kro-icon icon="delete" /></template>
-                    Delete Post
-                </kro-list-item>
-            </div>
-        </kro-menu>
-    </div>
+    <user-identity :to="`/@${post.author.username}`" :user="post.author">
+        <template #subtitle> · {{format(post.created)}}</template>
+        <template #default>
+            <kro-menu :key="post.id" left>
+                <template #activator="{ open }">
+                    <kro-button @click="open" icon="chevron-down"></kro-button>
+                </template>
+                <div>
+                    <kro-list-item @click="deletePost" class="cursor-pointer">
+                        <template #icon><kro-icon icon="delete" /></template>
+                        Delete Post
+                    </kro-list-item>
+                </div>
+            </kro-menu>
+        </template>
+    </user-identity>       
 </template>
 
 <script lang="ts" setup="props">

@@ -17,12 +17,12 @@
             <span>People</span>
         </router-link>
         <kro-divider class="[] [ hidden lg:block ] []" />
-        <app-me #me="{ me }">
+        <user-me #me="{ me }">
             <router-link class="[ the-navigation__link ] [] []" :to="`/@${me.username}`">
                 <kro-icon icon="account" />
                 <span>Profile</span>
             </router-link>
-        </app-me>
+        </user-me>
         <router-link class="[ the-navigation__link ] [] []"  to="/settings">
             <kro-icon icon="settings" />
             <span>Settings</span>

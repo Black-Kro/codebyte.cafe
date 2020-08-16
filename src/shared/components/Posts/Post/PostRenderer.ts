@@ -95,7 +95,7 @@ export default defineComponent({
 
 
             return h('div', [
-                h('div', { class: 'app-post-renderer__content px-4 py-2' }, nodes),
+                h('div', { class: 'app-post-renderer__content px-4 py-2 pt-0' }, nodes),
                 mediaNode
             ]);
         };

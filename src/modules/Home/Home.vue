@@ -6,12 +6,11 @@
             <app-post-feed></app-post-feed>
         </kro-surface>
 
-
         <template #right>
-            <kro-surface :padded="false">
-                <app-me>
+            <!-- <kro-surface :padded="false">
+                <user-me>
                     <template #me="{ me }">
-                        <img class="h-24 w-full object-cover" src='https://images.unsplash.com/photo-1501560379-05951a742668?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80' alt=''/>
+                        <user-avatar :user="me" />
                         <div class="h-12">
                             <kro-avatar class="[ app-sidebar-avatar ] block mx-auto h-24 w-24 transform -translate-y-1/2" :src="me.profile.avatar" />
                         </div>
@@ -20,8 +19,8 @@
                             <span class="text-xs font-medium text-secondary">@{{me.username}}</span>
                         </div>
                     </template>
-                </app-me>
-            </kro-surface>
+                </user-me>
+            </kro-surface> -->
         </template>
     </app-default-layout>
 </template>

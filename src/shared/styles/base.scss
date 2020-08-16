@@ -3,7 +3,9 @@
 
 @import './nprogress.scss';
 @import './patches.scss';
+@import './code.scss';
 
+textarea::placeholder,
 input::placeholder {
     color: var(--kro-foreground-secondary);
 }

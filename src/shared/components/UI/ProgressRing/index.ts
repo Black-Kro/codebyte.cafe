@@ -1,0 +1,1 @@
+export { default as AppProgressRing } from './ProgressRing.vue';

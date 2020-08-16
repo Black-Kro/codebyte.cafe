@@ -15,6 +15,7 @@
             </template>
         </kro-layout>
     </kro-app>
+    <the-cropper></the-cropper>
 </template>
 
 <script lang="ts" setup>

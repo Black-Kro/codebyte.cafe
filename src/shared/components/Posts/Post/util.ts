@@ -1,5 +1,6 @@
-import { h } from 'vue';
+import { h, render } from 'vue';
 import { RouterLink } from 'vue-router';
+import PostCode from './PostCode.vue';
 
 function getHostName(url) {
     var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
@@ -166,7 +167,27 @@ const TAG_MAPPINGS = {
         }
 
         return { tag, props, content, children }
-    }
+    },
+
+    'code': (token) => {
+        // console.log(token);
+        
+        // const tag = 'pre';
+        // const props = null;
+        // const content = token.text;
+        // const children = [];
+
+        return { render: h(PostCode, { code: token.text, lang: token.lang }) };
+    },
+
+    'codespan': (token) => {
+        const tag = 'code';
+        const props = null;
+        const content = token.text;
+        const children = [];
+
+        return { tag, props, content, children }
+    },
 
 }
 
@@ -174,6 +195,7 @@ export const tokensToRenderFunction = (token) => {
     const { tag, props, content, children, render, links } = TAG_MAPPINGS[token.type](token);
     
     let l = links || [];
+
 
     if (render)
         return { 

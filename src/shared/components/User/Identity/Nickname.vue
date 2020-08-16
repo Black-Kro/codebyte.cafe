@@ -1,10 +1,13 @@
 <template>
-    <span class="flex flex-row items-center">{{user.profile.displayName}} <kro-icon class="[ nickname-verified ] ml-2" v-if="user.verified" icon="verified" /></span>
+    <span class="flex flex-row items-center">
+        <span class="[] [] [ text-primary ]">{{user.profile.displayName}}</span> 
+        <kro-icon class="[ nickname-verified ] ml-2" v-if="user.verified" icon="verified" />
+    </span>
 </template>
 
 <script lang="ts" setup>
     export default {
-        name: 'AppNickname',
+        name: 'UserNickname',
         props: {
             user: Object,
         }

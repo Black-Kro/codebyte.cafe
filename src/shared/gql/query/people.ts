@@ -14,6 +14,20 @@ export const GET_PEOPLE = gql`
                     bio
                     displayName
                     headerImage
+                    headerImageObject {
+                        id
+                        base64
+                        path
+                        width
+                        height
+                    }
+                    avatarObject {
+                        id
+                        base64
+                        path
+                        width
+                        height
+                    }
                 }
             }
         }
@@ -37,6 +51,20 @@ export const GET_ME = gql`
                 bio
                 displayName
                 headerImage
+                headerImageObject {
+                    id
+                    base64
+                    path
+                    width
+                    height
+                }
+                avatarObject {
+                    id
+                    base64
+                    path
+                    width
+                    height
+                }
                 links {
                     id
                     link
@@ -60,6 +88,20 @@ export const GET_USER_FROM_NAME = gql`
                 bio
                 displayName
                 headerImage
+                headerImageObject {
+                    id
+                    base64
+                    path
+                    width
+                    height
+                }
+                avatarObject {
+                    id
+                    base64
+                    path
+                    width
+                    height
+                }
             }
         }
     }

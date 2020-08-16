@@ -1,5 +1,5 @@
 <template>
-    <app-me>
+    <user-me>
         <template #me="{ me }">
             <kro-menu left>
                 <template #activator="{ open }">
@@ -41,7 +41,7 @@
         <template #loading>
             <div class="[] [ w-12 h-12 ] [ bg-primary rounded-full ]"></div>
         </template>
-    </app-me>
+    </user-me>
 </template>
 
 <script lang="ts" setup>

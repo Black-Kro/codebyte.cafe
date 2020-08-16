@@ -29,6 +29,20 @@ export const CREATE_POST = gql`
                     avatar
                     displayName
                     bio
+                    headerImageObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
+                        avatarObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
                 }
             }
         }

@@ -37,6 +37,20 @@ export const GET_POSTS = gql`
                         avatar
                         displayName
                         bio
+                        headerImageObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
+                        avatarObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
                     }
                 }
             }
@@ -81,6 +95,20 @@ export const GET_POSTS_BY_USER = gql`
                         avatar
                         displayName
                         bio
+                        headerImageObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
+                        avatarObject {
+                            id
+                            base64
+                            path
+                            width
+                            height
+                        }
                     }
                 }
             }
