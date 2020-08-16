@@ -4,8 +4,8 @@
             <app-lazy-image 
                 :intrinsicWidth="1280"
                 :intrinsicHeight="720"
-                :placeholder="`http://i3.ytimg.com/vi/${video}/default.jpg`" 
-                :src="`http://i3.ytimg.com/vi/${video}/hqdefault.jpg`" />
+                :placeholder="`https://i3.ytimg.com/vi/${video}/default.jpg`" 
+                :src="`https://i3.ytimg.com/vi/${video}/hqdefault.jpg`" />
             <div @click="shouldLoadVideo = true" class="[ app-youtube-scrim ] absolute inset-0 flex flex-row items-center justify-center cursor-pointer">
                 <kro-icon icon="play-circle" class="w-24 h-24" />
             </div>
