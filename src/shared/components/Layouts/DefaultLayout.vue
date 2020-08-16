@@ -10,6 +10,7 @@
         <div class="[ hidden lg:flex flex-col col-gap-2 col-span-2 ]">
             <div class="sticky flex flex-col" style="top: calc(var(--kro-toolbar-height, 4rem) + 1rem)">
                 <slot name="right"></slot>
+                <alpha-notice></alpha-notice>
                 <the-footer></the-footer>
             </div>
         </div>
@@ -17,8 +18,11 @@
 </template>
 
 <script lang="ts" setup>
+    import AlphaNotice from '../Legal/AlphaStateNotice.vue';
+
     export default {
         name: 'DefaultLayout',
+        components: { AlphaNotice }
     }
 </script>
 
