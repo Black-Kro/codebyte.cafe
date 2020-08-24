@@ -1,18 +1,16 @@
 import gql from 'graphql-tag';
+import { UserFragment } from '/@app/gql/fragments';
 
 export const UPDATE_PROFILE = gql`
-    mutation updateProfile($displayName: String, $bio: String, $avatar: Uuid, $headerImage: Uuid) {
-        updateProfile(input: {
+    mutation UpdateUser($displayName: String, $bio: String, $header: String, $avatar: String) {
+        updateUser(
             displayName: $displayName,
             bio: $bio,
-            avatar: $avatar,
-            headerImage: $headerImage,
-        }) {
-            id   
-            displayName
-            bio
-            avatar
-            headerImage
+            header: $header,
+            avatar: $avatar, 
+        ) {
+            ...UserFragment    
         }
     }
+    ${UserFragment}
 `;

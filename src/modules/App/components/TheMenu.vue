@@ -3,19 +3,13 @@
         <template #me="{ me }">
             <kro-menu left>
                 <template #activator="{ open }">
-                    <kro-avatar
+                    <user-avatar
                         @click="open" 
                         class="cursor-pointer" 
-                        :src="`${me.profile.avatar}?width=48&height=48`" />
+                        :user="me" />
                 </template>
-                <div class="[] [ py-2 w-64 ] []">
-                    <div class="px-4 py-1 flex flex-row items-center">
-                        <kro-avatar :src="`${me.profile.avatar}?width=48&height=48`" />
-                        <div class="flex flex-col ml-4 min-w-0">
-                            <span class="truncate">{{me.profile.displayName}}</span>
-                            <span class="truncate text-xs">@{{me.username}}</span>
-                        </div>
-                    </div>
+                <div class="[] [ pb-2 w-64 ] []">
+                    <user-identity :user="me"></user-identity>
                     <kro-divider class="my-2" />
                     <kro-list-item class="cursor-pointer" :to="`/@${me.username}`">
                         <template #icon><kro-icon icon="account"/></template>

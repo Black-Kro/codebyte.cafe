@@ -3,6 +3,11 @@ import { useDialog } from '@black-kro/ui';
 
 const MAX_SIZE = 1000;
 
+const {
+    VITE_MEDIA_URL
+// @ts-ignore
+} = import.meta.env;
+
 export const uploadMedia = (files: File | FileList | Blob | File[] | Blob[]) => {
     if (Array.isArray(files)) {
         return uploadMediaFromList(files);
@@ -22,7 +27,7 @@ const uploadMediaFromList = async (files: File[] | Blob[], maxSize: number = MAX
     }
 
     try {
-        const { data } = await post('api/media/upload/image', formData, {
+        const { data } = await post(VITE_MEDIA_URL, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },

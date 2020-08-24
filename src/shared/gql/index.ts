@@ -2,8 +2,13 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
 import { store } from '/@app/store/';
 
+const {
+    VITE_API_URL
+// @ts-ignore
+} = import.meta.env;
+
 const httpLink = new HttpLink({
-    uri: 'https://api.codebyte.cafe/graphql',
+    uri: `${VITE_API_URL}/graphql`,
 });
 
 const context = setContext(async (operation, { headers }) => {

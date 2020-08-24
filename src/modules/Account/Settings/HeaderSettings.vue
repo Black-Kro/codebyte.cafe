@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-me #me="{ me }">
+        <user-me #me="{ me }">
             <div class="[ avatar-uploader ] [ relative overflow-hidden cursor-pointer ]">
                 <app-lazy-image
                     placeholder="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=12&q=80"
@@ -20,7 +20,7 @@
                 </div>
                 <input class="[ absolute w-full h-full opacity-0 top-0 cursor-pointer rounded-full ]" type="file" @change="onChange" />
             </div>
-        </app-me>
+        </user-me>
         <kro-dialog class="max-w-6xl" v-model="isCropping" persistent>
             <template #default>
                 <div class="avatar-uploader__cropper-container">

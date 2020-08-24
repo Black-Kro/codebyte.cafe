@@ -1,6 +1,6 @@
 <template>
     <app-default-layout>
-        <kro-surface :padded="false">
+        <!-- <kro-surface :padded="false">
             <template v-if="loading">
 
             </template>
@@ -30,20 +30,20 @@
                     <app-user-post-feed :username="user.username" />
                  </div>
             </template>
-        </kro-surface>
+        </kro-surface> -->
     </app-default-layout>
 </template>
 
 <script lang="ts" setup>
-    import { useRoute } from 'vue-router';
-    import { useQuery, useResult } from '/@app/gql/composable';
-    import { GET_USER_FROM_NAME } from '/@app/gql/query';
+    // import { useRoute } from 'vue-router';
+    // import { useQuery, useResult } from '/@app/gql/composable';
+    // import { GET_USER_FROM_NAME } from '/@app/gql/query';
 
-    export const { params } = useRoute();
-    export const { username } = params;
+    // export const { params } = useRoute();
+    // export const { username } = params;
 
-    export const { loading, error, result } = useQuery(GET_USER_FROM_NAME, { username });
-    export const user = useResult(result, null, x => x.userFromName);
+    // export const { loading, error, result } = useQuery(GET_USER_FROM_NAME, { username });
+    // export const user = useResult(result, null, x => x.userFromName);
 
     export default {
         name: 'ProfileView',

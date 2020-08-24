@@ -2,7 +2,7 @@ module.exports = {
     client: {
         service: {
             name: 'Codebyte',
-            url: 'https://api.codebyte.cafe/graphql'
+            url: 'http://localhost:5000/graphql'
         }
     },
     inclues: [

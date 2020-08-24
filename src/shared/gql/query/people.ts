@@ -1,108 +1,33 @@
 import gql from 'graphql-tag';
+import { UserFragment } from '/@app/gql/fragments';
+
+export const GET_PERSON = gql`
+    query Person($id: String, $username: String) {
+        user(id: $id, username: $username) {
+            ...UserFragment
+        }
+    },
+    ${UserFragment}
+`;
 
 export const GET_PEOPLE = gql`
-    query getPeople {
-        users {
+    query People($after: String) {
+        users(after: $after, take: 10) {
+            count
+            next
             nodes {
-                id
-                username
-                created
-                verified
-                profile {
-                    id
-                    avatar
-                    bio
-                    displayName
-                    headerImage
-                    headerImageObject {
-                        id
-                        base64
-                        path
-                        width
-                        height
-                    }
-                    avatarObject {
-                        id
-                        base64
-                        path
-                        width
-                        height
-                    }
-                }
+                ...UserFragment
             }
         }
-    }
+    },
+    ${UserFragment}
 `;
 
 export const GET_ME = gql`
-    query getMe {
+    query Me {
         me {
-            id
-            username
-            created
-            roles
-            banDate
-            banReason
-            banned
-            verified
-            profile {
-                id
-                avatar
-                bio
-                displayName
-                headerImage
-                headerImageObject {
-                    id
-                    base64
-                    path
-                    width
-                    height
-                }
-                avatarObject {
-                    id
-                    base64
-                    path
-                    width
-                    height
-                }
-                links {
-                    id
-                    link
-                    service
-                }
-            }
+            ...UserFragment
         }
-    }
-`;
-
-export const GET_USER_FROM_NAME = gql`
-    query userFromName($username: String) {
-        userFromName(input: { username: $username }) {
-            id
-            username
-            created
-            verified
-            profile {
-                id
-                avatar
-                bio
-                displayName
-                headerImage
-                headerImageObject {
-                    id
-                    base64
-                    path
-                    width
-                    height
-                }
-                avatarObject {
-                    id
-                    base64
-                    path
-                    width
-                    height
-                }
-            }
-        }
-    }
+    },
+    ${UserFragment}
 `;

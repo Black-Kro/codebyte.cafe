@@ -2,21 +2,21 @@
 
 $DefaultTheme: (
     light: (
-        'background': white,
-        'background-secondary': #f7f7f7,
+        'background': #f7f7f7,
+        'background-secondary': white,
         
         'foreground': hsla(0, 0%, 0%, 0.72),
         'foreground-secondary': hsla(0, 0%, 0%, 0.56),
         'foreground-disabled': hsla(0, 0%, 100%, 0.24),
         
         'divider': #eaeaea,
-        'shadow': 0 0 0 1px #eaeaea,
+        'shadow': 0 0 0 1px hsl(0, 0%, 85%),
             
         'primary': #6da696,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
         'primary-foreground': hsl(163, 24%, 18%),
-        'accent': #61efce,
+        'accent': hsl(166, 82%, 46%),
 
         'error': hsl(0, 100%, 66%),
         'error-foreground': hsl(218, 27%, 94%),

@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div v-show="posts && posts.pageInfo.hasNextPage" ref="reloadButton" >
+        <div v-show="posts && posts.hasNextPage" ref="reloadButton" >
             <kro-button class="w-full" :loading="loading" @click="loadMore">Load More</kro-button>
         </div>
     </div>
@@ -36,27 +36,25 @@
     const isButtonVisible = useElementVisibility(reloadButton);
 
     watch(() => isButtonVisible.value, () => {
-        if (!loading.value && posts.value.pageInfo.hasNextPage)
+        if (!loading.value && posts.value.hasNextPage)
             loadMore();
     });
 
     export const loadMore = async () => {
-        if (!loading.value && posts.value.pageInfo.hasNextPage) {
+        if (!loading.value && posts.value.hasNextPage) {
             fetchMore({
                 variables: {
-                    cursor: posts.value.pageInfo.endCursor
+                    after: posts.value.next
                 },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
-                    const newEdges = fetchMoreResult.posts.edges;
-                    const pageInfo = fetchMoreResult.posts.pageInfo;
+                    const next = fetchMoreResult.posts.next;
                     const nodes = fetchMoreResult.posts.nodes;
     
-                    return newEdges.length ? {
+                    return next ? {
                         posts: {
                             __typename: previousResult.posts.__typename,
-                            edges: [...previousResult.posts.edges, ...newEdges],
                             nodes: [...previousResult.posts.nodes, ...nodes],
-                            pageInfo,
+                            next,
                         }
                     } : previousResult;
                 }

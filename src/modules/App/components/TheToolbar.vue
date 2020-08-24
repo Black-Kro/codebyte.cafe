@@ -3,7 +3,8 @@
         <div class="[] [ container mx-auto px-4 ] [ grid grid-cols-4 lg:grid-cols-9 gap-4 items-center ]">
             <div class="[] [ col-span-2 ] []">
                 <router-link to="/" class="[] [] [ text-xl font-black ]">
-                    <img class="[] [ block h-8 ] []" src="/@app/shared/assets/Logo.svg" /> 
+                    <app-logo class="h-8" />
+                    <!-- <img class="[] [ block h-8 ] []" src="/@app/shared/assets/Logo.svg" />  -->
                 </router-link>
             </div>
 

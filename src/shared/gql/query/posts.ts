@@ -1,117 +1,24 @@
 import gql from 'graphql-tag';
+import { PostFragment } from '/@app/gql/fragments';
 
-export const GET_POSTS = gql`
-    query getPosts($cursor: String) {
-        posts(order_by: { created:DESC }, first: 5, after: $cursor) {
-            edges {
-                cursor
-                node {
-                    id
-                }
-            }
-            pageInfo {
-                endCursor
-                hasNextPage
-            }
-            nodes {
-                id
-                content
-                created
-                likes
-                dislikes
-                liked
-                disliked
-                postMedia {
-                    id
-                    path
-                    width
-                    height
-                    base64
-                }
-                author {
-                    id
-                    username
-                    verified
-                    profile {
-                        id
-                        avatar
-                        displayName
-                        bio
-                        headerImageObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                        avatarObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                    }
-                }
-            }
+export const GET_POST = gql`
+    query Post($id: String!) {
+        post(id: $id) {
+            ...PostFragment
         }
     }
+    ${PostFragment}
 `;
 
-export const GET_POSTS_BY_USER = gql`
-    query getPostsByUser($username: String, $cursor: String) {
-        postByUser(order_by: { created:DESC }, first: 5, after: $cursor, input: { username: $username }) {
-            edges {
-                cursor
-                node {
-                    id
-                }
-            }
-            pageInfo {
-                endCursor
-                hasNextPage
-            }
+export const GET_POSTS = gql`
+    query Posts($after: String, $id: String, $username: String) {
+        posts(after: $after, take: 10, id: $id, username: $username) {
+            next
+            hasNextPage
             nodes {
-                id
-                content
-                created
-                likes
-                dislikes
-                liked
-                disliked
-                postMedia {
-                    id
-                    path
-                    width
-                    height
-                    base64
-                }
-                author {
-                    id
-                    username
-                    verified
-                    profile {
-                        id
-                        avatar
-                        displayName
-                        bio
-                        headerImageObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                        avatarObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                    }
-                }
+                ...PostFragment
             }
         }
-    }
+    },
+    ${PostFragment}
 `;

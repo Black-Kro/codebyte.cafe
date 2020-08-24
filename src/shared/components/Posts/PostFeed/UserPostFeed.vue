@@ -21,14 +21,14 @@
 
 <script lang="ts" setup="props">
     import { ref, watch } from 'vue';
-    import { GET_POSTS_BY_USER } from '/@app/gql/query';
+    import { GET_POSTS } from '/@app/gql/query';
     import { useQuery, useResult } from '/@app/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
-    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(GET_POSTS_BY_USER, { username: props.username }, {
+    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(GET_POSTS, { username: props.username }, {
         notifyOnNetworkStatusChange: true
     });
-    export const posts = useResult(result, null, data => data.postByUser);
+    export const posts = useResult(result, null, data => data.Posts);
 
     export const reloadButton = ref(null);
 
@@ -43,20 +43,18 @@
         if (!loading.value && posts.value.pageInfo.hasNextPage) {
             fetchMore({
                 variables: {
-                    usernmae: props.username,
-                    cursor: posts.value.pageInfo.endCursor
+                    username: props.username,
+                    after: posts.value.next
                 },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
-                    const newEdges = fetchMoreResult.postByUser.edges;
-                    const pageInfo = fetchMoreResult.postByUser.pageInfo;
-                    const nodes = fetchMoreResult.postByUser.nodes;
+                    const next = fetchMoreResult.posts.next;
+                    const nodes = fetchMoreResult.posts.nodes;
     
-                    return newEdges.length ? {
-                        postsByUser: {
-                            __typename: previousResult.postByUser.__typename,
-                            edges: [...previousResult.postByUser.edges, ...newEdges],
-                            nodes: [...previousResult.postByUser.nodes, ...nodes],
-                            pageInfo,
+                    return next ? {
+                        Posts: {
+                            __typename: previousResult.posts.__typename,
+                            nodes: [...previousResult.posts.nodes, ...nodes],
+                            next,
                         }
                     } : previousResult;
                 }

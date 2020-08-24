@@ -47,7 +47,7 @@
     export const createAccount = async () => {
         try {
             loading.value = true;
-            const response = await post('https://api.codebyte.cafe/api/profile/create', {
+            const response = await post('/api/profile/create', {
                 username: username.value,
                 displayName: nickname.value,
                 bio: bio.value,

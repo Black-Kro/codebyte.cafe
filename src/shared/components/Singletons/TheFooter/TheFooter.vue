@@ -7,7 +7,7 @@
             <router-link class="text-current" to="/terms-of-service">Terms of Service</router-link>
             <router-link class="text-current" to="/privacy-policy">Privacy Policy</router-link>
         </div>
-        <img class="h-8 opacity-50 mt-4" src="/@app/shared/assets/Logo.svg" />
+        <app-logo class="h-8 opacity-50 mt-4" />
     </div>
 </template>
 

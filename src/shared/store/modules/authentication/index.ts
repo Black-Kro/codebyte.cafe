@@ -65,7 +65,7 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                             commit('setStatus', 'AUTHENTICATED');
                         } else {
                             // Check if the profile has been created yet.
-                            get('https://api.codebyte.cafe/api/profile/status')
+                            get('/api/user/status')
                                 .then(response => {
                                     const { data } = response;
                                     if (!data.profileCreated) {
@@ -74,7 +74,6 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                                         commit('setStatus', 'AUTHENTICATED');
                                         localStorage.setItem('codebyte-profile-created', 'true');
                                     }
-    
                                 })
                                 .catch(error => {
                                     commit('setStatus', 'UNAUTHENTICATED');
@@ -95,7 +94,7 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                     .auth()
                     .signInWithPopup(AuthProviders[provider])
                     .then(response => { commit('setUser', response.user); commit('setError', null); })
-                    .catch(error => { commit('setError', error.message); });
+                    .catch(error => { commit('setError', error.message); console.log(error); });
             } else {
                 if (email && password) {
                     return firebase

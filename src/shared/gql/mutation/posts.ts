@@ -1,71 +1,32 @@
 import gql from 'graphql-tag';
+import { PostFragment } from '/@app/gql/fragments';
 
 export const CREATE_POST = gql`
-    mutation createPost($content: String, $media: [String]) {
-        createPost(input: {
+    mutation CreatePost($content: String, $media: [String!]) {
+        createPost(
             content: $content,
             media: $media
-        }) {
-            id
-            content
-            created
-            likes
-            dislikes
-            liked
-            disliked
-            postMedia {
-                id
-                path
-                width
-                height
-                base64
-            }
-            author {
-                id
-                username
-                verified
-                profile {
-                    id
-                    avatar
-                    displayName
-                    bio
-                    headerImageObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                        avatarObject {
-                            id
-                            base64
-                            path
-                            width
-                            height
-                        }
-                }
-            }
+        ) {
+            ...PostFragment
         }
     }
-`;
-
-export const REACT_TO_POST = gql`
-    mutation reactToPost($postId: Uuid!, $type: ReactTypeInput!) {
-        reactToPost(input: {
-            postId: $postId,
-            type: $type
-        }) {
-            id
-            likes
-            dislikes
-            liked
-            disliked
-        }
-    }
+    ${PostFragment}
 `;
 
 export const DELETE_POST = gql`
-    mutation deletePost($postId: Uuid!) {
-        deletePost(input: { postId: $postId })
+    mutation DeletePost($id: String!) {
+        deletePost(id: $id) {
+            ...PostFragment
+        }
     }
+    ${PostFragment}
+`;
+
+export const REACT_TO_POST = gql`
+    mutation ReactToPost($id: String!, $reaction: String!) {
+        react(id: $id, reaction: $reaction) {
+            ...PostFragment
+        }
+    }
+    ${PostFragment}
 `;
