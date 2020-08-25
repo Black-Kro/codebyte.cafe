@@ -35,7 +35,7 @@ const uploadMediaFromList = async (files: File[] | Blob[], maxSize: number = MAX
         });
         
         if (data.success) {
-            return data.mediaIds;
+            return data.mediaObjects;
         } else {
             throw Error(`Failed to upload media: ${data}`);
         }

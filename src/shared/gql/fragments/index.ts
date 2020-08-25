@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const MediaFragment = gql`
-    fragment MediaFragment on MediaType {
+    fragment MediaFragment on Media {
         id
         url
         metadata {
@@ -13,9 +13,9 @@ export const MediaFragment = gql`
 `;
 
 export const ProfileFragment = gql`
-    fragment ProfileFragment on UserType {
+    fragment ProfileFragment on User {
         profile {
-            displayName
+            nickname
             bio
             avatar {
                 ...MediaFragment
@@ -29,10 +29,10 @@ export const ProfileFragment = gql`
 `;
 
 export const UserFragment = gql`
-    fragment UserFragment on UserType {
+    fragment UserFragment on User {
         id
         username
-        verified
+        isVerified
         roles
         ...ProfileFragment
     }
@@ -40,10 +40,10 @@ export const UserFragment = gql`
 `;
 
 export const PostFragment = gql`
-    fragment PostFragment on PostType {
+    fragment PostFragment on Post {
         id
-        content
-        postMedia {
+        text
+        media {
             ...MediaFragment
         }
         author {

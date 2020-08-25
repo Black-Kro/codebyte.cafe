@@ -5,11 +5,11 @@
 
         <div class="[ post-renderer-content ]">
             <post-renderer 
-                :content="post.content" />
+                :content="post.text" />
         </div>
 
         <post-media 
-            v-if="post.postMedia.length > 0"
+            v-if="post.media && post.media.length > 0"
             :media="post.postMedia" />
 
         <post-footer 

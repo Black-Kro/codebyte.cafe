@@ -1,15 +1,7 @@
 import { UserConfig } from 'vite';
-import graphql from 'rollup-plugin-graphql';
 const path = require('path');
 
 module.exports = {
-    optimizeDeps: [
-        // '@vue/apollo-composable'
-        'fast-json-stable-stringify'
-    ],
-    rollupInputOptions: {
-        
-    },
     alias: {
         '/@app/composables/': path.resolve(__dirname, './src/shared/composables'),
         '/@app/components/': path.resolve(__dirname, './src/shared/components'),

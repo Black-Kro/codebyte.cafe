@@ -19,10 +19,9 @@
     export const placeholderValue = placeholder.value;
     const { get } = useAxios();
 
-    get('/api/glados/random')
+    get('/api/quotes')
         .then(({ data }) => {
-            if (data.success)
-                placeholder.value = data.quote;
+            placeholder.value = data.quote;
         })
         .catch((e) => {
             

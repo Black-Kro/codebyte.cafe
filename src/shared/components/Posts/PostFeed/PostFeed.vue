@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div>        
         <div v-if="posts">
             <template v-for="post in posts.nodes">
                 <app-post :post="post" />
@@ -49,11 +49,13 @@
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     const next = fetchMoreResult.posts.next;
                     const nodes = fetchMoreResult.posts.nodes;
+                    const hasNextPage = fetchMoreResult.posts.hasNextPage;
     
                     return next ? {
                         posts: {
                             __typename: previousResult.posts.__typename,
                             nodes: [...previousResult.posts.nodes, ...nodes],
+                            hasNextPage,
                             next,
                         }
                     } : previousResult;

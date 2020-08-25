@@ -54,11 +54,12 @@
 
             // Upload Media
             const media = await uploadMedia(cropped as File);
+            console.log(media);
 
             // Update Profile
             await updateProfile({ avatar: media[0] });
         } catch (error) {
-            console.log('File Not Cropped');
+            console.log(error);
         } finally {
             target.value = null;
             isLoading.value = false;

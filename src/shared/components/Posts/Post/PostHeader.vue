@@ -27,7 +27,7 @@
 
     const { createConfirmationDialog } = useDialog();
 
-    const { mutate } = useMutation<any, { postId: string }>(DELETE_POST, {
+    const { mutate } = useMutation<any, { id: string }>(DELETE_POST, {
         update(cache, { data }) {
             const d = cache.readQuery({
                 query: GET_POSTS,
@@ -59,7 +59,7 @@
                 }
             })
                 .then(() => {
-                    mutate({ postId: props.post.id });
+                    mutate({ id: props.post.id });
                 })
         } catch {
             

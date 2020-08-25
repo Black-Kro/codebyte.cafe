@@ -1,6 +1,6 @@
 <template>
     <span class="flex flex-row items-center">
-        <span class="[] [] [ text-primary ]">{{user.profile.displayName}}</span> 
+        <span class="[] [] [ text-primary ]">{{user.profile.nickname}}</span> 
         <kro-icon class="[ nickname-verified ] ml-2" v-if="user.verified" icon="verified" />
     </span>
 </template>
