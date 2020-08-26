@@ -1,11 +1,14 @@
 <template>
     <div ref="self" class="[ app-lazy-image ] [ relative overflow-hidden ]">
         <img v-bind="$attrs" v-if="intrinsicSizeURL" :src="intrinsicSizeURL" />
-        <img 
-            class="[ app-lazy-image__placeholder ] [ w-full h-full absolute inset-0 ] [ object-cover ]" 
-            :src="placeholder" alt="">
+        <transition name="fade">
+            <img 
+                v-if="!shouldLoad"
+                class="[ app-lazy-image__placeholder ] [ w-full h-full absolute inset-0 ] [ object-cover ]" 
+                :src="placeholder">
+        </transition>
         <transition entry name="fade">
-            <img v-if="shouldLoad" class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]" :src="src" alt="">
+            <img v-if="shouldLoad" class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]" :src="src">
         </transition>
     </div>
 </template>
@@ -25,12 +28,7 @@
         c.width = props.intrinsicWidth;
         c.height = props.intrinsicHeight;
         
-            intrinsicSizeURL.value = c.toDataURL();
-        // const ctx = c.getContext('2d');
-
-        // if (ctx) {
-        //     // ctx.createImageData(props.intrinsicWidth, props.intrinsicHeight);
-        // }
+        intrinsicSizeURL.value = c.toDataURL();
     }
 
     onIntersected(() => {

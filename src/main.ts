@@ -78,8 +78,5 @@ createApp(App)
             }
         }
     })
-    // .use(new VueApollo({
-    //     defaultClient: apolloClient,
-    // }))
     .use(store)
     .mount('#app');

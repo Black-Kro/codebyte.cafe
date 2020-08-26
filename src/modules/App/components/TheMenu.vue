@@ -10,7 +10,7 @@
                 </template>
                 <div class="[] [ pb-2 w-64 ] []">
                     <user-identity :user="me"></user-identity>
-                    <kro-divider class="my-2" />
+                    <kro-divider class="m-0" />
                     <kro-list-item class="cursor-pointer" :to="`/@${me.username}`">
                         <template #icon><kro-icon icon="account"/></template>
                         View Profile

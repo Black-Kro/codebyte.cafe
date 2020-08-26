@@ -1,16 +1,14 @@
 <template>
     <div class="[ app-post-footer ] [ p-4 grid fit gap-2 ]">
         <kro-button 
-            :style="{ color: post.liked ? 'var(--kro-primary)' : null }"
-            @click="react(post.liked ? 'REMOVE' : 'LIKE')">
-            <kro-icon icon="thumb-up-outline" />{{post.likes ? post.likes : ''}}
-        </kro-button>
+            class="w-8 h-8"
+            icon="thumb-up-outline" />
+        <kro-button
+            class="w-8 h-8"
+            icon="thumb-down-outline" />
         <kro-button 
-            :style="{ color: post.disliked ? 'var(--kro-primary)' : null }"
-            @click="react(post.disliked ? 'REMOVE' : 'DISLIKE')">
-            <kro-icon icon="thumb-down-outline" />{{post.dislikes ? post.dislikes : ''}}
-        </kro-button>
-        <kro-button icon="reply"></kro-button>
+            class="w-8 h-8"
+            icon="reply" />
     </div>
 </template>
 

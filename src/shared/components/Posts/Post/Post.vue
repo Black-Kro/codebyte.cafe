@@ -10,7 +10,7 @@
 
         <post-media 
             v-if="post.media && post.media.length > 0"
-            :media="post.postMedia" />
+            :media="post.media" />
 
         <post-footer 
             :post="post" />

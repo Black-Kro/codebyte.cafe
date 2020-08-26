@@ -2,8 +2,9 @@
     <div class="[ app-avatar ] [ w-12 h-12 ] [ rounded-full overflow-hidden ]">
         <app-lazy-image
             v-if="user.profile.avatar"
+            class="w-full h-full block"
             :placeholder="user.profile.avatar.metadata.base64"
-            :src="`${user.profile.avatar.url}?width=48&height=48`"
+            :src="`${user.profile.avatar.url}?width=${size}&height=${size}`"
             :intrinsicWidth="user.profile.avatar.metadata.width"
             :intrinsicHeight="user.profile.avatar.metadata.height" />
         <img
@@ -17,7 +18,11 @@
     export default {
         name: 'UserAvatar',
         props: {
-            user: Object
+            user: Object,
+            size: {
+                type: Number,
+                default: 48,
+            }
         }
     }
 </script>

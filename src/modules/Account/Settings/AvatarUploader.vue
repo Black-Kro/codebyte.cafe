@@ -3,8 +3,9 @@
         <user-me #me="{ me }">
             <div class="[ avatar-uploader ] [ relative w-32 h-32 ] [ rounded-full overflow-hidden ]">
                 <user-avatar 
-                    :user="me" 
-                    class="w-32 h-32 p-4" />
+                    :user="me"
+                    :size="128"
+                    class="absolute inset-0 w-full h-full" />
                 <kro-spinner
                     v-if="isLoading"
                     class="w-32 h-32 absolute top-0 left-0" />

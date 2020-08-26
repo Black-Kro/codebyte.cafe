@@ -1,6 +1,8 @@
 import { defineComponent, h } from 'vue';
 import { tokensToRenderFunction } from './util';
+
 import YoutubePlayer from './YoutubePlayer.vue';
+import TwitchPlayer from './TwitchPlayer.vue';
 
 import marked from 'marked';
 
@@ -8,7 +10,7 @@ const USERNAME_REGEX = /@(\w{1,15})\b/mgi;
 
 const selectLinkByPriority = (links) => {
 
-    const PriorityList = ['YOUTUBE', 'SPOTIFY'];
+    const PriorityList = ['YOUTUBE', 'SPOTIFY', 'TWITCH'];
     const Priorities = {
         'YOUTUBE': (url: string) => {
             const r = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
@@ -24,6 +26,12 @@ const selectLinkByPriority = (links) => {
 
             return false;
         },
+        'TWITCH': (url: string) => {
+            if (url.indexOf('twitch.tv') > -1)
+                return true;
+
+            return false;
+        }
     };
 
     for (const item of PriorityList) {
@@ -75,7 +83,7 @@ export default defineComponent({
 
             if (links.length > 0) {
                 const link = selectLinkByPriority(links);
-
+                console.log(link.type);
                 const renderTypes = {
                     YOUTUBE: (link) => {
                         return h(YoutubePlayer, { url: link.href });
@@ -85,6 +93,10 @@ export default defineComponent({
                         return h('span', 'SPOTIFY PLAYER')
                     },
                     
+                    TWITCH: (link) => {
+                        return h(TwitchPlayer, { url: link.href });
+                    },
+
                     NORMAL: (link) => {
                         return null;
                     },
