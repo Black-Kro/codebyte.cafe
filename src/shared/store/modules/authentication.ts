@@ -88,6 +88,25 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                 });
         },
 
+        async checkStatus({ commit }) {
+            const { get } = useAxios();
+
+            try {
+                const { data } = await get('/api/user/status');
+                
+                if (!data.profileCreated) {
+                    commit('setStatus', 'INCOMPLETE');
+                } else {
+                    commit('setStatus', 'AUTHENTICATED');
+                    localStorage.setItem('codebyte-profile-created', 'true');
+                }
+                
+                return;
+            } catch (error) {
+                commit('setStatus', 'UNAUTHENTICATED');
+            }
+        },
+
         signIn({ commit }, { email, password, provider }) {
             if (provider) {
                 return firebase

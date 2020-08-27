@@ -8,7 +8,7 @@
                 :src="placeholder">
         </transition>
         <transition entry name="fade">
-            <img v-if="shouldLoad" class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]" :src="src">
+            <img v-if="shouldLoad && src" class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]" :src="src">
         </transition>
     </div>
 </template>
@@ -47,8 +47,8 @@
     declare const props: {
         intrinsicWidth?: number;
         intrinsicHeight?: number;
-        placeholder: string;
-        src: string;
+        placeholder?: string;
+        src?: string;
     }
 </script>
 

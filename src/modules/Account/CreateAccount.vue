@@ -35,7 +35,7 @@
     export const bio = ref('');
     export const loading = ref(false);
 
-    const { getters } = useStore();
+    const { getters, dispatch } = useStore();
 
     export const errors = ref('');
 
@@ -47,19 +47,19 @@
     export const createAccount = async () => {
         try {
             loading.value = true;
-            const response = await post('/api/profile/create', {
+            const response = await post('/api/user', {
                 username: username.value,
-                displayName: nickname.value,
+                nickname: nickname.value,
                 bio: bio.value,
             });
 
-            watch(() => getters['auth/status'], () => {
-                if (getters['auth/status'] === 'AUTHENTICATED' || getters['auth/status'] === 'INCOMPLETE') {
-                    loading.value = false;
-                    push({ path: '/' });
-                }
-            });
-            replace({ path: '/' });
+            await dispatch('auth/checkStatus');
+
+            if (getters['auth/status'] === 'AUTHENTICATED')
+                replace({ path: '/' });
+            else {
+                console.log('FUCKK YOU');
+            }
         } catch (error) {
             loading.value = false;
             console.log(error);
