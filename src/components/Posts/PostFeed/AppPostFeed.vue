@@ -1,5 +1,11 @@
 <template>
-    <div>        
+    <div>
+        <template v-if="!posts">
+            <template v-for="i in 5">
+                <app-post-skeleton />
+                <kro-divider />
+            </template>
+        </template>
         <div v-if="posts">
             <template v-for="post in posts.nodes" :key="post.id">
                 <app-post :post="post" />
