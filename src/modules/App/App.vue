@@ -23,7 +23,7 @@
 
     import { useStore } from 'vuex';
     import { useTheme } from '@black-kro/ui';
-    import { useElevator } from '/@app/composables/useElevator';
+    import { useElevator } from '/~/composables/useElevator';
 
     export const { toggleThemeMode } = useTheme();
     export const { dispatch, getters } = useStore();

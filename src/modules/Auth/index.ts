@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import { isNotAuthenticated } from '/@app/router/guards';
+import { isNotAuthenticated } from '/~/shared/router/guards';
 
 export const authRoutes: RouteRecordRaw[] = [
     {

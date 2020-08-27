@@ -1,6 +1,6 @@
 import { Plugin } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { useTitle } from '/@app/composables/';
+import { useTitle } from '/~/composables/';
 
 import NProgress from 'nprogress';
 

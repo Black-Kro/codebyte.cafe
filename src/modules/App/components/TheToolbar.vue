@@ -1,22 +1,22 @@
 <template>
-    <kro-toolbar raised>
+    <kro-toolbar class="[ the-toolbar ]" raised>
         <div class="[] [ container mx-auto px-4 ] [ grid grid-cols-4 lg:grid-cols-9 gap-4 items-center ]">
             <div class="[] [ col-span-2 ] []">
                 <router-link to="/" class="[] [] [ text-xl font-black ]">
                     <app-logo class="h-8" />
-                    <!-- <img class="[] [ block h-8 ] []" src="/@app/shared/assets/Logo.svg" />  -->
+                    <!-- <img class="[] [ block h-8 ] []" src="/~/shared/assets/Logo.svg" />  -->
                 </router-link>
             </div>
 
             <div class="[] [ col-span-5 hidden lg:flex ] []">
-                <app-auth-suspense #authenticated>
+                <user-auth-suspense #authenticated>
                     <the-search></the-search>
-                </app-auth-suspense>
+                </user-auth-suspense>
             </div>
 
             <div class="[] [ col-span-2 ] [ grid grid-flow-col gap-2 justify-end items-center ]">
                 <kro-button icon="theme-light-dark" @click="toggleThemeMode" />
-                <app-auth-suspense>
+                <user-auth-suspense>
                     <template #authenticated>
                         <kro-button icon="notifications" />
                         <the-menu></the-menu>
@@ -32,7 +32,7 @@
                             <kro-button to="/sign-in">Sign In</kro-button>
                         </div>
                     </template>
-                </app-auth-suspense>
+                </user-auth-suspense>
             </div>
 
         </div>
@@ -58,4 +58,8 @@
 
 <style lang="scss">
     
+    .the-toolbar {
+        content-visibility: auto;
+    }
+
 </style>

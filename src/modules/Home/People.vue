@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts" setup>
-    import { GET_PEOPLE } from '/@app/gql/query';
-    import { useQuery, useResult } from '/@app/gql/composable';
+    import { GET_PEOPLE } from '/~/gql/query';
+    import { useQuery, useResult } from '/~/gql/composable';
 
     export const { result, loading, error } = useQuery(GET_PEOPLE);
     export const people = useResult(result, null, data => data.users.nodes);

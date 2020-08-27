@@ -1,1 +1,0 @@
-export { default as TheCropper } from './TheCropper.vue';

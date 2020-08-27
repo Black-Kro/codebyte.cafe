@@ -28,7 +28,7 @@
 <script lang="ts" setup>
     import { ref } from 'vue';
     import { useStore } from 'vuex';
-    import { useAxios } from '/@app/composables/';
+    import { useAxios } from '/~/composables/';
 
     export const { getters } = useStore();
 

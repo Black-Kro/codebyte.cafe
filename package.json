@@ -2,8 +2,8 @@
   "name": "codebyte-client",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "vite --open",
+    "build": "NODE_ENV=production vite build"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
@@ -12,14 +12,16 @@
     "autoprefixer": "^9.8.5",
     "eslint": "^7.5.0",
     "eslint-plugin-vue": "^6.2.2",
+    "postcss-critical-split": "^2.5.3",
     "sass": "^1.26.10",
     "tailwindcss": "^1.5.2",
     "typescript": "^3.9.7",
-    "vite": "^1.0.0-rc.4"
+    "vite": "^1.0.0-rc.4",
+    "vite-plugin-components": "^0.2.10"
   },
   "dependencies": {
     "@black-kro/apollo-composable": "^0.0.1",
-    "@black-kro/ui": "^0.1.38",
+    "@black-kro/ui": "^0.1.39",
     "@vue/apollo-option": "^4.0.0-alpha.7",
     "@vueuse/core": "^4.0.0-beta.2",
     "apollo-boost": "^0.4.9",

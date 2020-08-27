@@ -22,10 +22,10 @@
     import AvatarUploader from './AvatarUploader.vue';
     import HeaderSettings from './HeaderSettings.vue';
 
-    import { useAxios } from '/@app/composables/';
-    import { GET_ME } from '/@app/gql/query';
-    import { UPDATE_PROFILE } from '/@app/gql/mutation';
-    import { useQuery, useResult, useMutation } from '/@app/gql/composable';
+    import { useAxios } from '/~/composables/';
+    import { GET_ME } from '/~/gql/query';
+    import { UPDATE_PROFILE } from '/~/gql/mutation';
+    import { useQuery, useResult, useMutation } from '/~/gql/composable';
     import Cropper from 'cropperjs';
 
     const { result, loading, error, onResult } = useQuery(GET_ME);

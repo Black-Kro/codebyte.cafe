@@ -27,7 +27,7 @@
 <script lang="ts" setup>
     import { ref, watch } from 'vue';
     import { useRouter } from 'vue-router';
-    import { useAxios } from '/@app/composables/';
+    import { useAxios } from '/~/composables/';
     import { useStore } from 'vuex';
 
     export const username = ref('');

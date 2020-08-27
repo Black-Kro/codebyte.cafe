@@ -12,6 +12,8 @@
       "sourceMap": true,
       "baseUrl": ".",
       "paths": {
+        
+        "/~/*": ["src/*"],
         "/@app/*": ["src/*"],
         "/@app/composables/": ["src/shared/composables"],
         "/@app/composables/*": ["src/shared/composables/*"],

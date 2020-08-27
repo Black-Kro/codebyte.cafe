@@ -5,6 +5,22 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Critical CSS -->
+
+  <style>
+    body {
+      background: var(--kro-background, #343233);
+    }
+
+    .sk-tb {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4rem;
+      box-shadow: 0 0 0 1px #181818;
+      background: #272526;
+    }
+  </style>
+
   <!-- Primary Meta Tags -->
   <title>Codebyte - The Online Cafe</title>
   <meta name="title" content="Codebyte - The Online Cafe">
@@ -27,7 +43,11 @@
   <title>Codebyte</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="sk-tb">
+      
+    </div>
+  </div>
   <div id="kro-portal"></div>
   <script type="module" src="/src/main.ts"></script>
 </body>

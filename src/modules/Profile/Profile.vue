@@ -36,8 +36,8 @@
 
 <script lang="ts" setup>
     // import { useRoute } from 'vue-router';
-    // import { useQuery, useResult } from '/@app/gql/composable';
-    // import { GET_USER_FROM_NAME } from '/@app/gql/query';
+    // import { useQuery, useResult } from '/~/gql/composable';
+    // import { GET_USER_FROM_NAME } from '/~/gql/query';
 
     // export const { params } = useRoute();
     // export const { username } = params;

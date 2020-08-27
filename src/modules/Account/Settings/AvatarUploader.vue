@@ -33,9 +33,9 @@
 
 <script lang="ts" setup>
     import { ref } from 'vue';
-    import { useCropper, useMedia } from '/@app/composables/';
-    import { useMutation } from '/@app/gql/composable';
-    import { UPDATE_PROFILE } from '/@app/gql/mutation';
+    import { useCropper, useMedia } from '/~/composables/';
+    import { useMutation } from '/~/gql/composable';
+    import { UPDATE_PROFILE } from '/~/gql/mutation';
 
     export const isLoading = ref(false);
 

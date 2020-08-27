@@ -1,1 +1,0 @@
-export { default as AppPost } from './Post.vue';

@@ -3,7 +3,7 @@
  */
 import { createApp } from 'vue';
 import { KroUIPlugin } from '@black-kro/ui';
-import { DefaultApolloClient } from '/@app/gql/composable';
+import { DefaultApolloClient } from '/~/gql/composable';
 
 /**
  * Import Local Modules
@@ -14,22 +14,22 @@ import {
     authRoutes, 
     accountRoutes, 
     exploreRoutes,
-    profileRoutes } from '/@app/modules/';
+    profileRoutes } from '/~/modules/';
 
-import * as AppComponents from '/@app/components/';
-import { KroRouter } from '/@app/router/';
-import { store } from '/@app/store/';
-import { apolloClient } from '/@app/gql/';
+// import * as AppComponents from '/~/components/';
+import { KroRouter } from '/~/shared/router';
+import { store } from '/~/shared/store';
+import { apolloClient } from '/~/gql';
 
 /**
  * Register Global Services
  */
-import '/@app/services/firebase';
+import '/~/shared/services/firebase';
 
 import '@black-kro/ui/dist/index.css';
 
-import '/@app/styles/base.scss';
-import '/@app/styles/theme.scss';
+import '/~/styles/base.scss';
+import '/~/styles/theme.scss';
 import 'cropperjs/dist/cropper.min.css';
 
 createApp(App)
@@ -71,12 +71,12 @@ createApp(App)
             'edit': 'M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z',
         }
     })
-    .use({
-        install(app) {
-            for (const component in AppComponents) {
-                app.component(component, AppComponents[component]);
-            }
-        }
-    })
+    // .use({
+    //     install(app) {
+    //         for (const component in AppComponents) {
+    //             app.component(component, AppComponents[component]);
+    //         }
+    //     }
+    // })
     .use(store)
     .mount('#app');
