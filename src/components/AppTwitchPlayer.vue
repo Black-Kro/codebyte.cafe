@@ -1,7 +1,7 @@
 <template>
     <div class="relative w-full" :style="{ 'padding-top': '56.25%' }">
         <iframe
-            :src="`${parameters}&parent=${window.location.hostname}&autoplay=false`"
+            :src="`${parameters}&parent=${hostname}&autoplay=false`"
             class="absolute inset-0 w-full h-full"
             frameborder="0"
             scrolling="no"
@@ -12,6 +12,8 @@
 
 <script lang="ts" setup="props">
     import { computed } from 'vue';
+
+    export const hostname = window.location.hostname;
 
     export const parameters = computed(() => {
 
