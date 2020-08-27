@@ -1,7 +1,7 @@
 <template>
     <div>        
         <div v-if="posts">
-            <template v-for="post in posts.nodes">
+            <template v-for="post in posts.nodes" :key="post.id">
                 <app-post :post="post" />
                 <kro-divider class="m-0" />
             </template>

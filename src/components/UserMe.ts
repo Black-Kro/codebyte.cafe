@@ -33,8 +33,6 @@ export default defineComponent({
                     error: error.value
                 });
             }
-
-            return ('div');
         };
     }
 });
