@@ -2,17 +2,19 @@
     <user-identity :to="`/@${post.author.username}`" :user="post.author">
         <template #subtitle> · {{format(post.created)}}</template>
         <template #default>
-            <kro-menu :key="post.id" left>
-                <template #activator="{ open }">
-                    <kro-button @click="open" icon="chevron-down"></kro-button>
-                </template>
-                <div>
-                    <kro-list-item @click="deletePost" class="cursor-pointer">
-                        <template #icon><kro-icon icon="delete" /></template>
-                        Delete Post
-                    </kro-list-item>
-                </div>
-            </kro-menu>
+            <div class="flex flex-row items-center h-full">
+                <kro-menu :key="post.id" left>
+                    <template #activator="{ open }">
+                        <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
+                    </template>
+                    <div>
+                        <kro-list-item @click="deletePost" class="cursor-pointer">
+                            <template #icon><kro-icon icon="delete" /></template>
+                            Delete Post
+                        </kro-list-item>
+                    </div>
+                </kro-menu>
+            </div>
         </template>
     </user-identity>       
 </template>

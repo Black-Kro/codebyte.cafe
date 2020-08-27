@@ -8,9 +8,14 @@
   <!-- Critical CSS -->
 
   <style>
-    html,
-    body {
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+
+    .sk-bg {
       background: #343233;
+      width: 100%;
+      height: 100vh;
     }
 
     .sk-tb {
@@ -45,9 +50,8 @@
 </head>
 <body>
   <div id="app">
-    <div class="sk-tb">
-      
-    </div>
+    <div class="sk-bg"></div>
+    <div class="sk-tb"></div>
   </div>
   <div id="kro-portal"></div>
   <script type="module" src="/src/main.ts"></script>
