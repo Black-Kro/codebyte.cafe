@@ -1,0 +1,23 @@
+{
+    "common": {
+        "Search": "Search"
+    },
+    "post-box": {
+        "Post": "Post"
+    },
+    "menu": {
+        "Home": "Home",
+        "Explore": "Explore",
+        "Notifications": "Notifications",
+        "People": "People",
+        "Profile": "Profile",
+        "Settings": "Settings"
+    },
+    "footer": {
+        "About": "About",
+        "Help": "Help",
+        "Blog": "Blog",
+        "PrivacyPolicy": "Privacy Policy",
+        "TermsOfService": "Terms of Service"
+    }
+}

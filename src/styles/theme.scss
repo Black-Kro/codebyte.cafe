@@ -4,6 +4,7 @@ $DefaultTheme: (
     light: (
         'background': #f7f7f7,
         'background-secondary': white,
+        'background-highlight': rgba(0, 0, 0, .12),
         
         'foreground': hsla(0, 0%, 0%, 0.72),
         'foreground-secondary': hsla(0, 0%, 0%, 0.56),
@@ -31,6 +32,7 @@ $DefaultTheme: (
     dark: (
         'background': #343233,
         'background-secondary': #272526,
+        'background-highlight': rgba(0, 0, 0, .12),
         
         'foreground': #efdab9,
         'foreground-secondary': #827768,

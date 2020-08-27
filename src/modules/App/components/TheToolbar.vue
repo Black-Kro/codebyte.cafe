@@ -15,6 +15,7 @@
             </div>
 
             <div class="[] [ col-span-2 ] [ grid grid-flow-col gap-2 justify-end items-center ]">
+                <app-language-selector />
                 <kro-button icon="theme-light-dark" @click="toggleThemeMode" />
                 <user-auth-suspense>
                     <template #authenticated>

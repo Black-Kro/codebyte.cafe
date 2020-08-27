@@ -3523,6 +3523,11 @@ vue-eslint-parser@^7.0.0:
     esquery "^1.0.1"
     lodash "^4.17.15"
 
+vue-i18n@^9.0.0-alpha.14:
+  version "9.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.0.0-alpha.14.tgz#dd905d3bc7654841ed27cf2cd453b1f924110600"
+  integrity sha512-oqvxV8WDouU5ruZHjHrGfG/OaalFPdDkY/GN/O7GgSEgRjJKIQZsTR6kal4YkUQ2NCFpc1kVEPDGYe8oi6j5Pg==
+
 vue-router@4.0.0-beta.6:
   version "4.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.6.tgz#7ddf4c00d1bee778fb8945f5e8ccb931b5885543"

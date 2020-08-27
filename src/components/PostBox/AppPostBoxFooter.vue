@@ -24,13 +24,16 @@
             :disabled="!canPost"
             @click="$emit('submit')" 
             primary>
-            Post
+            {{t('post-box.Post')}}
         </kro-button>
     </div>
 </template>
 
 <script lang="ts" setup="props, { emit, attrs }">
     import { computed } from 'vue';
+    import { useI18n } from 'vue-i18n';
+
+    export const { t } = useI18n();
 
     export const canPost = computed(() => {
         return props.content.length > 5 && props.content.length < 500;

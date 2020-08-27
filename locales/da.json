@@ -1,0 +1,23 @@
+{
+  "common": {
+    "Search": "Søg"
+  },
+  "footer": {
+    "About": "Om",
+    "Blog": "Blog",
+    "Help": "Hjælp",
+    "PrivacyPolicy": "Fortrolighedspolitik",
+    "TermsOfService": "Servicevilkår"
+  },
+  "menu": {
+    "Explore": "Udforske",
+    "Home": "Hjem",
+    "Notifications": "underretninger",
+    "People": "Mennesker",
+    "Profile": "Profil",
+    "Settings": "Indstillinger"
+  },
+  "post-box": {
+    "Post": "Stolpe"
+  }
+}

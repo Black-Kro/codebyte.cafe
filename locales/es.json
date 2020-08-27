@@ -1,0 +1,23 @@
+{
+  "menu": {
+    "Home": "Hogar",
+    "Explore": "Explorar",
+    "Notifications": "Notificaciones",
+    "People": "Personas",
+    "Profile": "Perfil",
+    "Settings": "Configuraciones"
+  },
+  "footer": {
+    "About": "Acerca de",
+    "Blog": "Blog",
+    "Help": "Ayuda",
+    "PrivacyPolicy": "Política de privacidad",
+    "TermsOfService": "Términos de servicio"
+  },
+  "common": {
+    "Search": "Buscar"
+  },
+  "post-box": {
+    "Post": "Enviar"
+  }
+}

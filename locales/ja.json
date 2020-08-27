@@ -1,0 +1,23 @@
+{
+  "menu": {
+    "Home": "ホーム",
+    "Explore": "見る",
+    "Notifications": "お知らせ",
+    "People": "人",
+    "Profile": "プロフィール",
+    "Settings": "設定"
+  },
+  "footer": {
+    "About": "約",
+    "Blog": "ブログ",
+    "Help": "助けて",
+    "PrivacyPolicy": "個人情報保護方針",
+    "TermsOfService": "利用規約"
+  },
+  "common": {
+    "Search": "探す"
+  },
+  "post-box": {
+    "Post": "役職"
+  }
+}
