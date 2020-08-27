@@ -1,7 +1,7 @@
 <template>
     <div class="relative w-full" :style="{ 'padding-top': '56.25%' }">
         <iframe
-            :src="`${parameters}&parent=localhost&autoplay=false`"
+            :src="`${parameters}&parent=${window.location.hostname}&autoplay=false`"
             class="absolute inset-0 w-full h-full"
             frameborder="0"
             scrolling="no"
