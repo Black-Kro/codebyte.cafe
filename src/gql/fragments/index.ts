@@ -43,6 +43,7 @@ export const PostFragment = gql`
     fragment PostFragment on Post {
         id
         text
+        created
         media {
             ...MediaFragment
         }
