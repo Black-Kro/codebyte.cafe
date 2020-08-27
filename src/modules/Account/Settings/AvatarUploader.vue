@@ -55,7 +55,6 @@
 
             // Upload Media
             const media = await uploadMedia(cropped as File);
-            console.log(media);
 
             // Update Profile
             await updateProfile({ avatar: media[0] });

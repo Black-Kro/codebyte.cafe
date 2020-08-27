@@ -83,7 +83,6 @@ export default defineComponent({
 
             if (links.length > 0) {
                 const link = selectLinkByPriority(links);
-                console.log(link.type);
                 const renderTypes = {
                     YOUTUBE: (link) => {
                         return h(YoutubePlayer, { url: link.href });

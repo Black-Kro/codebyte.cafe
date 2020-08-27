@@ -170,14 +170,7 @@ const TAG_MAPPINGS = {
     },
 
     'code': (token) => {
-        // console.log(token);
-        
-        // const tag = 'pre';
-        // const props = null;
-        // const content = token.text;
-        // const children = [];
-
-        return { render: h(PostCode, { code: token.text, lang: token.lang }) };
+        return { render: h(AppPostCode, { code: token.text, lang: token.lang }) };
     },
 
     'codespan': (token) => {

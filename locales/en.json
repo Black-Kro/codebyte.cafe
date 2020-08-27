@@ -11,6 +11,8 @@
         "Notifications": "Notifications",
         "People": "People",
         "Profile": "Profile",
+        "HelpFeedback": "Help & Feedback",
+        "SignOut": "Sign Out",
         "Settings": "Settings"
     },
     "footer": {

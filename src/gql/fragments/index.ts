@@ -34,6 +34,7 @@ export const UserFragment = gql`
         username
         isVerified
         roles
+        created
         ...ProfileFragment
     }
     ${ProfileFragment}

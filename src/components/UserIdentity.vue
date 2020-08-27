@@ -6,7 +6,7 @@
             :to="to">
             <user-avatar v-if="avatar" :user="user" />
             <div class="[] [ ml-2 ] [ grid grid-flow-row ]">
-                <span class="[] [] [ grid grid-flow-col gap-2 ]">
+                <span class="[] [] [ grid grid-flow-col gap-2 items-center ]">
                     <user-nickname :user="user" />
                     <slot name="title" />
                 </span>

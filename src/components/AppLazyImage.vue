@@ -3,7 +3,7 @@
         <img v-bind="$attrs" v-if="intrinsicSizeURL" :src="intrinsicSizeURL" />
         <transition name="fade">
             <img 
-                v-if="!shouldLoad"
+                v-if="!shouldLoad && placeholder"
                 class="[ app-lazy-image__placeholder ] [ w-full h-full absolute inset-0 ] [ object-cover ]" 
                 :src="placeholder">
         </transition>

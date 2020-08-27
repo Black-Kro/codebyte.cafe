@@ -5,7 +5,9 @@
     "Notifications": "お知らせ",
     "People": "人",
     "Profile": "プロフィール",
-    "Settings": "設定"
+    "Settings": "設定",
+    "HelpFeedback": "助けて",
+    "SignOut": "サインアウト"
   },
   "footer": {
     "About": "約",

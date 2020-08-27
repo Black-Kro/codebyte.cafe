@@ -1,7 +1,13 @@
 <template>
     <div>
+        <template v-if="!posts">
+            <template v-for="i in 5">
+                <app-post-skeleton />
+                <kro-divider />
+            </template>
+        </template>
         <div v-if="posts">
-            <template v-for="post in posts.nodes">
+            <template v-for="post in posts.nodes" :key="post.id">
                 <app-post :post="post" />
                 <kro-divider class="m-0" />
             </template>
@@ -13,7 +19,8 @@
                 <kro-button @click="refetch">Try Again</kro-button>
             </div>
         </div>
-        <div v-show="posts && posts.pageInfo.hasNextPage" ref="reloadButton" >
+
+        <div v-show="posts && posts.hasNextPage" ref="reloadButton" >
             <kro-button class="w-full" :loading="loading" @click="loadMore">Load More</kro-button>
         </div>
     </div>
@@ -28,19 +35,19 @@
     export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(GET_POSTS, { username: props.username }, {
         notifyOnNetworkStatusChange: true
     });
-    export const posts = useResult(result, null, data => data.Posts);
+    export const posts = useResult(result, null, data => data.posts);
 
     export const reloadButton = ref(null);
 
     const isButtonVisible = useElementVisibility(reloadButton);
 
     watch(() => isButtonVisible.value, () => {
-        if (!loading.value && posts.value.pageInfo.hasNextPage)
+        if (!loading.value && posts.value.hasNextPage)
             loadMore();
     });
 
     export const loadMore = async () => {
-        if (!loading.value && posts.value.pageInfo.hasNextPage) {
+        if (!loading.value && posts.value.hasNextPage) {
             fetchMore({
                 variables: {
                     username: props.username,
@@ -49,11 +56,13 @@
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     const next = fetchMoreResult.posts.next;
                     const nodes = fetchMoreResult.posts.nodes;
+                    const hasNextPage = fetchMoreResult.posts.hasNextPage;
     
                     return next ? {
-                        Posts: {
+                        posts: {
                             __typename: previousResult.posts.__typename,
                             nodes: [...previousResult.posts.nodes, ...nodes],
+                            hasNextPage,
                             next,
                         }
                     } : previousResult;
@@ -63,7 +72,7 @@
     };
 
     export default {
-        name: 'AppUserPostFeed',
+        name: 'AppPostFeed',
     }
 
     declare const props: {

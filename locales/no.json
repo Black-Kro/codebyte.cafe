@@ -15,7 +15,9 @@
     "Notifications": "Varsler",
     "People": "Mennesker",
     "Profile": "Profil",
-    "Settings": "Innstillinger"
+    "Settings": "Innstillinger",
+    "HelpFeedback": "Hjelp",
+    "SignOut": "Logg ut"
   },
   "post-box": {
     "Post": "Post"

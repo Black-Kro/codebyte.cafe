@@ -5,7 +5,9 @@
     "Notifications": "Notificaciones",
     "People": "Personas",
     "Profile": "Perfil",
-    "Settings": "Configuraciones"
+    "Settings": "Configuraciones",
+    "HelpFeedback": "Ayuda",
+    "SignOut": "Desconectar"
   },
   "footer": {
     "About": "Acerca de",
