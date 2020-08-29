@@ -29,4 +29,8 @@
 
 <style lang="scss">
     
+    .app-avatar {
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+
 </style>
