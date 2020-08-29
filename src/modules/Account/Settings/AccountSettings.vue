@@ -13,7 +13,7 @@
     </div>
     <div class="flex flex-row pt-4">
         <span class="flex-1"></span>
-        <kro-button primary><kro-icon icon="save"/>Save Settings</kro-button>
+        <kro-button @click="onSubmit" primary><kro-icon icon="save"/>Save Settings</kro-button>
     </div>
 </template>
 
@@ -28,6 +28,7 @@
     import { useQuery, useResult, useMutation } from '/~/gql/composable';
     import Cropper from 'cropperjs';
 
+    const { mutate } = useMutation(UPDATE_PROFILE);
     const { result, loading, error, onResult } = useQuery(GET_ME);
     const me = useResult(result);
 
@@ -36,12 +37,18 @@
     export const nickname = ref('');
     export const bio = ref('');
 
-
     onResult(() => {
         username.value = `@${me.value.username}`;
         nickname.value = me.value.profile.displayName;
         bio.value = me.value.profile.bio;
     })
+
+    export const onSubmit = () => {
+        mutate({
+            nickname: nickname.value,
+            bio: bio.value,
+        })
+    };
 
     export default {
         name: 'AccountSettings',
