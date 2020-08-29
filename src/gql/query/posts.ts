@@ -11,8 +11,8 @@ export const GET_POST = gql`
 `;
 
 export const GET_POSTS = gql`
-    query Posts($after: String, $id: String, $username: String) {
-        posts(after: $after, take: 10, id: $id, username: $username) {
+    query Posts($after: String, $id: String, $username: String, $parent: String) {
+        posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
             next
             hasNextPage
             nodes {

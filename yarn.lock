@@ -3441,10 +3441,10 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vite-plugin-components@^0.2.10:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/vite-plugin-components/-/vite-plugin-components-0.2.10.tgz#ba6e5211734d9977d23ded74812225c199790357"
-  integrity sha512-Gb+vhcHl5iMu+vDX1RrJqXFgnah/bMDDciVvaR/CtQzk3ewsx0rq96nzJLwhQd9+1XXN5EAntM0Q2heyYA28Kg==
+vite-plugin-components@^0.2.11:
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/vite-plugin-components/-/vite-plugin-components-0.2.11.tgz#792f28c40d353caa7f482a59f2a1165975bc1cb3"
+  integrity sha512-49ncAzPXrXmcegi2PEq6NK7Ir65UNVUkgTQEhhcjFunsP7CG7zuMZ/bqDzziQNI2KOVbwGYBpMB9DfvfH6JL1g==
   dependencies:
     debug "^4.1.1"
     fast-glob "^3.2.4"

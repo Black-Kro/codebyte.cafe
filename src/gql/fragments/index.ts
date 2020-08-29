@@ -45,6 +45,8 @@ export const PostFragment = gql`
         id
         text
         created
+        level
+        childCount
         media {
             ...MediaFragment
         }
@@ -55,3 +57,12 @@ export const PostFragment = gql`
     ${UserFragment}
     ${MediaFragment}
 `;
+
+// export const PostFragmentWithChildren = gql`
+//     fragment PostFragmentWithChildren on Post {
+//         children {
+//             ...PostFragment
+//         }
+//     }
+//     ${PostFragment}
+// `;

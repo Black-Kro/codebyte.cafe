@@ -1,5 +1,5 @@
 <template>
-    <div class="[ app-avatar ] [ w-12 h-12 ] [ rounded-full overflow-hidden ]">
+    <div class="[ app-avatar ] [ rounded-full overflow-hidden ]" :style="{ width: `${size}px`, height: `${size}px` }">
         <app-lazy-image
             v-if="user.profile.avatar"
             class="w-full h-full block"
@@ -10,7 +10,7 @@
         <img
             v-else
             class="w-full h-full block"
-            :src="`https://avatars.dicebear.com/api/bottts/${user.username}.svg`">
+            :src="`https://pbs.twimg.com/profile_images/1229496477204066304/TKJ-l5lg_400x400.jpg`">
     </div>
 </template>
 

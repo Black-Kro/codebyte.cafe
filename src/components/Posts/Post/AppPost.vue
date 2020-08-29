@@ -1,19 +1,36 @@
 <template>
-    <div ref="self" class="app-post">
-        <app-post-header 
-            :post="post" />
+    <div>
+        <div class="app-post flex flex-row" :class="{ 'rounded-md': post.level > 0 }" >
+            <!-- <div class="pt-3 pl-4 flex flex-col items-center">
+                <user-me #me="{me}">
+                    <user-avatar :user="me" />
+                </user-me>
+                <div v-if="post.children && post.children.length > 0" class="flex-1 py-1">
+                    <div @click="collapseChildren" class="post-trail cursor-pointer"></div>
+                </div>
+            </div> -->
+            <div class="flex-1">
+                <div class="flex-1">
+                    <app-post-header 
+                        :post="post" />
 
-        <div class="[ post-renderer-content ]">
-            <app-post-renderer 
-                :content="post.text" />
+                    <div class="[ post-renderer-content ]">
+                        <app-post-renderer 
+                            :content="post.text" />
+                    </div>
+
+                    <app-post-media 
+                        v-if="post.media && post.media.length > 0"
+                        :media="post.media" />
+
+                    <app-post-footer 
+                        :post="post" />
+                </div>
+            <!-- <div v-show="!hide">
+                <app-post v-for="child in post.children" :key="child.id" :post="child" />
+            </div> -->
+            </div>
         </div>
-
-        <app-post-media 
-            v-if="post.media && post.media.length > 0"
-            :media="post.media" />
-
-        <app-post-footer 
-            :post="post" />
     </div>
 </template>
 
@@ -21,6 +38,12 @@
     import { ref } from 'vue';
 
     import PostRenderer from './AppPostRenderer';
+
+    export const hide = ref(false);
+
+    export const collapseChildren = () => {
+        hide.value = !hide.value;
+    };
 
     export default {
         name: 'AppPost',
@@ -61,5 +84,9 @@
         }
     }
 
+    .post-trail {
+        height: 100%;
+        border-left: 4px dotted var(--kro-background);
+    }
 
 </style>

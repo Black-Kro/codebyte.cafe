@@ -8,6 +8,9 @@ export const CREATE_POST = gql`
             media: $media
         ) {
             ...PostFragment
+            children {
+                ...PostFragment
+            }
         }
     }
     ${PostFragment}

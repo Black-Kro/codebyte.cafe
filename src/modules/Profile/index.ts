@@ -10,4 +10,12 @@ export const profileRoutes: RouteRecordRaw[] = [
             title: 'Profile',
         }
     },
+    {
+        path: '/@:username/:post',
+        component: () => import('./ProfilePost.vue'),
+        beforeEnter: isAuthenticated,
+        meta: {
+            title: 'Post'
+        }
+    }
 ];

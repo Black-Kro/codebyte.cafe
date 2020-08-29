@@ -8,9 +8,19 @@
         </template>
         <div v-if="posts">
             <template v-for="post in posts.nodes" :key="post.id">
-                <app-post :post="post" />
-                <kro-divider class="m-0" />
+                <div v-if="replyThread" class="p-4">
+                    <div class="rounded-md bg-primary">
+                        <app-post :post="post" />
+                    </div>
+                </div>
+                <app-post v-else :post="post" />
+                <kro-divider v-if="!replyThread" class="m-0" />
             </template>
+
+            <div class="feed-empty p-4 flex flex-col text-center items-center justify-center" v-if="posts.nodes.length === 0">
+                <kro-icon icon="cactus" class="text-secondary" />
+                <span class="text-sm font-medium">Fresh Outta Posts</span>
+            </div>
         </div>
 
         <div v-if="error" class="p-4 text-center flex flex-col justify-center">
@@ -26,13 +36,13 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup="props">
     import { ref, watch } from 'vue';
     import { GET_POSTS } from '/~/gql/query';
     import { useQuery, useResult } from '/~/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
-    export const { result, loading, error, refetch, fetchMore } = useQuery(GET_POSTS, {}, {
+    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(GET_POSTS, { parent: props.parent }, {
         notifyOnNetworkStatusChange: true
     });
     export const posts = useResult(result, null, data => data.posts);
@@ -50,7 +60,8 @@
         if (!loading.value && posts.value.hasNextPage) {
             fetchMore({
                 variables: {
-                    after: posts.value.next
+                    after: posts.value.next,
+                    parent: props.parent,
                 },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     const next = fetchMoreResult.posts.next;
@@ -73,8 +84,17 @@
     export default {
         name: 'AppPostFeed',
     }
+
+    declare const props: {
+        parent?: string,
+        replyThread?: boolean,
+    }
 </script>
 
 <style lang="scss">
     
+    .feed-empty {
+        --kro-icon-size: 5rem;
+    }
+
 </style>

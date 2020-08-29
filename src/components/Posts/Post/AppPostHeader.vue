@@ -1,5 +1,5 @@
 <template>
-    <user-identity :to="`/@${post.author.username}`" :user="post.author">
+    <user-identity :avatar="true"  :to="`/@${post.author.username}`" :user="post.author">
         <template #subtitle> · {{format(post.created)}}</template>
         <template #default>
             <div class="flex flex-row items-center h-full">
