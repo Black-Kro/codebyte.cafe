@@ -10,7 +10,7 @@
         <img
             v-else
             class="w-full h-full block"
-            :src="`https://pbs.twimg.com/profile_images/1229496477204066304/TKJ-l5lg_400x400.jpg`">
+            :src="`https://avatars.dicebear.com/api/bottts/${user.username}.svg`">
     </div>
 </template>
 
