@@ -17,7 +17,7 @@
                         </div>
                     </kro-toolbar>
                     <div class="px-4 pt-4 text-sm">
-                        {{user.profile.bio}}
+                        <app-minimal-markdown :content="user.profile.bio" />
                     </div>
                     <div class="px-4 pt-4 text-secondary text-xs font-bold">
                         <div class="flex flex-row items-center">

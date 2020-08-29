@@ -1,14 +1,14 @@
 <template>
     <div class="[ app-post-footer ] [ py-4 grid fit gap-1 ]">
+        <kro-button class="h-8 bg-transparent text-secondary">
+            <kro-icon icon="arrow-up-thick"/>
+        </kro-button>
+        <kro-button class="h-8 bg-transparent text-secondary">
+            <kro-icon icon="arrow-down-thick" />
+        </kro-button>
         <kro-button :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
-        </kro-button>
-        <kro-button class="h-8 bg-transparent text-secondary">
-            <kro-icon icon="thumb-up-outline"/>
-        </kro-button>
-        <kro-button class="h-8 bg-transparent text-secondary">
-            <kro-icon icon="thumb-down-outline" />
         </kro-button>
     </div>
 </template>
