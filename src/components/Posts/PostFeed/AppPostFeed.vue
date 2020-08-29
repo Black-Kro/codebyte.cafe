@@ -38,11 +38,15 @@
 
 <script lang="ts" setup="props">
     import { ref, watch } from 'vue';
-    import { GET_POSTS } from '/~/gql/query';
+    import { GET_POSTS, GET_POSTS_WITH_REPLIES } from '/~/gql/query';
     import { useQuery, useResult } from '/~/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
-    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(GET_POSTS, { parent: props.parent }, {
+    const QUERY = props.parent ? GET_POSTS_WITH_REPLIES : GET_POSTS;
+
+    console.log(QUERY);
+
+    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(QUERY, { parent: props.parent }, {
         notifyOnNetworkStatusChange: true
     });
     export const posts = useResult(result, null, data => data.posts);

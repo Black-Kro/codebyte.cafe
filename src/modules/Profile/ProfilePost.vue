@@ -12,7 +12,8 @@
                     <span class="text-secondary ml-2 font-medium text-sm">Reply...</span>
                 </user-me>
             </div>
-            <app-post-reply-feed></app-post-reply-feed>
+            <kro-divider class="mb-0" />
+            <app-post-feed v-if="source" :parent="source.id" />
         </kro-surface>
     </app-default-layout>
 </template>
