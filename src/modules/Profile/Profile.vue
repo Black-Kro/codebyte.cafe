@@ -1,32 +1,29 @@
 <template>
     <app-default-layout>
         <kro-surface :padded="false">
-
             <template v-if="user">
-                <app-lazy-image 
-                    class="bg-primary"
-                    src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1357&q=80"
-                    :intrinsicWidth="1920"
-                    :intrinsicHeight="1080"
-                />
+                <user-header :round="false" :user="user" />
 
                 <div class="user-profile__heading">
-                    <kro-toolbar small>
-                        <div class="flex flex-row pl-4 h-full">
+                    <kro-toolbar>
+                        <div class="flex flex-row flex-1 pl-4 h-full items-center">
                             <user-avatar :user="user" class="[ profile-avatar ] w-32 h-32 self-end" :size="128" />
                             <user-identity class="pl-0" :user="user" :avatar="false">
                                 <template #title></template>
                             </user-identity>
                         </div>
+                        <div class="px-4">
+                            <kro-button>Follow</kro-button>
+                        </div>
                     </kro-toolbar>
+                    <div class="px-4 pt-4 text-sm">
+                        {{user.profile.bio}}
+                    </div>
                     <div class="px-4 pt-4 text-secondary text-xs font-bold">
                         <div class="flex flex-row items-center">
                             <kro-icon icon="calendar" />
                             <span class="ml-1">Joined {{format(user.created)}}</span>
                         </div>
-                    </div>
-                    <div class="px-4 pt-4 text-sm">
-                        {{user.profile.bio}}
                     </div>
                     <kro-toolbar small class="grid grid-flow-col text-center">
                         <router-link class="flex items-center justify-center h-full text-current" :to="`/@${user.username}`">
@@ -42,7 +39,6 @@
                 </div>
                 <user-post-feed :username="user.username"></user-post-feed>
             </template>
-
         </kro-surface>
     </app-default-layout>
 </template>
