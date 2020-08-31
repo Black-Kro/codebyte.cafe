@@ -9,6 +9,8 @@
                 <span class="mx-2">·</span>
                 <a href="https://blog.codebyte.cafe/" rel="noreferrer noopener" target="_blank" class="text-current" to="/">{{t('footer.Blog')}}</a>
                 <span class="mx-2">·</span>
+                <a href="https://discord.gg/TE8MnBe" rel="noreferrer noopener" target="_blank" class="text-current">{{t('footer.Discord')}}</a>
+                <span class="mx-2">·</span>
                 <router-link class="text-current" to="/terms-of-service">{{t('footer.TermsOfService')}}</router-link>
                 <span class="mx-2">·</span>
                 <router-link class="text-current" to="/privacy-policy">{{t('footer.PrivacyPolicy')}}</router-link>
