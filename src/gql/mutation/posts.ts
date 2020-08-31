@@ -23,7 +23,7 @@ export const DELETE_POST = gql`
 `;
 
 export const REACT_TO_POST = gql`
-    mutation ReactToPost($id: String!, $reaction: String!) {
+    mutation React($id: String!, $reaction: String!) {
         react(id: $id, reaction: $reaction) {
             ...PostFragment
         }

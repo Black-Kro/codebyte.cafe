@@ -1,10 +1,16 @@
 <template>
-    <div class="[ app-post-footer ] [ py-4 grid fit gap-1 ]">
-        <kro-button class="h-8 bg-transparent text-secondary">
+    <div class="[ app-post-footer ] [ py-4 grid fit ]">
+        <kro-button :class="{ 'reaction-active': post.liked }" :key="post.likes" @click="react('LIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-up-thick"/>
+            <span :class="{ 'opacity-0': post.likes === 0 }">
+                {{post.likes}}
+            </span>
         </kro-button>
-        <kro-button class="h-8 bg-transparent text-secondary">
+        <kro-button :class="{ 'reaction-active': post.disliked }" :key="post.dislikes" @click="react('DISLIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-down-thick" />
+            <span :class="{ 'opacity-0': post.dislikes === 0 }">
+                {{post.dislikes}}
+            </span>
         </kro-button>
         <kro-button :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
@@ -14,47 +20,55 @@
 </template>
 
 <script lang="ts" setup="props">
+    import { computed } from 'vue';
     import { useDialog } from '@black-kro/ui';
     import { useMutation } from '/~/gql/composable';
     import { REACT_TO_POST } from '/~/gql/mutation';
 
-    const { mutate: reactMutate } = useMutation<any, { postId: string, type: string }>(REACT_TO_POST);
+    const { mutate } = useMutation<any, { id: string, reaction: string }>(REACT_TO_POST);
+
+    export const totalLikes = computed(() => {
+        return props.post.likes;
+    });
+
+    export const totalDislikes = computed(() => {
+        return props.post.dislikes;
+    });
 
     export const react = async (type) => {
-        let newLikes = props.post.likes;
-        let newDislikes = props.post.dislikes;
+        const { post } = props;
+        
+        let likes = post.likes;
+        let dislikes = post.dislikes;
 
-        if (type === 'REMOVE') {
-            if (props.post.liked)
-                newLikes--;
+        if (post.liked) {
+            likes--;
 
-            if (props.post.disliked) 
-                newDislikes--;
+            if (type === 'DISLIKE')
+                dislikes++;
+
+        } else if (post.disliked) {
+            dislikes--;
+
+            if (type === 'LIKE')
+                likes++;
+        } else {
+            if (type === 'LIKE')
+                likes++;
+
+            if (type === 'DISLIKE')
+                dislikes++;
         }
 
-        if (type === 'LIKE') {
-            newLikes++;
 
-            if (props.post.disliked) 
-                newDislikes--;
-        }
-
-        if (type === 'DISLIKE') {
-            if (props.post.liked)
-                newLikes--;
-
-            newDislikes++;
-        }
-
-        reactMutate({ postId: props.post.id, type }, {
+        mutate({ id: post.id, reaction: type }, {
             optimisticResponse: {
-                reactToPost: {
-                    id: props.post.id,
-                    likes: newLikes,
-                    dislikes: newDislikes,
-                    liked: type === 'LIKE',
-                    disliked: type === 'DISLIKE',
-                    "__typename": "Post"
+                react: {
+                    ...post,
+                    likes,
+                    dislikes,
+                    liked: (type === 'LIKE' && !post.liked) ? true : false,
+                    disliked: (type === 'DISLIKE' && !post.disliked) ? true : false,
                 }
             }
         });
@@ -73,11 +87,25 @@
 <style lang="scss">
     
     .app-post-footer {
-        grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+        grid-template-columns: repeat(auto-fit, minmax(75px, min-content));
 
         .kro-button {
             --kro-icon-size: 1.25rem;
+
+            place-content: unset;
+            align-content: center;
+            place-items: unset;
+
+            .kro-button__content {
+                justify-content: flex-start;
+                place-items: unset;
+            }
+
         }
+    }
+
+    .reaction-active {
+        color: var(--kro-primary);
     }
 
 </style>
