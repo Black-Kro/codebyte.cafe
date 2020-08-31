@@ -14,7 +14,7 @@
                     <app-post-header 
                         :post="post" />
 
-                    <div class="[ post-renderer-content ]">
+                    <div class="[ post-renderer-content ]" v-if="post.text">
                         <app-post-renderer 
                             :content="post.text" />
                     </div>

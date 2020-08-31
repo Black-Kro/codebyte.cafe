@@ -53,3 +53,7 @@ input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
     border-left: 0.25rem solid var(--kro-primary);
     padding: 0.25rem 0.25rem 0.25rem 0.5rem
 }
+
+.kro-dialog__scrim {
+    background: rgba(0, 0, 0, .48);
+}

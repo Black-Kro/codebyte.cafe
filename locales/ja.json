@@ -14,12 +14,20 @@
     "Blog": "ブログ",
     "Help": "助けて",
     "PrivacyPolicy": "個人情報保護方針",
-    "TermsOfService": "利用規約"
+    "TermsOfService": "利用規約",
+    "Discord": "Discord"
   },
   "common": {
-    "Search": "探す"
+    "Search": "探す",
+    "Notice": "通知"
   },
   "post-box": {
     "Post": "役職"
+  },
+  "posts": {
+    "DeletePost": "投稿を削除"
+  },
+  "statements": {
+    "AlphaNotice": "このサイトは現在アルファ版です。\nコンテンツと機能は変更される可能性があり、コンテンツはいつでも警告なしに変更された状態に合わせて削除または変更される場合があります。\nそのため、失いたくないコンテンツは投稿しないでください。"
   }
 }

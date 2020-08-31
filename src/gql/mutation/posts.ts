@@ -2,10 +2,11 @@ import gql from 'graphql-tag';
 import { PostFragment } from '/~/gql/fragments';
 
 export const CREATE_POST = gql`
-    mutation CreatePost($content: String, $media: [String!]) {
+    mutation CreatePost($content: String, $media: [String!], $parent: String) {
         createPost(
             text: $content,
-            media: $media
+            media: $media,
+            parent: $parent
         ) {
             ...PostFragment
             children {

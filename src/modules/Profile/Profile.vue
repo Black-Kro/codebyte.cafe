@@ -37,7 +37,39 @@
                         </router-link>
                     </kro-toolbar>
                 </div>
-                <user-post-feed :username="user.username"></user-post-feed>
+                <app-post-feed :username="user.username"></app-post-feed>
+            </template>
+
+            <!-- Profile Skeleton -->
+
+            <template v-else>
+                <user-header :round="false" skeleton/>
+                <kro-toolbar>
+                    <div class="flex flex-row flex-1 pl-4 h-full items-center">
+                        <div class="profile-avatar w-32 h-32 self-end bg-primary rounded-full"></div>
+                        <user-identity class="pl-0" skeleton :avatar="false" />
+                    </div>
+                    <div class="px-4">
+                        <kro-button><span class="opacity-0">Follow</span></kro-button>
+                    </div>
+                </kro-toolbar>
+                <div class="px-4 grid gap-3 py-4">
+                    <span class="bg-primary h-3 block rounded-md w-full"></span>
+                    <span class="bg-primary h-3 block rounded-md w-4/5"></span>
+                </div>
+                <kro-toolbar small class="grid grid-flow-col text-center">
+                    <div class="flex items-center justify-center h-full text-current">
+                        <span class="text-sm font-medium bg-primary rounded-md w-24 h-3"></span>
+                    </div>
+                    <div class="flex items-center justify-center h-full text-current">
+                        <span class="text-sm font-medium bg-primary rounded-md w-24 h-3"></span>
+                    </div>
+                    <div class="flex items-center justify-center h-full text-current">
+                        <span class="text-sm font-medium bg-primary rounded-md w-24 h-3"></span>
+                    </div>
+                </kro-toolbar>
+                <kro-divider class="my-0" />
+                <app-post-feed skeleton></app-post-feed>
             </template>
         </kro-surface>
     </app-default-layout>

@@ -2,13 +2,13 @@
     <div class="[ app-post-footer ] [ py-4 grid fit ]">
         <kro-button :class="{ 'reaction-active': post.liked }" :key="post.likes" @click="react('LIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-up-thick"/>
-            <span :class="{ 'opacity-0': post.likes === 0 }">
+            <span>
                 {{post.likes}}
             </span>
         </kro-button>
         <kro-button :class="{ 'reaction-active': post.disliked }" :key="post.dislikes" @click="react('DISLIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-down-thick" />
-            <span :class="{ 'opacity-0': post.dislikes === 0 }">
+            <span>
                 {{post.dislikes}}
             </span>
         </kro-button>

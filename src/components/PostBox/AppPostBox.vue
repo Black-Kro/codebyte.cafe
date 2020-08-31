@@ -7,12 +7,13 @@
         </user-me>
 
             <app-post-box-textfield
+                :autofocus="autofocus"
                 :isEmpty="content.length === 0"
                 v-model="content" />
 
             <app-post-box-footer
                 v-model:files="files"
-
+                :media="files"
                 @submit="onSubmit"
                 :content="content" />
 
@@ -36,7 +37,7 @@
     </kro-dialog>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup="props, { emit }">
     import { ref, onMounted } from 'vue';
     import { useDialog } from '@black-kro/ui';
     import { useMedia } from '/~/composables';
@@ -52,11 +53,11 @@
     export const textfield = ref<any>(null);
 
     const { uploadMedia } = useMedia();
-    const { mutate, loading, error } = useMutation<any, { content: string, media: string[] }>(CREATE_POST, {
+    const { mutate, loading, error } = useMutation<any, { content: string, media: string[], parent?: string }>(CREATE_POST, {
         update(cache, { data }) {
-            const query = cache.readQuery({ query: GET_POSTS }) as any;
+            const query = cache.readQuery({ query: GET_POSTS, variables: { parent: props.parent } }) as any;
             query.posts.nodes = [data.createPost, ...query.posts.nodes];
-            cache.writeQuery({ query: GET_POSTS, variables: {}, data: query });
+            cache.writeQuery({ query: GET_POSTS, variables: { parent: props.parent }, data: query });
         }
     });
 
@@ -65,11 +66,12 @@
 
         try {
             const media =   await uploadMedia(files.value);
-                            await mutate({ content: content.value, media: media });
+                            await mutate({ content: content.value, media: media, parent: props.parent });
 
             // Finish Up
             content.value = '';
             files.value = [];
+            emit('posted')
         } catch (error) {
             
         } finally {
@@ -80,6 +82,13 @@
     export default {
         name: 'AppPostBox',
     }
+
+    declare const props: {
+        autofocus?: boolean;
+        parent?: string;
+    }
+
+    declare const emit: any;
 </script>
 
 <style lang="scss">

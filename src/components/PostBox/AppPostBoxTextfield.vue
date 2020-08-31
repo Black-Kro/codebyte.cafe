@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <textarea
-            ref="target"
-            :placeholder="placeholderValue"
-            :value="$attrs.modelValue"
-            @input="onInput"
-            class="[] [ block w-full px-4 pb-4 ] [ bg-transparent resize-none outline-none ]"
-        ></textarea>
-    </div>
+    <textarea
+        ref="target"
+        :placeholder="placeholderValue"
+        :value="$attrs.modelValue"
+        :autofocus="autofocus"
+        @input="onInput"
+        class="[] [ block w-full px-4 pb-4 ] [ bg-transparent resize-none outline-none ]"
+    ></textarea>
 </template>
 
 <script lang="ts" setup="props, { emit, attrs }">
@@ -42,6 +41,8 @@
     };
 
     onMounted(() => {
+        if (props.autofocus && target.value)
+            target.value.focus()
         resize();
     });
 
@@ -57,6 +58,7 @@
 
     declare const props: {
         isEmpty: boolean;
+        autofocus?: boolean;
     }
 
     declare const emit: any;

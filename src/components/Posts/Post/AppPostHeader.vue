@@ -8,9 +8,9 @@
                         <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
                     </template>
                     <div>
-                        <kro-list-item @click="deletePost" class="cursor-pointer">
+                        <kro-list-item :key="locale" @click="deletePost" class="cursor-pointer">
                             <template #icon><kro-icon icon="delete" /></template>
-                            Delete Post
+                            {{t('posts.DeletePost')}}
                         </kro-list-item>
                     </div>
                 </kro-menu>
@@ -24,23 +24,25 @@
     import { DELETE_POST } from '/~/gql/mutation';
     import { GET_POSTS } from '/~/gql/query';
     import { useDialog } from '@black-kro/ui';
+    import { useI18n } from 'vue-i18n';
 
     export { format } from 'timeago.js';
 
+    export const { t, locale } = useI18n();
     const { createConfirmationDialog } = useDialog();
 
     const { mutate } = useMutation<any, { id: string }>(DELETE_POST, {
         update(cache, { data }) {
             const d = cache.readQuery({
                 query: GET_POSTS,
-                variables: {},
+                variables: { parent: props.post.parent },
             }) as any;
 
             d.posts.nodes = d.posts.nodes.filter(post => post.id !== props.post.id);
 
             cache.writeQuery({
                 query: GET_POSTS,
-                variables: {},
+                variables: { parent: props.post.parent },
                 data: d
             })
         }

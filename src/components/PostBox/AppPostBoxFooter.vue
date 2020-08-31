@@ -20,7 +20,8 @@
             :color="content.length < 500 ? 'white' : 'var(--kro-error)'"
             class="mr-2"
          />
-        <kro-button 
+        <kro-button
+            :key="locale"
             :disabled="!canPost"
             @click="$emit('submit')" 
             primary>
@@ -33,10 +34,10 @@
     import { computed } from 'vue';
     import { useI18n } from 'vue-i18n';
 
-    export const { t } = useI18n();
+    export const { t, locale } = useI18n();
 
     export const canPost = computed(() => {
-        return props.content.length > 5 && props.content.length < 500;
+        return props.content.length > 5 && props.content.length < 500 || props.media.length > 0;
     });
 
     export const onFilesSelected = (e) => {
@@ -51,6 +52,7 @@
 
     declare const props: {
         content: string;
+        media: any;
     }
 
     declare const emit: any;

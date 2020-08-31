@@ -1,13 +1,17 @@
 <template>
     <kro-surface>
-        <span class="font-bold text-sm text-center text-secondary block">Notice</span>
-        <p class="text-xs text-center text-secondary font-medium" >This site is currently in an alpha state. Content and features are subject to change, and any content may be removed or modified to fit altered states at any point in time without warning. As such, please do not post any content you don't wish to lose.</p>
+        <span class="font-bold text-sm text-center text-secondary block">{{t('common.Notice')}}</span>
+        <p class="text-xs text-center text-secondary font-medium" >{{t('statements.AlphaNotice')}}</p>
     </kro-surface>
 </template>
 
 <script lang="ts" setup>
+    import { useI18n } from 'vue-i18n';
+
+    export const { t } = useI18n();
+
     export default {
-        name: '',
+        name: 'AppAlphaStateNotice',
     }
 </script>
 

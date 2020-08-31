@@ -1,12 +1,12 @@
 <template>
     <div>
-        <template v-if="!posts">
+        <template v-if="!posts || skeleton">
             <template v-for="i in 5">
                 <app-post-skeleton />
                 <kro-divider />
             </template>
         </template>
-        <div v-if="posts">
+        <div v-else-if="posts">
             <template v-for="post in posts.nodes" :key="post.id">
                 <div v-if="replyThread" class="p-4">
                     <div class="rounded-md bg-primary">
@@ -44,9 +44,7 @@
 
     const QUERY = props.parent ? GET_POSTS_WITH_REPLIES : GET_POSTS;
 
-    console.log(QUERY);
-
-    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(QUERY, { parent: props.parent }, {
+    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(QUERY, { parent: props.parent, username: props.username }, {
         notifyOnNetworkStatusChange: true
     });
     export const posts = useResult(result, null, data => data.posts);
@@ -66,6 +64,7 @@
                 variables: {
                     after: posts.value.next,
                     parent: props.parent,
+                    username: props.username
                 },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     const next = fetchMoreResult.posts.next;
@@ -91,7 +90,9 @@
 
     declare const props: {
         parent?: string,
+        username?: string;
         replyThread?: boolean,
+        skeleton?: boolean,
     }
 </script>
 

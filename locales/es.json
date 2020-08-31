@@ -14,12 +14,20 @@
     "Blog": "Blog",
     "Help": "Ayuda",
     "PrivacyPolicy": "Política de privacidad",
-    "TermsOfService": "Términos de servicio"
+    "TermsOfService": "Términos de servicio",
+    "Discord": "Discord"
   },
   "common": {
-    "Search": "Buscar"
+    "Search": "Buscar",
+    "Notice": "aviso"
   },
   "post-box": {
     "Post": "Enviar"
+  },
+  "posts": {
+    "DeletePost": "Eliminar mensaje"
+  },
+  "statements": {
+    "AlphaNotice": "Este sitio se encuentra actualmente en estado alfa. \nEl contenido y las funciones están sujetos a cambios, y cualquier contenido puede eliminarse o modificarse para adaptarse a estados alterados en cualquier momento sin previo aviso. \nComo tal, no publique ningún contenido que no desee perder."
   }
 }

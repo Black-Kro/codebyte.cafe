@@ -1,13 +1,15 @@
 {
   "common": {
-    "Search": "Søk"
+    "Search": "Søk",
+    "Notice": "Legge merke til"
   },
   "footer": {
     "About": "Om",
     "Blog": "Blogg",
     "Help": "Hjelp",
     "PrivacyPolicy": "Personvern",
-    "TermsOfService": "Vilkår for bruk"
+    "TermsOfService": "Vilkår for bruk",
+    "Discord": "Discord"
   },
   "menu": {
     "Explore": "Utforske",
@@ -21,5 +23,11 @@
   },
   "post-box": {
     "Post": "Post"
+  },
+  "posts": {
+    "DeletePost": "Slett innlegg"
+  },
+  "statements": {
+    "AlphaNotice": "Dette nettstedet er for tiden i alfa-tilstand. \nInnhold og funksjoner kan endres, og alt innhold kan fjernes eller endres for å passe i endrede tilstander når som helst uten advarsel. \nSom sådan må du ikke legge ut noe innhold du ikke vil miste."
   }
 }

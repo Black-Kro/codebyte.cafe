@@ -1,6 +1,7 @@
 {
     "common": {
-        "Search": "Search"
+        "Search": "Search",
+        "Notice": "Notice"
     },
     "post-box": {
         "Post": "Post"
@@ -22,5 +23,11 @@
         "PrivacyPolicy": "Privacy Policy",
         "TermsOfService": "Terms of Service",
         "Discord": "Discord"
+    },
+    "posts": {
+        "DeletePost": "Delete Post"
+    },
+    "statements": {
+        "AlphaNotice": "This site is currently in an alpha state. Content and features are subject to change, and any content may be removed or modified to fit altered states at any point in time without warning. As such, please do not post any content you don't wish to lose."
     }
 }

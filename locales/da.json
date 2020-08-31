@@ -1,13 +1,15 @@
 {
   "common": {
-    "Search": "Søg"
+    "Search": "Søg",
+    "Notice": "Varsel"
   },
   "footer": {
     "About": "Om",
     "Blog": "Blog",
     "Help": "Hjælp",
     "PrivacyPolicy": "Fortrolighedspolitik",
-    "TermsOfService": "Servicevilkår"
+    "TermsOfService": "Servicevilkår",
+    "Discord": "Discord"
   },
   "menu": {
     "Explore": "Udforske",
@@ -15,9 +17,17 @@
     "Notifications": "underretninger",
     "People": "Mennesker",
     "Profile": "Profil",
-    "Settings": "Indstillinger"
+    "Settings": "Indstillinger",
+    "HelpFeedback": "Hjælp",
+    "SignOut": "Log ud"
   },
   "post-box": {
     "Post": "Stolpe"
+  },
+  "posts": {
+    "DeletePost": "Slet indlæg"
+  },
+  "statements": {
+    "AlphaNotice": "Dette websted er i øjeblikket i alfa-tilstand. \nIndhold og funktioner kan ændres, og alt indhold kan fjernes eller ændres for at passe til ændrede tilstande på ethvert tidspunkt uden advarsel. \nSom sådan bedes du ikke sende noget indhold, du ikke vil miste."
   }
 }
