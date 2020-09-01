@@ -1,6 +1,6 @@
 <template>
     <div>
-        <template v-if="!posts || skeleton">
+        <template v-if="!posts || skeleton && !prime">
             <template v-for="i in 5">
                 <app-post-skeleton />
                 <kro-divider />
@@ -12,7 +12,7 @@
                 <kro-divider v-if="!replyThread" class="m-0" />
             </template>
 
-            <div class="feed-empty p-4 flex flex-col text-center items-center justify-center" v-if="posts.nodes.length === 0">
+            <div class="feed-empty p-4 flex flex-col text-center items-center justify-center" v-if="posts.nodes.length === 0 && !prime">
                 <kro-icon icon="cactus" class="text-secondary" />
                 <span class="text-sm font-medium">Fresh Outta Posts</span>
             </div>
@@ -116,7 +116,8 @@
         subscribeToMore?: boolean,
         replies?: boolean,
         take?: number;
-        preventAutoload?: boolean
+        preventAutoload?: boolean,
+        prime: boolean,
     }
 </script>
 

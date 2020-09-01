@@ -29,8 +29,8 @@
                     <app-post-footer 
                         :post="post" />
                 </div>
-                <div v-show="!hide" v-if="post.childCount > 0 && post.parent" class="-ml-4">
-                    <app-post-child-feed prevent-autoload :take="3" reply-thread :replies="true" :parent="post.id"></app-post-child-feed>
+                <div v-show="!hide" v-if="post.parent" class="-ml-4">
+                    <app-post-child-feed prime="post.childCount === 0" prevent-autoload :take="3" reply-thread :replies="true" :parent="post.id"></app-post-child-feed>
                 </div>
             </div>
         </div>
