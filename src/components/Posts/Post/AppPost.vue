@@ -1,19 +1,16 @@
 <template>
     <div>
         <div class="app-post flex flex-row" :class="{ 'rounded-md': post.level > 0 }" >
-            <!-- <div class="pt-3 pl-4 flex flex-col items-center">
-                <user-me #me="{me}">
-                    <user-avatar :user="me" />
-                </user-me>
+            <div class="pt-3 pl-4 flex flex-col items-center">
+                <user-avatar :user="post.author" />
                 <div v-if="post.children && post.children.length > 0" class="flex-1 py-1">
                     <div @click="collapseChildren" class="post-trail cursor-pointer"></div>
                 </div>
-            </div> -->
-            <div v-if="post.level > 1" class="flex bg-primary w-1"></div>
+            </div>
 
             <div class="flex-1">
                 <div class="flex-1">
-                    <app-post-header 
+                    <app-post-header
                         :post="post" />
 
                     <div class="[ post-renderer-content ]" v-if="post.text">
@@ -22,21 +19,19 @@
                     </div>
 
                     <div
-                        :class="{ 'mr-6 ml-4 rounded-sm overflow-hidden': post.level > 1 }">
+                        v-if="post.media && post.media.length > 0"
+                        class="ml-2 mt-4 rounded-md overflow-hidden mr-6">
                         <app-post-media
-                            v-if="post.media && post.media.length > 0"
+                            
                             :media="post.media" />
                     </div>
 
                     <app-post-footer 
                         :post="post" />
                 </div>
-                <div class="pl-6">
+                <div v-show="!hide" class="-ml-4">
                     <app-post v-for="child in post.children" :key="child.id" :post="child" />
                 </div>
-            <!-- <div v-show="!hide">
-                <app-post v-for="child in post.children" :key="child.id" :post="child" />
-            </div> -->
             </div>
         </div>
     </div>

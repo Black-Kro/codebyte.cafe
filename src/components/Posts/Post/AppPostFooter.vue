@@ -1,5 +1,5 @@
 <template>
-    <div class="[ app-post-footer ] [ py-4 grid fit ]">
+    <div class="[ app-post-footer ] [ py-4 -ml-2 grid fit ]">
         <kro-button :class="{ 'reaction-active': post.liked }" :key="post.likes" @click="react('LIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-up-thick"/>
             <span>
