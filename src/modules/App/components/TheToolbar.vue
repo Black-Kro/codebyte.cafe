@@ -19,7 +19,8 @@
                 <kro-button icon="theme-light-dark" @click="toggleThemeMode" />
                 <user-auth-suspense>
                     <template #authenticated>
-                        <kro-button icon="notifications" />
+                        <!-- <kro-button icon="notifications" /> -->
+                        <the-notifications />
                         <the-menu></the-menu>
                     </template>
                     <template #pending>
