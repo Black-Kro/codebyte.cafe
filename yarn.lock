@@ -45,10 +45,10 @@
     throttle-debounce "^2.1.0"
     vue-demi latest
 
-"@black-kro/ui@^0.1.39":
-  version "0.1.39"
-  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.39.tgz#efc0698703f9a3692c852b4f415fdbe70bcfa987"
-  integrity sha512-1frbSx64Vvcb7exITC4CBAvqu/9tG2ky8VE8lNjK/ltvkwlbg4RjvlzQLfsCT3Uf8ACHXCkiQ/S/+GAvLKNveQ==
+"@black-kro/ui@^0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.40.tgz#3830faf23178ca97c6e34132f27147f90fdcd26d"
+  integrity sha512-TWbn4YOBayXGDrrcgulrajxW/NjXe0n6r3tVZdwQI08GW8sQkO5uG8vMN3HULtJfz5hreptnYebzqHSx9XGBng==
   dependencies:
     "@vueuse/core" "^4.0.0-beta.2"
     focus-trap "^5.1.0"

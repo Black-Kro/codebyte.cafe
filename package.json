@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@black-kro/apollo-composable": "^0.0.1",
-    "@black-kro/ui": "^0.1.39",
+    "@black-kro/ui": "^0.1.40",
     "@vue/apollo-option": "^4.0.0-alpha.7",
     "@vueuse/core": "^4.0.0-beta.2",
     "apollo-boost": "^0.4.9",
