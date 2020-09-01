@@ -1,5 +1,5 @@
 <template>
-    <div class="[ app-default-layout ] [ container mx-auto p-4 h-full ] [ grid grid-cols-9 gap-4 ]">
+    <div class="[ app-default-layout ] [ container mx-auto md:p-4 h-full ] [ grid grid-cols-9 gap-4 ]">
         <div class="[ app-navigatoin-container ] [ lg:z-auto fixed lg:relative bottom-0 left-0 right-0 lg:flex flex-col col-span-2 ]">
             <the-navigation></the-navigation>
             <slot name="left"></slot>
