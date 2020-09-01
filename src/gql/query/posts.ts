@@ -11,12 +11,18 @@ export const GET_POST = gql`
 `;
 
 export const GET_POSTS = gql`
-    query Posts($after: String, $id: String, $username: String, $parent: String) {
+    query Posts($after: String, $id: String, $username: String, $parent: String, $replies: Boolean! = false) {
         posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
             next
             hasNextPage
             nodes {
                 ...PostFragment
+                children @include(if: $replies) {
+                    ...PostFragment
+                    children {
+                        ...PostFragment
+                    }
+                }
             }
         }
     },

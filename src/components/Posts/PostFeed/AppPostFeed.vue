@@ -44,11 +44,15 @@
 
     const QUERY = props.parent ? GET_POSTS_WITH_REPLIES : GET_POSTS;
 
-    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(QUERY, { parent: props.parent, username: props.username }, {
-        notifyOnNetworkStatusChange: true
-    });
-    export const posts = useResult(result, null, data => data.posts);
+    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(QUERY, { 
+        replies: props.replies, 
+        parent: props.parent, 
+        username: props.username 
+        }, {
+            notifyOnNetworkStatusChange: true
+        });
 
+    export const posts = useResult(result, null, data => data.posts);
     export const reloadButton = ref(null);
 
     const isButtonVisible = useElementVisibility(reloadButton);
@@ -86,7 +90,8 @@
                 variables: {
                     after: posts.value.next,
                     parent: props.parent,
-                    username: props.username
+                    username: props.username,
+                    replies: props.replies
                 },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     const next = fetchMoreResult.posts.next;
@@ -116,6 +121,7 @@
         replyThread?: boolean,
         skeleton?: boolean,
         subscribeToMore?: boolean,
+        replies?: boolean,
     }
 </script>
 

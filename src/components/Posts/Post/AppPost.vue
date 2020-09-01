@@ -9,6 +9,8 @@
                     <div @click="collapseChildren" class="post-trail cursor-pointer"></div>
                 </div>
             </div> -->
+            <div v-if="post.level > 1" class="flex bg-primary w-1"></div>
+
             <div class="flex-1">
                 <div class="flex-1">
                     <app-post-header 
@@ -19,12 +21,18 @@
                             :content="post.text" />
                     </div>
 
-                    <app-post-media 
-                        v-if="post.media && post.media.length > 0"
-                        :media="post.media" />
+                    <div
+                        :class="{ 'mr-6 ml-4 rounded-sm overflow-hidden': post.level > 1 }">
+                        <app-post-media
+                            v-if="post.media && post.media.length > 0"
+                            :media="post.media" />
+                    </div>
 
                     <app-post-footer 
                         :post="post" />
+                </div>
+                <div class="pl-6">
+                    <app-post v-for="child in post.children" :key="child.id" :post="child" />
                 </div>
             <!-- <div v-show="!hide">
                 <app-post v-for="child in post.children" :key="child.id" :post="child" />

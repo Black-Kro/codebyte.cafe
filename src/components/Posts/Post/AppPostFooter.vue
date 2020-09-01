@@ -12,7 +12,7 @@
                 {{post.dislikes}}
             </span>
         </kro-button>
-        <kro-button :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
+        <kro-button v-if="post.level !== 2" :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
         </kro-button>
