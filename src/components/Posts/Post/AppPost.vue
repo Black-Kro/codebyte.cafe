@@ -3,7 +3,7 @@
         <div class="app-post flex flex-row" :class="{ 'rounded-md': post.level > 0 }" >
             <div class="pt-3 pl-4 flex flex-col items-center">
                 <user-avatar :user="post.author" />
-                <div v-if="post.children && post.children.length > 0" class="flex-1 py-1">
+                <div v-if="post.childCount > 0 && post.parent" class="flex-1 py-1">
                     <div @click="collapseChildren" class="post-trail cursor-pointer"></div>
                 </div>
             </div>
@@ -29,8 +29,8 @@
                     <app-post-footer 
                         :post="post" />
                 </div>
-                <div v-show="!hide" class="-ml-4">
-                    <app-post v-for="child in post.children" :key="child.id" :post="child" />
+                <div v-show="!hide" v-if="post.childCount > 0 && post.parent" class="-ml-4">
+                    <app-post-child-feed prevent-autoload :take="3" reply-thread :replies="true" :parent="post.id"></app-post-child-feed>
                 </div>
             </div>
         </div>

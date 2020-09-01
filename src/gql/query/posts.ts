@@ -11,8 +11,21 @@ export const GET_POST = gql`
 `;
 
 export const GET_POSTS = gql`
-    query Posts($after: String, $id: String, $username: String, $parent: String, $replies: Boolean! = false) {
-        posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
+    query Posts(
+        $after: String, 
+        $take: Int = 10,
+        $id: String, 
+        $username: String, 
+        $parent: String, 
+        $replies: Boolean! = false) {
+        
+        posts(
+            after: $after, 
+            take: $take, 
+            id: $id, 
+            username: $username, 
+            parent: $parent) {
+
             next
             hasNextPage
             nodes {
@@ -38,18 +51,18 @@ export const GET_NEW_POSTS = gql`
     ${PostFragment}
 `;
 
-export const GET_POSTS_WITH_REPLIES = gql`
-    query PostsWithReplies($after: String, $id: String, $username: String, $parent: String) {
-        posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
-            next
-            hasNextPage
-            nodes {
-                ...PostFragment
-                children {
-                    ...PostFragment
-                }
-            }
-        }
-    },
-    ${PostFragment}
-`;
+// export const GET_POSTS_WITH_REPLIES = gql`
+//     query PostsWithReplies($after: String, $id: String, $username: String, $parent: String) {
+//         posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
+//             next
+//             hasNextPage
+//             nodes {
+//                 ...PostFragment
+//                 children {
+//                     ...PostFragment
+//                 }
+//             }
+//         }
+//     },
+//     ${PostFragment}
+// `;

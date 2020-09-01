@@ -12,19 +12,27 @@
                 {{post.dislikes}}
             </span>
         </kro-button>
-        <kro-button v-if="post.level !== 2" :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
+        <kro-button v-if="post.level === 1" @click="isPostBoxOpen = true" class="h-8 bg-transparent text-secondary">
+            <kro-icon icon="posts" />
+            {{post.childCount > 0 ? post.childCount : ''}}
+        </kro-button>
+        <kro-button v-else-if="post.level !== 2" :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
         </kro-button>
     </div>
+    <kro-dialog #default="{ close }" class="w-full overflow-auto max-h-full p-0" :padded="false" v-model="isPostBoxOpen">
+        <app-post-box @posted="() => close()" :parent="post.id" autofocus></app-post-box>
+    </kro-dialog>
 </template>
 
 <script lang="ts" setup="props">
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
     import { useDialog } from '@black-kro/ui';
     import { useMutation } from '/~/gql/composable';
     import { REACT_TO_POST } from '/~/gql/mutation';
 
+    export const isPostBoxOpen = ref(false);
     const { mutate } = useMutation<any, { id: string, reaction: string }>(REACT_TO_POST);
 
     export const totalLikes = computed(() => {

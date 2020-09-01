@@ -34,6 +34,8 @@ import '/~/styles/base.scss';
 import '/~/styles/theme.scss';
 import 'cropperjs/dist/cropper.min.css';
 
+import AppPostChildFeed from '/~/components/Posts/PostFeed/AppPostFeed.vue';
+
 // import AppPostChild from '/~/components/Posts/Post/AppPost.vue';
 
 /**
@@ -58,7 +60,7 @@ createApp(App)
     .use(KroUIPlugin, {
         icons
     })
-    // .component('AppPostChild', AppPostChild)
+    .component('AppPostChildFeed', AppPostChildFeed)
     .use(store)
     .use(i18n)
     .mount('#app');

@@ -8,12 +8,7 @@
         </template>
         <div v-else-if="posts">
             <template v-for="post in posts.nodes" :key="post.id">
-                <div v-if="replyThread" class="p-4">
-                    <div class="rounded-md bg-primary">
-                        <app-post :post="post" />
-                    </div>
-                </div>
-                <app-post v-else :post="post" />
+                <app-post :post="post" />
                 <kro-divider v-if="!replyThread" class="m-0" />
             </template>
 
@@ -29,25 +24,22 @@
                 <kro-button @click="refetch">Try Again</kro-button>
             </div>
         </div>
-
-        <div v-show="posts && posts.hasNextPage" ref="reloadButton" >
-            <kro-button class="w-full" :loading="loading" @click="loadMore">Load More</kro-button>
+        <div v-show="posts && posts.hasNextPage" ref="reloadButton" class="p-4">
+            <kro-button class="w-full" :key="loading" :loading="loading" @click="loadMore">Load More</kro-button>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup="props">
     import { ref, watch } from 'vue';
-    import { GET_POSTS, GET_POSTS_WITH_REPLIES, GET_NEW_POSTS } from '/~/gql/query';
+    import { GET_POSTS, GET_NEW_POSTS } from '/~/gql/query';
     import { useQuery, useResult } from '/~/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
-    const QUERY = props.parent ? GET_POSTS_WITH_REPLIES : GET_POSTS;
-
-    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(QUERY, { 
-        replies: props.replies, 
+    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(GET_POSTS, {
+        take: props.take || 10,
         parent: props.parent, 
-        username: props.username 
+        username: props.username
         }, {
             notifyOnNetworkStatusChange: true
         });
@@ -80,7 +72,7 @@
     }
 
     watch(() => isButtonVisible.value, () => {
-        if (!loading.value && posts.value.hasNextPage)
+        if (!loading.value && posts.value.hasNextPage && !props.preventAutoload)
             loadMore();
     });
 
@@ -88,6 +80,7 @@
         if (!loading.value && posts.value.hasNextPage) {
             fetchMore({
                 variables: {
+                    take: props.take || 10,
                     after: posts.value.next,
                     parent: props.parent,
                     username: props.username,
@@ -122,6 +115,8 @@
         skeleton?: boolean,
         subscribeToMore?: boolean,
         replies?: boolean,
+        take?: number;
+        preventAutoload?: boolean
     }
 </script>
 

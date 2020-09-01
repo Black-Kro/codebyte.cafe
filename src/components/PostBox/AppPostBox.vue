@@ -55,11 +55,15 @@
     const { uploadMedia } = useMedia();
     const { mutate, loading, error } = useMutation<any, { content: string, media: string[], parent?: string }>(CREATE_POST, {
         update(cache, { data }) {
-            const query = cache.readQuery({ query: GET_POSTS, variables: { parent: props.parent } }) as any;
-
-            if (query.posts.nodes.filter(p => p.id === data.createPost.id).length === 0) {
-                query.posts.nodes = [data.createPost, ...query.posts.nodes];
-                cache.writeQuery({ query: GET_POSTS, variables: { parent: props.parent }, data: query });
+            try {
+                const query = cache.readQuery({ query: GET_POSTS, variables: { parent: props.parent } }) as any;
+                
+                if (query.posts.nodes.filter(p => p.id === data.createPost.id).length === 0) {
+                    query.posts.nodes = [data.createPost, ...query.posts.nodes];
+                    cache.writeQuery({ query: GET_POSTS, variables: { parent: props.parent }, data: query });
+                }
+            } catch (error) {
+                console.log(error);
             }
         }
     });
