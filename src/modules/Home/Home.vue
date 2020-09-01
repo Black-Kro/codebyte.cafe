@@ -3,7 +3,7 @@
         <kro-surface :padded="false">
             <app-post-box></app-post-box>
             <kro-divider class="m-0" />
-            <app-post-feed></app-post-feed>
+            <app-post-feed subscribe-to-more></app-post-feed>
         </kro-surface>
 
         <template #right>

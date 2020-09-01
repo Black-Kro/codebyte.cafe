@@ -38,13 +38,13 @@
 
 <script lang="ts" setup="props">
     import { ref, watch } from 'vue';
-    import { GET_POSTS, GET_POSTS_WITH_REPLIES } from '/~/gql/query';
+    import { GET_POSTS, GET_POSTS_WITH_REPLIES, GET_NEW_POSTS } from '/~/gql/query';
     import { useQuery, useResult } from '/~/gql/composable';
     import { useElementVisibility } from '@vueuse/core';
 
     const QUERY = props.parent ? GET_POSTS_WITH_REPLIES : GET_POSTS;
 
-    export const { result, loading, error, refetch, fetchMore } = useQuery<any, any>(QUERY, { parent: props.parent, username: props.username }, {
+    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(QUERY, { parent: props.parent, username: props.username }, {
         notifyOnNetworkStatusChange: true
     });
     export const posts = useResult(result, null, data => data.posts);
@@ -52,6 +52,28 @@
     export const reloadButton = ref(null);
 
     const isButtonVisible = useElementVisibility(reloadButton);
+
+    if (props.subscribeToMore) {
+        subscribeToMore({
+            document: GET_NEW_POSTS,
+            updateQuery: (previousValue, { subscriptionData }) => {
+                const post = subscriptionData.data.newPosts;
+
+                if (posts.value.nodes.filter(p => p.id === post.id).length > 0)
+                    return previousValue;
+
+                return {
+                    posts: {
+                        ...previousValue.posts,
+                        nodes: [
+                            post,
+                            ...previousValue.posts.nodes
+                        ]
+                    }
+                };
+            }
+        })
+    }
 
     watch(() => isButtonVisible.value, () => {
         if (!loading.value && posts.value.hasNextPage)
@@ -93,6 +115,7 @@
         username?: string;
         replyThread?: boolean,
         skeleton?: boolean,
+        subscribeToMore?: boolean,
     }
 </script>
 

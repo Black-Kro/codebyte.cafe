@@ -23,6 +23,15 @@ export const GET_POSTS = gql`
     ${PostFragment}
 `;
 
+export const GET_NEW_POSTS = gql`
+    subscription Posts {
+        newPosts {
+            ...PostFragment,
+        }
+    }
+    ${PostFragment}
+`;
+
 export const GET_POSTS_WITH_REPLIES = gql`
     query PostsWithReplies($after: String, $id: String, $username: String, $parent: String) {
         posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
