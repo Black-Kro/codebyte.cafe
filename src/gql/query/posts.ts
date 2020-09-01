@@ -13,7 +13,7 @@ export const GET_POST = gql`
 export const GET_POSTS = gql`
     query Posts(
         $after: String, 
-        $take: Int = 10,
+        # $take: Int = 10,
         $id: String, 
         $username: String, 
         $parent: String, 
@@ -21,7 +21,7 @@ export const GET_POSTS = gql`
         
         posts(
             after: $after, 
-            take: $take, 
+            take: 10, 
             id: $id, 
             username: $username, 
             parent: $parent) {
