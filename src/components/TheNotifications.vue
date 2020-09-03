@@ -35,10 +35,10 @@
 </template>
 
 <script lang="ts" setup>
-    import { useQuery, useResult, useMutation, useSubscription } from '/~/gql/composable';
-    import { GET_NOTIFICATION_COUNT, GET_NOTIFICATIONS } from '/~/gql/query/notifications';
-    import { MARK_NOTIFICATIONS_AS_READ } from '/~/gql/mutation';
-    import { SUBSCRIBE_TO_NOTIFICATION_COUNT } from '/~/gql/subscriptions';
+    import { useQuery, useResult, useMutation, useSubscription } from '@black-kro/use-apollo';
+    import { GET_NOTIFICATION_COUNT, GET_NOTIFICATIONS } from '/~/apollo/query/notifications';
+    import { MARK_NOTIFICATIONS_AS_READ } from '/~/apollo/mutation';
+    import { SUBSCRIBE_TO_NOTIFICATION_COUNT } from '/~/apollo/subscriptions';
 
     export const { loading, result, error, subscribeToMore } = useQuery(GET_NOTIFICATION_COUNT);
     export const notificationCount = useResult(result, 0, r => r.notificationCount);

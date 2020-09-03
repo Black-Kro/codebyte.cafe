@@ -9,6 +9,21 @@ const alias = {
 
 const config: UserConfig = {
     alias,
+    optimizeDeps: {
+        include: [
+            'fast-json-stable-stringify',
+            'zen-observable',
+            'graphql-tag',
+            'subscriptions-transport-ws.js',
+            'graphql/language/visitor',
+            'graphql/language/printer',
+        ]
+    },
+    rollupInputOptions: {
+        external: [
+            'react',
+        ]
+    },
     plugins: [
         ViteComponents({
             alias,

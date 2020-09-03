@@ -23,9 +23,9 @@
     import HeaderSettings from './HeaderSettings.vue';
 
     import { useAxios } from '/~/composables/';
-    import { GET_ME } from '/~/gql/query';
-    import { UPDATE_PROFILE } from '/~/gql/mutation';
-    import { useQuery, useResult, useMutation } from '/~/gql/composable';
+    import { GET_ME } from '/~/apollo/query';
+    import { UPDATE_PROFILE } from '/~/apollo/mutation';
+    import { useQuery, useResult, useMutation } from '@black-kro/use-apollo';
     import Cropper from 'cropperjs';
 
     const { mutate } = useMutation(UPDATE_PROFILE);

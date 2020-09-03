@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { UserFragment } from '/~/gql/fragments';
+import { UserFragment } from '/~/apollo/fragments';
 
 export const UPDATE_PROFILE = gql`
     mutation UpdateUser($displayName: String, $bio: String, $header: String, $avatar: String) {

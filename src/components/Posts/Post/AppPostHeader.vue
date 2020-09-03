@@ -24,9 +24,9 @@
 
 <script lang="ts" setup="props">
     import { computed } from 'vue';
-    import { useMutation, useQuery, useResult } from '/~/gql/composable';
-    import { DELETE_POST } from '/~/gql/mutation';
-    import { GET_POSTS, GET_ME } from '/~/gql/query';
+    import { useMutation, useQuery, useResult } from '@black-kro/use-apollo';
+    import { DELETE_POST } from '/~/apollo/mutation';
+    import { GET_POSTS, GET_ME } from '/~/apollo/query';
     import { useDialog } from '@black-kro/ui';
     import { useI18n } from 'vue-i18n';
     import { useMe } from '/~/composables';

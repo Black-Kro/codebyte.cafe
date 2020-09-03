@@ -32,8 +32,8 @@
 
 <script lang="ts" setup="props">
     import { ref, watch } from 'vue';
-    import { GET_POSTS, GET_NEW_POSTS } from '/~/gql/query';
-    import { useQuery, useResult } from '/~/gql/composable';
+    import { GET_POSTS, GET_NEW_POSTS } from '/~/apollo/query';
+    import { useQuery, useResult } from '@black-kro/use-apollo';
     import { useElementVisibility } from '@vueuse/core';
 
     export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(GET_POSTS, {

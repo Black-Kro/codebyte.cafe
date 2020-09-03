@@ -29,8 +29,8 @@
 <script lang="ts" setup="props">
     import { computed, ref } from 'vue';
     import { useDialog } from '@black-kro/ui';
-    import { useMutation } from '/~/gql/composable';
-    import { REACT_TO_POST } from '/~/gql/mutation';
+    import { useMutation } from '@black-kro/use-apollo';
+    import { REACT_TO_POST } from '/~/apollo/mutation';
 
     export const isPostBoxOpen = ref(false);
     const { mutate } = useMutation<any, { id: string, reaction: string }>(REACT_TO_POST);

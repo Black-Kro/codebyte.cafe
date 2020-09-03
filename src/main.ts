@@ -4,7 +4,7 @@
 import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
 import { KroUIPlugin } from '@black-kro/ui';
-import { DefaultApolloClient } from '/~/gql/composable';
+import { DefaultApolloClient } from '@black-kro/use-apollo';
 
 /**
  * Import Local Modules
@@ -22,7 +22,7 @@ import { messages } from './messages';
 import { icons } from '/~/assets/icons';
 import { KroRouter } from '/~/shared/router';
 import { store } from '/~/shared/store';
-import { apolloClient } from '/~/gql';
+import { client } from '/~/apollo';
 
 /**
  * Register Global Services
@@ -58,7 +58,7 @@ createApp(App)
             ...adminRoutes,
         ]
     })
-    .provide(DefaultApolloClient, apolloClient)
+    .provide(DefaultApolloClient, client)
     .use(KroUIPlugin, {
         icons
     })

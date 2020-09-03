@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { PostFragment } from '/~/gql/fragments';
+import { PostFragment } from '/~/apollo/fragments';
 
 export const CREATE_POST = gql`
     mutation CreatePost($content: String, $media: [String!], $parent: String) {

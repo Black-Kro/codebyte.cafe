@@ -41,9 +41,9 @@
     import { ref, onMounted } from 'vue';
     import { useDialog } from '@black-kro/ui';
     import { useMedia } from '/~/composables';
-    import { useMutation } from '/~/gql/composable';
-    import { CREATE_POST } from '/~/gql/mutation';
-    import { GET_POSTS } from '/~/gql/query';
+    import { useMutation } from '@black-kro/use-apollo';
+    import { CREATE_POST } from '/~/apollo/mutation';
+    import { GET_POSTS } from '/~/apollo/query';
 
     export const isHelpOpen = ref(false);
 

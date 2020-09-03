@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { UserFragment } from '/~/gql/fragments';
+import { UserFragment } from '/~/apollo/fragments';
 
 export const GET_NOTIFICATION_COUNT = gql`
     query NotificationCount {

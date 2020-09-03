@@ -1,6 +1,6 @@
 import { defineComponent, h } from 'vue';
-import { GET_ME } from '/~/gql/query';
-import { useQuery, useResult } from '/~/gql/composable';
+import { GET_ME } from '/~/apollo/query';
+import { useQuery, useResult } from '@black-kro/use-apollo';
 import { useStore } from 'vuex';
 
 export default defineComponent({

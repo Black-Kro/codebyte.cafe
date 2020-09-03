@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { PostFragment } from '/~/gql/fragments';
+import { PostFragment } from '/~/apollo/fragments';
 
 export const GET_POST = gql`
     query Post($id: String!) {

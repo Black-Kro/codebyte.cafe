@@ -25,8 +25,8 @@
 <script lang="ts" setup>
     import { ref } from 'vue';
     import { useRoute } from 'vue-router';
-    import { useQuery, useResult } from '/~/gql/composable';
-    import { GET_POST } from '/~/gql/query';
+    import { useQuery, useResult } from '@black-kro/use-apollo';
+    import { GET_POST } from '/~/apollo/query';
 
     export const isPostBoxOpen = ref(false);
 

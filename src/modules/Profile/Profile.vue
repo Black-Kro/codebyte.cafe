@@ -77,8 +77,8 @@
 
 <script lang="ts" setup>
     import { useRoute } from 'vue-router';
-    import { useQuery, useResult } from '/~/gql/composable';
-    import { GET_PERSON } from '/~/gql/query';
+    import { useQuery, useResult } from '@black-kro/use-apollo';
+    import { GET_PERSON } from '/~/apollo/query';
     export { format } from 'timeago.js';
 
     export const { params: { username } } = useRoute();

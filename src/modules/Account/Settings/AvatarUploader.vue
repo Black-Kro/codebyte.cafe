@@ -34,8 +34,8 @@
 <script lang="ts" setup>
     import { ref } from 'vue';
     import { useCropper, useMedia } from '/~/composables/';
-    import { useMutation } from '/~/gql/composable';
-    import { UPDATE_PROFILE } from '/~/gql/mutation';
+    import { useMutation } from '@black-kro/use-apollo';
+    import { UPDATE_PROFILE } from '/~/apollo/mutation';
 
     export const isLoading = ref(false);
 
