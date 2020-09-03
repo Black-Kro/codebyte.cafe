@@ -1,6 +1,7 @@
 import { ApolloClient } from 'apollo-client';
-import { split } from 'apollo-link';
+import { split, ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
+import { onError } from 'apollo-link-error';
 import { WebSocketLink } from 'apollo-link-ws';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
@@ -23,11 +24,10 @@ const context = setContext(async (operation, { headers }) => {
 
 const httpLink = createHttpLink({uri: `${VITE_API_URL}/graphql`});
 
-
 const wsLink = new WebSocketLink({
     uri: VITE_API_WS_URL,
     options: {
-        reconnect: true
+        reconnect: true,
     }
 });
 
@@ -44,13 +44,31 @@ wsLink.subscriptionClient.use([{
     }
 }])
 
+const link = ApolloLink.from([
+    onError(({ networkError, response, graphQLErrors, forward, operation }) => {
 
-const link = split(({query}) => {
-    const definition = getMainDefinition(query);
-    return (
-        definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
-    );
-}, wsLink, httpLink);
+        if (networkError && (networkError as any).result) {
+            const { success, error, banReason, banDate } = (networkError as any).result;
+    
+            if (error === 'User is banned') {
+                store.commit('setNetworkError', {
+                    hasError: true,
+                    type: 'Ban',
+                    message: banReason
+                });
+            }
+        } else {
+            forward(operation);
+        }
+    
+    }),
+    split(({query}) => {
+        const definition = getMainDefinition(query);
+        return (
+            definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+        );
+    }, wsLink, httpLink)
+]);
 
 const cache = new InMemoryCache();
 

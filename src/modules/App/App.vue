@@ -1,6 +1,6 @@
 <template>
     <kro-app class="pb-16 lg:pb-0">
-        <kro-layout>
+        <kro-layout v-if="!getters['hasNetworkError']">
             <template #toolbar>
                 <the-toolbar></the-toolbar>
             </template>
@@ -16,6 +16,7 @@
         </kro-layout>
     </kro-app>
     <the-cropper></the-cropper>
+    <the-network-error-screen v-if="getters['hasNetworkError']" />
 </template>
 
 <script lang="ts" setup>

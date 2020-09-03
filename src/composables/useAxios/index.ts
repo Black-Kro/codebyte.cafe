@@ -32,5 +32,21 @@ export const useAxios = (authenticate: boolean = true, useAPI: boolean = true) =
         return config;
     });
 
+    instance.interceptors.response.use((response) => {
+        return response;   
+    }, (e) => {
+        if (e.response.status === 401) {
+            const { success, error, banReason, banDate } = e.response.data;
+    
+            if (error === 'User is banned') {
+                store.commit('setNetworkError', {
+                    hasError: true,
+                    type: 'Ban',
+                    message: banReason
+                });
+            }
+        }
+    });
+
     return instance;
 };
