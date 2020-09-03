@@ -10,6 +10,7 @@
                 class="absolute top-0 left-0 w-full h-full opacity-0"
                 type="file" />
         </div>
+        <app-post-box-giphy />
         <span class="flex-1"></span>
         <app-progress-ring
             v-if="content.length > 0"

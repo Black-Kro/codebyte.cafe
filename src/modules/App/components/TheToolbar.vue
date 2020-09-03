@@ -23,6 +23,9 @@
                         <the-notifications />
                         <the-menu></the-menu>
                     </template>
+                    <template #incomplete>
+                        <kro-button @click="dispatch('auth/signOut');">Return to Sign In</kro-button>
+                    </template>
                     <template #pending>
                         <kro-squircle class="[] [ w-10 h-10 ] [ text-bg-primary ]" />
                         <div class="[] [ w-12 h-12 ] [ bg-primary rounded-full ]"></div>
@@ -48,7 +51,7 @@
     import TheSearch from './TheSearch.vue';
     import TheMenu from './TheMenu.vue';
 
-    export const { getters } = useStore();
+    export const { getters, dispatch } = useStore();
 
     export const { toggleThemeMode } = useTheme();
 

@@ -5,3 +5,5 @@ export { useEventHook } from './useEventHook';
 export { useURLParameters } from './useURL';
 export { useCropper } from './useCropper';
 export { useMedia } from './useMedia';
+export { useGiphy } from './useGiphy';
+export { useFormValidation } from './useFormValidation';

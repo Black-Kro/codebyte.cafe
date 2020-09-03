@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import { isNotAuthenticated } from '/~/shared/router/guards';
+import { isNotAuthenticated, isAuthenticated } from '/~/shared/router/guards';
 
 export const authRoutes: RouteRecordRaw[] = [
     {
@@ -17,5 +17,13 @@ export const authRoutes: RouteRecordRaw[] = [
         meta: {
             title: 'Sign Up',
         },
-    }
+    },
+    {
+        path: '/create-account',
+        component: () => import('./CreateAccount.vue'),
+        beforeEnter: isAuthenticated,
+        meta: {
+            title: 'Create Account',
+        }
+    },
 ];

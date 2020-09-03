@@ -14,6 +14,9 @@ export default defineComponent({
             if (getters['auth/status'] === 'UNKNOWN' && slots.authenticated)
                 return slots.authenticated();
 
+            if (getters['auth/status'] === 'INCOMPLETE' && slots.incomplete)
+                return slots.incomplete();
+
             if (getters['auth/status'] === 'AUTHENTICATED' && slots.authenticated)
                 return slots.authenticated();
 

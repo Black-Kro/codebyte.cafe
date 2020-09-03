@@ -23,24 +23,11 @@ const context = setContext(async (operation, { headers }) => {
 
 const httpLink = createHttpLink({uri: `${VITE_API_URL}/graphql`});
 
-const subMiddleware = {
-    applyMiddleware(options, next) {
-        options.auth
-    }
-}
 
 const wsLink = new WebSocketLink({
     uri: VITE_API_WS_URL,
     options: {
-        reconnect: true,
-
-        // async connectionParams() {
-        //     const token = await store.getters['auth/user'].getIdToken();
-
-        //     return {
-        //         Authorization: `Bearer ${token}`,
-        //     }
-        // }
+        reconnect: true
     }
 });
 
@@ -48,7 +35,7 @@ const wsLink = new WebSocketLink({
 wsLink.subscriptionClient.use([{
     async applyMiddleware(options, next) {
         const token = await store.getters['auth/user'].getIdToken();
-        console.log(options);
+
         options.context = {
             Authorization: `Bearer ${token}`,
         }
