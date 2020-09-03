@@ -35,18 +35,24 @@
 </template>
 
 <script lang="ts" setup>
-    import { useQuery, useResult, useSubscription } from '/~/gql/composable';
+    import { useQuery, useResult, useMutation, useSubscription } from '/~/gql/composable';
     import { GET_NOTIFICATION_COUNT, GET_NOTIFICATIONS } from '/~/gql/query/notifications';
+    import { MARK_NOTIFICATIONS_AS_READ } from '/~/gql/mutation';
     import { SUBSCRIBE_TO_NOTIFICATION_COUNT } from '/~/gql/subscriptions';
 
     export const { loading, result, error, subscribeToMore } = useQuery(GET_NOTIFICATION_COUNT);
     export const notificationCount = useResult(result, 0, r => r.notificationCount);
 
+    export const { mutate: markAllAsRead } = useMutation(MARK_NOTIFICATIONS_AS_READ);
     export const { refetch, result: notificationResults } = useQuery(GET_NOTIFICATIONS, {  }, { fetchResults: false });
     export const notifications = useResult(notificationResults, [], n => n.notifications.nodes);
 
-    export const onOpen = () => {
-        refetch();
+    export const onOpen = async () => {
+        await refetch();
+
+        // Mark all notifications as read. Not sure if this is the best solution, but for right now
+        // it is what we will use.
+        markAllAsRead();
     }
 
     subscribeToMore(() => ({
