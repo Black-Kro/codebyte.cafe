@@ -1,10 +1,13 @@
 import { RouteRecordRaw } from 'vue-router';
 import { isAuthenticated } from '/~/shared/router/guards';
 
+import Profile from './Profile.vue';
+import ProfilePost from './ProfilePost.vue';
+
 export const profileRoutes: RouteRecordRaw[] = [
     {
         path: '/@:username',
-        component: () => import('./Profile.vue'),
+        component: Profile,
         beforeEnter: isAuthenticated,
         meta: {
             title: 'Profile',
@@ -12,7 +15,7 @@ export const profileRoutes: RouteRecordRaw[] = [
     },
     {
         path: '/@:username/:post',
-        component: () => import('./ProfilePost.vue'),
+        component: ProfilePost,
         beforeEnter: isAuthenticated,
         meta: {
             title: 'Post'

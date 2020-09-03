@@ -1,11 +1,14 @@
 import { RouteRecordRaw } from 'vue-router';
 import { isAuthenticated } from '/~/shared/router/guards';
 
+import Home from './Home.vue';
+import People from './People.vue';
+
 export const homeRoutes: RouteRecordRaw[] = [
     {
         path: '/',
         beforeEnter: isAuthenticated,
-        component: () => import('./Home.vue'),
+        component: () => Home,
         meta: {
             title: 'Home',
         }
@@ -27,7 +30,7 @@ export const homeRoutes: RouteRecordRaw[] = [
     {
         path: '/people',
         beforeEnter: isAuthenticated,
-        component: () => import('./People.vue'),
+        component: People,
         meta: {
             title: 'People',
         },
