@@ -8,7 +8,7 @@ export const homeRoutes: RouteRecordRaw[] = [
     {
         path: '/',
         beforeEnter: isAuthenticated,
-        component: () => Home,
+        component: Home,
         meta: {
             title: 'Home',
         }
