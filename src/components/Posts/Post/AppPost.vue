@@ -20,7 +20,8 @@
 
                     <div
                         v-if="post.media && post.media.length > 0"
-                        class="ml-2 mt-4 rounded-md overflow-hidden mr-6">
+                        :class="{ 'mt-4': post.text }"
+                        class="ml-2 rounded-md overflow-hidden mr-6">
                         <app-post-media
                             
                             :media="post.media" />
