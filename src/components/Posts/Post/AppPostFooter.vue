@@ -113,7 +113,7 @@
     }
 
     .reaction-active {
-        color: var(--kro-primary);
+        color: var(--kro-primary) !important;
     }
 
 </style>
