@@ -10,7 +10,6 @@
                     <div>
                         <kro-list-item
                             v-if="canDeletePost"
-                            :key="locale" 
                             @click="deletePost" 
                             class="cursor-pointer">
                             <template #icon><kro-icon icon="delete" /></template>
