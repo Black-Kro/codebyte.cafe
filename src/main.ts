@@ -15,7 +15,8 @@ import {
     authRoutes, 
     accountRoutes, 
     exploreRoutes,
-    profileRoutes } from '/~/modules/';
+    profileRoutes,
+    adminRoutes } from '/~/modules/';
     
 import { messages } from './messages';
 import { icons } from '/~/assets/icons';
@@ -54,6 +55,7 @@ createApp(App)
             ...accountRoutes,
             ...exploreRoutes,
             ...profileRoutes,
+            ...adminRoutes,
         ]
     })
     .provide(DefaultApolloClient, apolloClient)

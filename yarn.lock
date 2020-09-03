@@ -37,10 +37,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@black-kro/apollo-composable@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@black-kro/apollo-composable/-/apollo-composable-0.0.1.tgz#cbd24c38d4c83f2e4425963215f0934fbe89acd2"
-  integrity sha512-E8AoC81GrZJoy90Qzg8L06xr7TXawSpsjfQBzoaNBkMzl3HFnx6mQ9Hatz+vpqH9shMeFLsysNVE6AJtMwGHPA==
+"@black-kro/apollo-composable@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@black-kro/apollo-composable/-/apollo-composable-0.0.2.tgz#d1e39a8bedd9d6b04b865d55319e26ae57c7adbf"
+  integrity sha512-FxtiTO2WvQMchWyDqlLv6KhFrRfZhrCmzNIHx4gthg7+ZLzdlTx3Ac1mEpBfKQ/K+lkyVwpVfNoI159hCT3ZHw==
   dependencies:
     throttle-debounce "^2.1.0"
     vue-demi latest

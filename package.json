@@ -20,7 +20,7 @@
     "vite-plugin-components": "^0.2.13"
   },
   "dependencies": {
-    "@black-kro/apollo-composable": "^0.0.1",
+    "@black-kro/apollo-composable": "^0.0.2",
     "@black-kro/ui": "^0.1.42",
     "@giphy/js-fetch-api": "^1.6.2",
     "@vue/apollo-option": "^4.0.0-alpha.7",

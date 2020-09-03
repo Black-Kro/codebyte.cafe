@@ -22,6 +22,10 @@
                 <kro-icon icon="account" />
                 <span>{{t('menu.Profile')}}</span>
             </router-link>
+            <router-link class="[ the-navigation__link ] [ flex ]" to="/administrator">
+                <kro-icon icon="dashboard" />
+                <span>{{t('menu.Admin')}}</span>
+            </router-link>
         </user-me>
         <router-link class="[ the-navigation__link ] [ flex ] []"  to="/settings">
             <kro-icon icon="settings" />

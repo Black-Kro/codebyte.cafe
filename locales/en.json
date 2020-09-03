@@ -14,7 +14,8 @@
         "Profile": "Profile",
         "HelpFeedback": "Help & Feedback",
         "SignOut": "Sign Out",
-        "Settings": "Settings"
+        "Settings": "Settings",
+        "Admin": "Administrator"
     },
     "footer": {
         "About": "About",
