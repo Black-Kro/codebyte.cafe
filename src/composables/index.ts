@@ -7,3 +7,4 @@ export { useCropper } from './useCropper';
 export { useMedia } from './useMedia';
 export { useGiphy } from './useGiphy';
 export { useFormValidation } from './useFormValidation';
+export { useMe } from './useData';

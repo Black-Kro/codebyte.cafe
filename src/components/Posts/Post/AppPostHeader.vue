@@ -8,7 +8,11 @@
                         <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
                     </template>
                     <div>
-                        <kro-list-item :key="locale" @click="deletePost" class="cursor-pointer">
+                        <kro-list-item
+                            v-if="canDeletePost"
+                            :key="locale" 
+                            @click="deletePost" 
+                            class="cursor-pointer">
                             <template #icon><kro-icon icon="delete" /></template>
                             {{t('posts.DeletePost')}}
                         </kro-list-item>
@@ -20,16 +24,37 @@
 </template>
 
 <script lang="ts" setup="props">
-    import { useMutation } from '/~/gql/composable';
+    import { computed } from 'vue';
+    import { useMutation, useQuery, useResult } from '/~/gql/composable';
     import { DELETE_POST } from '/~/gql/mutation';
-    import { GET_POSTS } from '/~/gql/query';
+    import { GET_POSTS, GET_ME } from '/~/gql/query';
     import { useDialog } from '@black-kro/ui';
     import { useI18n } from 'vue-i18n';
-
+    import { useMe } from '/~/composables';
+    import { IPost } from '/~/types';
     export { format } from 'timeago.js';
 
-    export const { t, locale } = useI18n();
     const { createConfirmationDialog } = useDialog();
+    export const { me } = useMe();
+
+    export const { t, locale } = useI18n();
+
+    export const canDeletePost = computed(() => {
+        const post: IPost = props.post;
+
+        if (me.value) {
+            const { roles: authorRoles } = post.author;
+            const { roles: myRoles } = me.value;
+
+            if (myRoles.indexOf('SuperAdmin') > -1)
+                return true;
+
+            if (myRoles.indexOf('Admin') > -1 && authorRoles.indexOf('SuperAdmin') < 0)
+                return true;
+        }
+
+        return post.isMyPost;
+    });
 
     const { mutate } = useMutation<any, { id: string }>(DELETE_POST, {
         update(cache, { data }) {

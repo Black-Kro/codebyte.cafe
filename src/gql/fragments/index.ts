@@ -47,6 +47,7 @@ export const PostFragment = gql`
         created
         level
         childCount
+        isMyPost
         likes
         dislikes
         liked
