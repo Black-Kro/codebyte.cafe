@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="bg-black relative">
+    <div class="mt-2 pr-4">
+        <div class="bg-black relative rounded-md overflow-hidden">
             <app-lazy-image 
                 :intrinsicWidth="1280"
                 :intrinsicHeight="720"

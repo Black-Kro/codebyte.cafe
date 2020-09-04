@@ -8,7 +8,7 @@
                 </router-link>
             </div>
 
-            <div class="[] [ col-span-5 hidden lg:flex ] []">
+            <div class="[] [ col-span-5 hidden lg:flex relative z-10 ] []">
                 <user-auth-suspense #authenticated>
                     <the-search></the-search>
                 </user-auth-suspense>
@@ -64,7 +64,6 @@
 <style lang="scss">
     
     .the-toolbar {
-        content-visibility: auto;
     }
 
 </style>

@@ -66,13 +66,12 @@
     vue "3.0.0-rc.10"
     vue-router "4.0.0-beta.6"
 
-"@black-kro/use-apollo@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@black-kro/use-apollo/-/use-apollo-0.0.1.tgz#c5675b27d2390cc901e1af2f2945cca68add0d49"
-  integrity sha512-fhKaTXPFVdudIrDfzjXQt/gK+JTeVF5SJ9/zr/oxxBllqKtpzuAGqepmwWN7a3D/QpViPaBsWVn1QLqt5W10IQ==
+"@black-kro/use-apollo@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@black-kro/use-apollo/-/use-apollo-0.0.3.tgz#ae3c13c0fc16e90e9c82284067760b895d57793b"
+  integrity sha512-XbE1jJFh/q5lgx9zgE8pk6Wk0oUo0HWWjPr7oPQft7Sk2+2pth9zlKeogRpwWHNbyM4rNUtrnEfmB1yQn2tBFA==
   dependencies:
     "@apollo/client" "^3.1.4"
-    "@rollup/plugin-commonjs" "^15.0.0"
     graphql "^15.3.0"
     throttle-debounce "^2.3.0"
     vue "3.0.0-rc.10"
@@ -432,19 +431,6 @@
     is-reference "^1.1.2"
     magic-string "^0.25.2"
     resolve "^1.11.0"
-
-"@rollup/plugin-commonjs@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-15.0.0.tgz#690d15a9d54ba829db93555bff9b98ff34e08574"
-  integrity sha512-8uAdikHqVyrT32w1zB9VhW6uGwGjhKgnDNP4pQJsjdnyF4FgCj6/bmv24c7v2CuKhq32CcyCwRzMPEElaKkn0w==
-  dependencies:
-    "@rollup/pluginutils" "^3.1.0"
-    commondir "^1.0.1"
-    estree-walker "^2.0.1"
-    glob "^7.1.6"
-    is-reference "^1.2.1"
-    magic-string "^0.25.7"
-    resolve "^1.17.0"
 
 "@rollup/plugin-json@^4.0.3":
   version "4.1.0"
@@ -1826,7 +1812,7 @@ glob-parent@^5.0.0, glob-parent@^5.1.0, glob-parent@~5.1.0:
   dependencies:
     is-glob "^4.0.1"
 
-glob@^7.0.0, glob@^7.1.2, glob@^7.1.3, glob@^7.1.6:
+glob@^7.0.0, glob@^7.1.2, glob@^7.1.3:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -2129,7 +2115,7 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
-is-reference@^1.1.2, is-reference@^1.2.1:
+is-reference@^1.1.2:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/is-reference/-/is-reference-1.2.1.tgz#8b2dac0b371f4bc994fdeaba9eb542d03002d0b7"
   integrity sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==

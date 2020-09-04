@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { useQuery, useResult, useMutation, useSubscription } from '@black-kro/use-apollo';
+    import { useLazyQuery, useQuery, useResult, useMutation, useSubscription } from '@black-kro/use-apollo';
     import { GET_NOTIFICATION_COUNT, GET_NOTIFICATIONS } from '/~/apollo/query/notifications';
     import { MARK_NOTIFICATIONS_AS_READ } from '/~/apollo/mutation';
     import { SUBSCRIBE_TO_NOTIFICATION_COUNT } from '/~/apollo/subscriptions';
@@ -44,11 +44,14 @@
     export const notificationCount = useResult(result, 0, r => r.notificationCount);
 
     export const { mutate: markAllAsRead } = useMutation(MARK_NOTIFICATIONS_AS_READ);
-    export const { refetch, result: notificationResults } = useQuery(GET_NOTIFICATIONS, {  }, { fetchResults: false });
+    export const { start, refetch, result: notificationResults } = useLazyQuery(GET_NOTIFICATIONS);
     export const notifications = useResult(notificationResults, [], n => n.notifications.nodes);
 
     export const onOpen = async () => {
-        await refetch();
+        if (notificationResults.value)
+            await refetch();
+        else
+            await start();
 
         // Mark all notifications as read. Not sure if this is the best solution, but for right now
         // it is what we will use.

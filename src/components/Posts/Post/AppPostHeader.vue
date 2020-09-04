@@ -57,17 +57,23 @@
 
     const { mutate } = useMutation<any, { id: string }>(DELETE_POST, {
         update(cache, { data }) {
-            const d = cache.readQuery({
+            const oldQuery = cache.readQuery({
                 query: GET_POSTS,
                 variables: props.post.parent ? { parent: props.post.parent } : {},
             }) as any;
 
-            d.posts.nodes = d.posts.nodes.filter(post => post.id !== props.post.id);
+            const posts = {
+                ...oldQuery,
+                posts: {
+                    ...oldQuery.posts,
+                    nodes: oldQuery.posts.nodes.filter(post => post.id !== props.post.id)
+                }
+            };
 
             cache.writeQuery({
                 query: GET_POSTS,
                 variables: props.post.parent ? { parent: props.post.parent } : {},
-                data: d
+                data: posts
             })
         }
     })

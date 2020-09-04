@@ -17,6 +17,14 @@
                     <kro-icon icon="arrow-right" />
                 </template>
             </kro-list-item>
+            <kro-list-item>
+                <template #icon><kro-icon icon="present" /></template>
+                Invite Codes
+                <template #subtitle>Manage Invite Codes</template>
+                <template #action>
+                    <kro-icon icon="arrow-right" />
+                </template>
+            </kro-list-item>
 
         </kro-surface>
     </app-default-layout>

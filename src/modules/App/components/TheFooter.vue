@@ -3,7 +3,7 @@
         <div class="flex flex-col justify-center items-center content-center">
             <app-logo class="h-8 opacity-75" />
             <div class="py-2 text-sm">
-                <router-link class="text-current" to="/">{{t('footer.About')}}</router-link>
+                <router-link class="text-current" to="/about">{{t('footer.About')}}</router-link>
                 <span class="mx-2">·</span>
                 <router-link class="text-current" to="/">{{t('footer.Help')}}</router-link>
                 <span class="mx-2">·</span>

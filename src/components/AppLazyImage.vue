@@ -32,11 +32,13 @@
     }
 
     onIntersected(() => {
-        const img = new Image();
-        img.onload = () => {
-            shouldLoad.value = true;
-        };
-        img.src = props.src;        
+        if (props.src) {
+            const img = new Image();
+            img.onload = () => {
+                shouldLoad.value = true;
+            };
+            img.src = props.src;        
+        }
     });
 
     export default {
