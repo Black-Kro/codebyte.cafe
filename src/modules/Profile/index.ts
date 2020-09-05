@@ -11,7 +11,21 @@ export const profileRoutes: RouteRecordRaw[] = [
         beforeEnter: isAuthenticated,
         meta: {
             title: 'Profile',
-        }
+        },
+        children: [
+            {
+                path: '/@:username',
+                component: () => import('./ProfilePosts.vue')
+            },
+            {
+                path: '/@:username/followers',
+                component: () => import('./ProfileFollowers.vue')
+            },
+            {
+                path: '/@:username/following',
+                component: () => import('./ProfileFollowing.vue')
+            }
+        ]
     },
     {
         path: '/@:username/:post',

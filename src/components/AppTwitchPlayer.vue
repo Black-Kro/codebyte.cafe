@@ -1,12 +1,14 @@
 <template>
-    <div class="relative w-full" :style="{ 'padding-top': '56.25%' }">
-        <iframe
-            :src="`${parameters}&parent=${hostname}&autoplay=false`"
-            class="absolute inset-0 w-full h-full"
-            frameborder="0"
-            scrolling="no"
-            allowfullscreen="true">
-        </iframe>
+    <div class="mt-2 pr-4">
+        <div class="relative w-full rounded-md overflow-hidden" :style="{ 'padding-top': '56.25%' }">
+            <iframe
+                :src="`${parameters}&parent=${hostname}&autoplay=false`"
+                class="absolute inset-0 w-full h-full"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="true">
+            </iframe>
+        </div>
     </div>
 </template>
 

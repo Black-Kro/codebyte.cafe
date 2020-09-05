@@ -37,7 +37,8 @@
                         </router-link>
                     </kro-toolbar>
                 </div>
-                <app-post-feed :username="user.username"></app-post-feed>
+                <router-view></router-view>
+                <!-- <app-post-feed :username="user.username"></app-post-feed> -->
             </template>
 
             <!-- Profile Skeleton -->

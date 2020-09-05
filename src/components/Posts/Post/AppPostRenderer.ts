@@ -3,6 +3,7 @@ import { tokensToRenderFunction } from './util';
 
 import YoutubePlayer from '/~/components/AppYoutubePlayer.vue';
 import TwitchPlayer from '/~/components/AppTwitchPlayer.vue';
+import CodepenEmbed from '/~/components/AppCodepenEmbed.vue';
 
 import marked from 'marked';
 
@@ -10,7 +11,7 @@ const USERNAME_REGEX = /@(\w{1,15})\b/mgi;
 
 const selectLinkByPriority = (links) => {
 
-    const PriorityList = ['YOUTUBE', 'SPOTIFY', 'TWITCH'];
+    const PriorityList = ['YOUTUBE', 'SPOTIFY', 'TWITCH', 'CODEPEN'];
     const Priorities = {
         'YOUTUBE': (url: string) => {
             const r = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
@@ -28,6 +29,12 @@ const selectLinkByPriority = (links) => {
         },
         'TWITCH': (url: string) => {
             if (url.indexOf('twitch.tv') > -1)
+                return true;
+
+            return false;
+        },
+        'CODEPEN': (url: string) => {
+            if (url.indexOf('codepen.io') > -1 && url.indexOf('/pen/') > -1)
                 return true;
 
             return false;
@@ -96,6 +103,11 @@ export default defineComponent({
                         return h(TwitchPlayer, { url: link.href });
                     },
 
+                    CODEPEN: (link) => {
+                        return h(CodepenEmbed, { url: link.href });
+                        return null;
+                    },
+
                     NORMAL: (link) => {
                         return null;
                     },
@@ -106,7 +118,7 @@ export default defineComponent({
 
 
             return h('div', [
-                h('div', { class: 'app-post-renderer__content px-4 pb-0 pl-2 py-2 pt-0' }, nodes),
+                h('div', { class: 'app-post-renderer__content px-4 pb-0 pl-0 py-2 pt-0' }, nodes),
                 mediaNode
             ]);
         };
