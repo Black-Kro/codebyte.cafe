@@ -1,6 +1,6 @@
 <template>
-    <div>
-        Coming Sooon...
+    <div class="p-4 text-center">
+        Coming Soon...
     </div>
 </template>
 

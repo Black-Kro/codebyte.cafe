@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-post-feed :username="username.substring(1)"></app-post-feed>
+        <app-post-feed :username="username"></app-post-feed>
     </div>
 </template>
 
