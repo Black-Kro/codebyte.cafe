@@ -64,11 +64,17 @@ export const PostFragment = gql`
     ${MediaFragment}
 `;
 
-// export const PostFragmentWithChildren = gql`
-//     fragment PostFragmentWithChildren on Post {
-//         children {
-//             ...PostFragment
-//         }
-//     }
-//     ${PostFragment}
-// `;
+export const InviteCodeFragment = gql`
+    fragment InviteCodeFragment on UserInviteCode {
+        id
+        code
+        initialRoles
+        used
+        usedAt
+        createdBy {
+            ...UserFragment
+        }
+        createdAt
+    }
+    ${UserFragment}
+`;

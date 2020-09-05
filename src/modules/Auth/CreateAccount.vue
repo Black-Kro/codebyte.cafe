@@ -32,6 +32,13 @@
                     label="Bio" 
                     multiline
                     v-model="bio" />
+
+                <kro-textfield
+                    v-model="inviteCode"
+                    class="mt-4"
+                    label="Invite Code"
+                />
+
                 <kro-button class="mt-4" :loading="isLoading" :disabled="!canSubmit" primary>Create Account</kro-button>
             </form>
         </kro-surface>
@@ -65,6 +72,7 @@
     export const username   = ref('');
     export const nickname   = ref('');
     export const bio        = ref('');
+    export const inviteCode = ref('');
 
     export const { 
         valid: isUsernameValid, 
@@ -94,7 +102,8 @@
             const response = await post('api/user', { 
                 username: username.value, 
                 nickname: nickname.value, 
-                bio: bio.value 
+                bio: bio.value,
+                inviteCode: inviteCode.value
             });
 
             await dispatch('auth/checkStatus');

@@ -17,7 +17,7 @@
                     <kro-icon icon="arrow-right" />
                 </template>
             </kro-list-item>
-            <kro-list-item>
+            <kro-list-item to="/administrator/invites">
                 <template #icon><kro-icon icon="present" /></template>
                 Invite Codes
                 <template #subtitle>Manage Invite Codes</template>

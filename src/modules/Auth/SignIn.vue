@@ -16,7 +16,7 @@
                     label="Password"></kro-textfield>
                 <kro-button type="submit" :loading="loading" primary>Sign In</kro-button>
                 <div class="text-center text-xs">
-                    <router-link to="/sign-up">Already have an account?</router-link>
+                    <router-link to="/sign-up">Don't have an account?</router-link>
                     <a class="ml-2" href="#">Forgot Password?</a>
                 </div>
             </form>

@@ -10,4 +10,12 @@ export const adminRoutes: RouteRecordRaw[] = [
             title: 'Admin Dashboard',
         }
     },
+    {
+        path: '/administrator/invites',
+        beforeEnter: [isAuthenticated, isAdministrator],
+        component: () => import('./ManageInvites.vue'),
+        meta: {
+            title: 'Manage Invites',
+        }
+    },
 ]

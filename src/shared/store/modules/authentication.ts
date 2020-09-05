@@ -135,7 +135,7 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
         },
 
         signUp({ commit }, { email, password }) {
-            firebase
+            return firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password)
                 .then(response => { commit('setUser', response.user); commit('setError', null); })
