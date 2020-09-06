@@ -39,7 +39,7 @@
 
     onResult(() => {
         username.value = `@${me.value.username}`;
-        nickname.value = me.value.profile.displayName;
+        nickname.value = me.value.profile.nickname;
         bio.value = me.value.profile.bio;
     })
 
