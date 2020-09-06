@@ -21,7 +21,7 @@
                     <div
                         v-if="post.media && post.media.length > 0"
                         :class="{ 'mt-4': post.text }"
-                        class="ml-2 rounded-md overflow-hidden mr-6">
+                        class="ml-2 rounded-md overflow-hidden mr-4">
                         <app-post-media
                             
                             :media="post.media" />
@@ -30,8 +30,15 @@
                     <app-post-footer 
                         :post="post" />
                 </div>
-                <div v-show="!hide" v-if="post.parent" class="-ml-4">
-                    <app-post-child-feed prime="post.childCount === 0" prevent-autoload :take="3" reply-thread :replies="true" :parent="post.id"></app-post-child-feed>
+                <div v-show="!hide" v-if="post.parent && post.level < 2" class="-ml-4">
+                    <app-post-child-feed 
+                        prevent-autoload 
+                        reply-thread 
+                        hide-empty-message
+                        :prime="post.childCount === 0" 
+                        :take="3" 
+                        :replies="true" 
+                        :parent="post.id" />
                 </div>
             </div>
         </div>

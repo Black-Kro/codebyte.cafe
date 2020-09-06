@@ -46,6 +46,8 @@ export const useAxios = (authenticate: boolean = true, useAPI: boolean = true) =
                 });
             }
         }
+
+        return Promise.reject(e);
     });
 
     return instance;

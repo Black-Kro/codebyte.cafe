@@ -12,7 +12,9 @@
                 <kro-divider v-if="!replyThread" class="m-0" />
             </template>
 
-            <div class="feed-empty p-4 flex flex-col text-center items-center justify-center" v-if="posts.nodes.length === 0 && !prime">
+            <div 
+                v-if="posts.nodes.length === 0 && !hideEmptyMessage"
+                class="feed-empty p-4 flex flex-col text-center items-center justify-center" >
                 <kro-icon icon="cactus" class="text-secondary" />
                 <span class="text-sm font-medium">Fresh Outta Posts</span>
             </div>
@@ -112,6 +114,7 @@
         parent?: string,
         username?: string;
         replyThread?: boolean,
+        hideEmptyMessage?: boolean,
         skeleton?: boolean,
         subscribeToMore?: boolean,
         replies?: boolean,

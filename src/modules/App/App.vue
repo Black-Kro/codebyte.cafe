@@ -15,7 +15,8 @@
             </template>
         </kro-layout>
     </kro-app>
-    <the-cropper></the-cropper>
+    <the-toast-dispatcher />
+    <the-cropper />
     <the-network-error-screen v-if="getters['hasNetworkError']" />
 </template>
 

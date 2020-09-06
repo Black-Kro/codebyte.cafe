@@ -45,15 +45,25 @@ wsLink.subscriptionClient.use([{
 const link = ApolloLink.from([
     onError(({ networkError, response, graphQLErrors, forward, operation }) => {
         if (networkError && (networkError as any).result) {
-            const { success, error, banReason, banDate } = (networkError as any).result;
+            const { success, error, errors, banReason, banDate } = (networkError as any).result;
     
-            if (error === 'User is banned') {
-                store.commit('setNetworkError', {
-                    hasError: true,
-                    type: 'Ban',
-                    message: banReason
-                });
+            console.log(Object.entries(networkError));
+            if (error) {
+                if (error === 'User is banned') {
+                    store.commit('setNetworkError', {
+                        hasError: true,
+                        type: 'Ban',
+                        message: banReason
+                    });
+                }
+            } else if (errors) {
+                const e = errors[0].message;
+                console.log(e);
+                if (e === 'This account no longer exists. Fuck you') {
+                    store.dispatch('auth/signOut');
+                }
             }
+
         } else {
             forward(operation);
         }

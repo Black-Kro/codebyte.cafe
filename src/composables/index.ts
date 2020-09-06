@@ -8,3 +8,4 @@ export { useMedia } from './useMedia';
 export { useGiphy } from './useGiphy';
 export { useFormValidation } from './useFormValidation';
 export { useMe } from './useData';
+export { useToast } from './useToast';

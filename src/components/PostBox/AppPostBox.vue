@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div v-bind="$attrs" class="relative">
         <user-me #default="{ me, loading }">
             <user-identity :user="me" :skeleton="loading">
                 <kro-button @click="isHelpOpen = true" icon="help" />
@@ -47,7 +47,7 @@
 
     export const isHelpOpen = ref(false);
 
-    export const content = ref('');
+    export const content = ref(props.initialText || '');
     export const files = ref([]);
     export const isLoading = ref(false);
     export const textfield = ref<any>(null);
@@ -59,8 +59,14 @@
                 const query = cache.readQuery({ query: GET_POSTS, variables: { parent: props.parent } }) as any;
                 
                 if (query.posts.nodes.filter(p => p.id === data.createPost.id).length === 0) {
-                    query.posts.nodes = [data.createPost, ...query.posts.nodes];
-                    cache.writeQuery({ query: GET_POSTS, variables: { parent: props.parent }, data: query });
+                    const nodes = [data.createPost, ...query.posts.nodes];
+                    cache.writeQuery({ query: GET_POSTS, variables: { parent: props.parent }, data: {
+                        ...query,
+                        posts: {
+                            ...query.posts,
+                            nodes
+                        }
+                    } });
                 }
             } catch (error) {
                 console.log(error);
@@ -93,6 +99,7 @@
     declare const props: {
         autofocus?: boolean;
         parent?: string;
+        initialText?: string;
     }
 
     declare const emit: any;
