@@ -5,7 +5,7 @@
             <div class="py-2 text-sm">
                 <router-link class="text-current" to="/about">{{t('footer.About')}}</router-link>
                 <span class="mx-2">·</span>
-                <router-link class="text-current" to="/">{{t('footer.Help')}}</router-link>
+                <a href="https://github.com/Black-Kro/Codebyte-Issues" rel="noreferrer noopener" target="_blank" class="text-current">{{t('footer.Issues')}}</a>
                 <span class="mx-2">·</span>
                 <a href="https://blog.codebyte.cafe/" rel="noreferrer noopener" target="_blank" class="text-current" to="/">{{t('footer.Blog')}}</a>
                 <span class="mx-2">·</span>
