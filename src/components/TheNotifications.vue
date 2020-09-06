@@ -44,14 +44,12 @@
     export const notificationCount = useResult(result, 0, r => r.notificationCount);
 
     export const { mutate: markAllAsRead } = useMutation(MARK_NOTIFICATIONS_AS_READ);
-    export const { start, refetch, result: notificationResults } = useLazyQuery(GET_NOTIFICATIONS);
+    export const { refetch, result: notificationResults } = useQuery(GET_NOTIFICATIONS, { all: true, take: 5});
     export const notifications = useResult(notificationResults, [], n => n.notifications.nodes);
 
     export const onOpen = async () => {
         if (notificationResults.value)
             await refetch();
-        else
-            await start();
 
         // Mark all notifications as read. Not sure if this is the best solution, but for right now
         // it is what we will use.

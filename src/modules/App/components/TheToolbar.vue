@@ -8,7 +8,7 @@
                 </router-link>
             </div>
 
-            <div class="[] [ col-span-5 hidden lg:flex relative z-10 ] []">
+            <div class="[] [ col-span-5 hidden lg:flex relative ] []">
                 <user-auth-suspense #authenticated>
                     <the-search></the-search>
                 </user-auth-suspense>
