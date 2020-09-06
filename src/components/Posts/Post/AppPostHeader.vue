@@ -4,13 +4,41 @@
         <template #default>
             <div class="flex flex-row items-center h-full">
                 <kro-menu :key="post.id" left>
-                    <template #activator="{ open }">
+                    <template #activator="{ open, close: closeMenu }">
                         <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
                     </template>
                     <div>
+                        <kro-dialog v-model="isReportDialogOpen">
+                            <template #activator="{ open }">
+                                <kro-list-item
+                                    v-if="canDeletePost"
+                                    @click="open" 
+                                    class="cursor-pointer">
+                                    <template #icon><kro-icon icon="error" /></template>
+                                    {{t('posts.ReportPost')}}
+                                </kro-list-item>
+                            </template>
+                            <template #header>
+                                <div class="flex flex-row">
+                                    <kro-icon icon="error" class="mr-2" />
+                                    Report Post
+                                </div>
+                            </template>
+                            <div>
+                                <p class="text-secondary font-medium pb-4">
+                                    Please provide a short description as to why you believe this post violates our content policies.
+                                </p>
+                                <kro-textfield multiline v-model="reportText" label="Reason" />
+                            </div>
+                            <template #footer="{ close }">
+                                <span class="flex-1"></span>
+                                <kro-button @click="close">Cancel</kro-button>
+                                <kro-button :disabled="reportText.length === 0" @click="reportPost(close)" primary>Report</kro-button>
+                            </template>
+                        </kro-dialog>
                         <kro-list-item
                             v-if="canDeletePost"
-                            @click="deletePost" 
+                            @click="beforeDeletePost" 
                             class="cursor-pointer">
                             <template #icon><kro-icon icon="delete" /></template>
                             {{t('posts.DeletePost')}}
@@ -23,83 +51,45 @@
 </template>
 
 <script lang="ts" setup="props">
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
     import { useMutation, useQuery, useResult } from '@black-kro/use-apollo';
-    import { DELETE_POST } from '/~/apollo/mutation';
+    import { useContent, usePost } from '/~/apollo/api';
     import { GET_POSTS, GET_ME } from '/~/apollo/query';
+    import { useMe, useToast } from '/~/composables';
     import { useDialog } from '@black-kro/ui';
     import { useI18n } from 'vue-i18n';
-    import { useMe } from '/~/composables';
     import { IPost } from '/~/types';
+import { post } from '/~/modules/Profile/ProfilePost.vue';
+
     export { format } from 'timeago.js';
 
+    export const isReportDialogOpen = ref(false);
+    export const reportText = ref('');
+
     const { createConfirmationDialog } = useDialog();
-    export const { me } = useMe();
 
-    export const { t, locale } = useI18n();
+    export const { t } = useI18n();
+    export const { deletePost, canDeletePost } = usePost(props.post);
+    export const { createContentReport } = useContent();
 
-    export const canDeletePost = computed(() => {
-        const post: IPost = props.post;
-
-        if (me.value) {
-            const { roles: authorRoles } = post.author;
-            const { roles: myRoles } = me.value;
-
-            if (myRoles.indexOf('SuperAdmin') > -1)
-                return true;
-
-            if (myRoles.indexOf('Admin') > -1 && authorRoles.indexOf('SuperAdmin') < 0)
-                return true;
-        }
-
-        return post.isMyPost;
-    });
-
-    const { mutate } = useMutation<any, { id: string }>(DELETE_POST, {
-        update(cache, { data }) {
-            const oldQuery = cache.readQuery({
-                query: GET_POSTS,
-                variables: props.post.parent ? { parent: props.post.parent } : {},
-            }) as any;
-
-            const posts = {
-                ...oldQuery,
-                posts: {
-                    ...oldQuery.posts,
-                    nodes: oldQuery.posts.nodes.filter(post => post.id !== props.post.id)
-                }
-            };
-
-            cache.writeQuery({
-                query: GET_POSTS,
-                variables: props.post.parent ? { parent: props.post.parent } : {},
-                data: posts
-            })
-        }
-    })
-
-    export const deletePost = async () => {
-        try {
-            createConfirmationDialog({
-                title: 'Delete Post?',
-                message: 'Are you sure you want to delete this post?',
-                icon: 'error',
-                style: 'centered',
-                resolveButton: {
-                    text: 'Delete',
-                    attributes: {
-                        error: true,
-                    }
-                }
-            })
-                .then(() => {
-                    mutate({ id: props.post.id });
-                })
-        } catch {
-            
-        }
-
+    export const beforeDeletePost = async () => {
+        createConfirmationDialog({
+            title: 'Delete Post?',
+            message: 'Are you sure you want to delete this post?',
+            icon: 'error',
+            style: 'centered',
+            resolveButton: {
+                text: 'Delete',
+                attributes: { error: true, }
+            }
+        })
+            .then(() => { deletePost() })
     };
+
+    export const reportPost = async (done) => {
+        await createContentReport(reportText.value, props.post.id, 'Post');
+        done();
+    }
 
     export default {
         name: 'PostHeader',

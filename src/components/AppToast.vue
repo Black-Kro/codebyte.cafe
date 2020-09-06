@@ -14,6 +14,13 @@
 </template>
 
 <script lang="ts" setup="props">
+
+    if (props.duration) {
+        setTimeout(() => {
+            props.destroy();
+        }, props.duration * 1000);
+    } 
+
     export default {
         name: 'AppToast',
     }

@@ -78,3 +78,22 @@ export const InviteCodeFragment = gql`
     }
     ${UserFragment}
 `;
+
+export const ReportFragment = gql`
+    fragment ReportFragment on ContentReport {
+        id
+        author {
+            ...UserFragment
+        }
+        reportedContentId
+        content
+        reportType
+        reportStatus
+        statusDate
+        statusUser {
+            ...UserFragment
+        }
+        created
+    }
+    ${UserFragment}
+`;
