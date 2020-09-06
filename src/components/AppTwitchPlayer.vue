@@ -26,7 +26,7 @@
             return `https://clips.twitch.tv/embed?clip=${props.url.split('clips.twitch.tv/')[1]}`;
 
         if (props.url.indexOf(`twitch.tv`) > -1)
-            return `https://player.twitch.tv/?channel=${props.url.split('twitch.tv/')}`;
+            return `https://player.twitch.tv/?channel=${props.url.split('twitch.tv/')[1]}`;
 
         return '';
     });
