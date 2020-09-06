@@ -20,7 +20,7 @@
                             <div class="[ create-invite ] py-4">
                                 <div class="text-sm text-secondary font-bold">Roles</div>
                                 <div class="flex flex-col">
-                                    <kro-switch v-model="roles" value="Moderator">Admin</kro-switch>
+                                    <kro-switch v-model="roles" value="Admin">Admin</kro-switch>
                                 </div>
                             </div>
                             <div>
