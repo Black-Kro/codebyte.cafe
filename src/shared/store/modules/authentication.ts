@@ -123,9 +123,7 @@ export const AuthenticationModule: Module<AuthenticationModuleState, any> = {
                             commit('setUser', response.user);
                             commit('setError', null);
                         })
-                        .catch((error) => {
-                            console.error(error.message)
-                        })
+                        .catch(error => { commit('setError', error.message); console.log(error); });
                 } else {
                     const error = `[Authentication Module] No provider or username and password provided. Please provide one or the other to complete user sign in.`;
                     commit('setError', error);

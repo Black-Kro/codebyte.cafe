@@ -2,7 +2,7 @@
     <div class="container mx-auto h-full p-4 flex flex-col items-center justify-center">
         <kro-surface class="max-w-sm w-full">
             <kro-avatar class="w-24 h-24 mx-auto" :src="`https://avatars.dicebear.com/api/bottts/${avatarSeed}.svg`" />
-            <form @click.prevent="signin" class="grid gap-4 py-2">
+            <form @click.prevent="signin()" class="grid gap-4 py-2">
                 <kro-textfield 
                     id="email" 
                     v-model="email"
