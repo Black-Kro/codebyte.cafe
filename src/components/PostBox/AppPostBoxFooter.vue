@@ -38,7 +38,7 @@
     export const { t, locale } = useI18n();
 
     export const canPost = computed(() => {
-        return props.content.length > 5 && props.content.length < 500 || props.media.length > 0;
+        return props.content.length > 2 && props.content.length < 500 || props.media.length > 0;
     });
 
     export const onFilesSelected = (e) => {
