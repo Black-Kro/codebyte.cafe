@@ -10,3 +10,15 @@ body {
 .kro-select__pseudo-label {
     background: var(--kro-background-secondary) !important;
 }
+
+.kro-theme__default-abyss {
+    .kro-button--is-icon-button {
+        border: 1px solid var(--kro-divider);
+        // .kro-squircle {
+        //     stroke-width: 12px;
+        //     stroke: var(--kro-divider);
+        //     stroke-linecap: round;
+        //     stroke-linejoin: round;
+        // }
+    }
+}

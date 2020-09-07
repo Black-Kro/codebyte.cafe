@@ -97,3 +97,19 @@ export const ReportFragment = gql`
     }
     ${UserFragment}
 `;
+
+export const ReactionFragment = gql`
+    fragment ReactionFragment on PostReaction {
+        count
+        next
+        hasNextpage
+        nodes {
+            id
+            type
+            user {
+                ...UserFragment
+            }
+        }
+    }
+    ${UserFragment}
+`;

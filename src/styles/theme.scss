@@ -59,6 +59,37 @@ $DefaultTheme: (
         'warning': hsl(45, 100%, 51%),
         'warning-foreground': hsl(45, 100%, 11%),
     ),
+
+    abyss: (
+        'background': #000000,
+        'background-secondary': #000,
+        'background-highlight': rgba(0, 0, 0, .12),
+        
+        'foreground': rgba(255, 255, 255, .72),
+        'foreground-secondary': rgba(255, 255, 255, .42),
+        'foreground-disabled': hsla(0, 0%, 100%, 0.24),
+        
+        // 'divider': rgba(255, 255, 255, .075),
+        'divider': #181818,
+        'shadow': 0 0 0 1px #181818,
+        // 'shadow': rgba(0, 0, 0, 0.12) 0px 3px 6px 0px,
+            
+        // 'primary': #ffd152,
+        'primary': #6da696,
+        'primary-lighten': hsl(167, 52%, 57%),
+        'primary-darken': hsl(167, 52%, 27%),
+        'primary-foreground': hsl(163, 24%, 18%),
+        'accent': #61efce,
+
+        'error': hsl(0, 100%, 66%),
+        'error-foreground': hsl(218, 27%, 94%),
+        'info': hsl(207, 51%, 44%),
+        'info-foreground': hsl(218, 27%, 94%),
+        'success': hsl(122, 39%, 49%),
+        'success-foreground': hsl(218, 27%, 94%),
+        'warning': hsl(45, 100%, 51%),
+        'warning-foreground': hsl(45, 100%, 11%),
+    ),
 );
 
 @include CompileTheme($DefaultTheme, "default");

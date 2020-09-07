@@ -16,7 +16,16 @@
 
             <div class="[] [ col-span-2 ] [ grid grid-flow-col gap-2 justify-end items-center ]">
                 <app-language-selector />
-                <kro-button icon="theme-light-dark" @click="toggleThemeMode" />
+                <kro-menu left>
+                    <template #activator="{ open }">
+                        <kro-button icon="theme-light-dark" @click="open" />
+                    </template>
+                    <div>
+                        <kro-list-item class="cursor-pointer" @click="setTheme('light');">Light</kro-list-item>
+                        <kro-list-item class="cursor-pointer" @click="setTheme('dark')">Dark</kro-list-item>
+                        <kro-list-item class="cursor-pointer" @click="setTheme('abyss')">Abyss</kro-list-item>
+                    </div>
+                </kro-menu>
                 <user-auth-suspense>
                     <template #authenticated>
                         <!-- <kro-button icon="notifications" /> -->
@@ -53,7 +62,11 @@
 
     export const { getters, dispatch } = useStore();
 
-    export const { toggleThemeMode } = useTheme();
+    export const { theme } = useTheme();
+
+    export const setTheme = (schema) => {
+        theme.value = `default-${schema}`;
+    };
 
     export default {
         name: 'TheToolbar',

@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { PostFragment } from '/~/apollo/fragments';
+import { PostFragment, ReactionFragment } from '/~/apollo/fragments';
 
 export const GET_POST = gql`
     query Post($id: String!) {
@@ -51,18 +51,11 @@ export const GET_NEW_POSTS = gql`
     ${PostFragment}
 `;
 
-// export const GET_POSTS_WITH_REPLIES = gql`
-//     query PostsWithReplies($after: String, $id: String, $username: String, $parent: String) {
-//         posts(after: $after, take: 10, id: $id, username: $username, parent: $parent) {
-//             next
-//             hasNextPage
-//             nodes {
-//                 ...PostFragment
-//                 children {
-//                     ...PostFragment
-//                 }
-//             }
-//         }
-//     },
-//     ${PostFragment}
-// `;
+export const GET_REACTIONS = gql`
+    query Reactions($id: String) {
+        reactions(id: $id) {
+            ...ReactionFragment
+        }
+    }
+    ${ReactionFragment}
+`;

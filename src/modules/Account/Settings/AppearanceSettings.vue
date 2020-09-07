@@ -7,9 +7,9 @@
             <template #subtitle>Light theme, dark theme, or auto</template>
             <template #action>
                 <kro-select class="block w-full" label="Select Theme" v-model="theme">
-                    <option value="unset">Auto</option>
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
+                    <option value="default-light">Light</option>
+                    <option value="default-dark">Dark</option>
+                    <option value="default-abyss">Abyss</option>
                 </kro-select>
             </template>
         </kro-list-item>
@@ -21,13 +21,15 @@
 
     import { useTheme } from '@black-kro/ui';
 
-    export const { getThemeMode, setThemeMode } = useTheme();
-    export const theme = ref(getThemeMode());
+    export const { theme } = useTheme();
 
 
-    watch(() => theme.value, () => {
-        setThemeMode(theme.value);
-    });
+    // export const theme = ref(getThemeMode());
+
+
+    // watch(() => theme.value, () => {
+    //     setThemeMode(theme.value);
+    // });
 
     export default {
         name: 'AppearanceSettings',

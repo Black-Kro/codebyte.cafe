@@ -8,6 +8,9 @@
                         <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
                     </template>
                     <div>
+                        <kro-dialog>
+                            
+                        </kro-dialog>
                         <kro-dialog v-model="isReportDialogOpen">
                             <template #activator="{ open }">
                                 <kro-list-item
@@ -51,9 +54,9 @@
 
 <script lang="ts" setup="props">
     import { computed, ref } from 'vue';
-    import { useMutation, useQuery, useResult } from '@black-kro/use-apollo';
+    import { useMutation, useQuery, useResult, useLazyQuery } from '@black-kro/use-apollo';
     import { useContent, usePost } from '/~/apollo/api';
-    import { GET_POSTS, GET_ME } from '/~/apollo/query';
+    import { GET_POSTS, GET_ME, GET_REACTIONS } from '/~/apollo/query';
     import { useMe, useToast } from '/~/composables';
     import { useDialog } from '@black-kro/ui';
     import { useI18n } from 'vue-i18n';
@@ -69,6 +72,8 @@
     export const { t } = useI18n();
     export const { deletePost, canDeletePost } = usePost(props.post);
     export const { createContentReport } = useContent();
+
+    export const { fetch } = useLazyQuery(GET_REACTIONS);
 
     export const beforeDeletePost = async () => {
         createConfirmationDialog({

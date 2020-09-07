@@ -56,10 +56,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@black-kro/ui@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.42.tgz#6cd000d2e87f6b8eab44368e5e55d74f4cf412c2"
-  integrity sha512-l5YCDjt2DkJVPicVEwzsWkXY/gFXvff5OpmMJzrgRP/C6hh7rFKqOnyUEVmW9FW3HRKcXeGMB22wpG87xYN3ew==
+"@black-kro/ui@^0.1.44":
+  version "0.1.44"
+  resolved "https://registry.yarnpkg.com/@black-kro/ui/-/ui-0.1.44.tgz#49f1e79f5e85ef673f6146b23c23ac99df852d92"
+  integrity sha512-OoJDV6K4mYXlzf9SwljbDuhlBqJOZBrxABwXNdRr3ni6lqQessS2kW4t1S1HiaxYpxtjXigTbDdA5HN8wbdcMw==
   dependencies:
     "@vueuse/core" "^4.0.0-beta.2"
     focus-trap "^5.1.0"
