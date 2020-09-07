@@ -4,6 +4,7 @@ import { onError } from '@apollo/client/link/error';
 import { WebSocketLink } from './util';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { store } from '/~/shared/store';
+import { useToast } from '/~/composables';
 
 // @ts-ignore
 const { VITE_API_URL, VITE_API_WS_URL } = import.meta.env;
@@ -46,8 +47,12 @@ const link = ApolloLink.from([
     onError(({ networkError, response, graphQLErrors, forward, operation }) => {
         if (networkError && (networkError as any).result) {
             const { success, error, errors, banReason, banDate } = (networkError as any).result;
+
+            const { createToast } = useToast();
     
+            console.log(networkError)
             console.log(Object.entries(networkError));
+
             if (error) {
                 if (error === 'User is banned') {
                     store.commit('setNetworkError', {
@@ -63,6 +68,14 @@ const link = ApolloLink.from([
                     store.dispatch('auth/signOut');
                 }
             }
+
+            if ((networkError as any).statusCode === 429)
+                createToast({
+                    icon: 'error',
+                    title: 'Slow down there',
+                    message: 'You are doing things too fast, slow down a little.',
+                    duration: 5,
+                })
 
         } else {
             forward(operation);

@@ -18,4 +18,20 @@ export const adminRoutes: RouteRecordRaw[] = [
             title: 'Manage Invites',
         }
     },
+    {
+        path: '/administrator/reports',
+        beforeEnter: [isAuthenticated, isAdministrator],
+        component: () => import('./ManageReports.vue'),
+        meta: {
+            title: 'Manage Reports',
+        }
+    },
+    {
+        path: '/administrator/reports/:id',
+        beforeEnter: [isAuthenticated, isAdministrator],
+        component: () => import('./ViewReport.vue'),
+        meta: {
+            title: 'View Report',
+        }
+    },
 ]

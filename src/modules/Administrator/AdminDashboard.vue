@@ -9,7 +9,7 @@
                     <kro-icon icon="arrow-right" />
                 </template>
             </kro-list-item>
-            <kro-list-item>
+            <kro-list-item to="/administrator/reports">
                 <template #icon><kro-icon icon="error" /></template>
                 Reports
                 <template #subtitle>Review user reports</template>

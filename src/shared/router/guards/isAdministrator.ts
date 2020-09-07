@@ -8,7 +8,7 @@ export const isAdministrator = async (to, from) => {
     const { me, error } = await useMeAsync();
 
     if (me)
-        if (me.roles.indexOf('Admin') > -1)
+        if (me.roles.indexOf('Admin') > -1 || me.roles.indexOf('SuperAdmin') > -1)
             return true;
 
     return false;

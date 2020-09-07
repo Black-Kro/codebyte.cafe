@@ -23,7 +23,7 @@ export const useContent = () => {
         } catch (error) {
             createDialog({
                 title: 'Error Creating Report',
-                message: `There was an error creating invites. See error ${error}`
+                message: error.message
             })
         }
     };
