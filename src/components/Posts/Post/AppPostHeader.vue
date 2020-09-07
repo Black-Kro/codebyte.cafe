@@ -11,7 +11,6 @@
                         <kro-dialog v-model="isReportDialogOpen">
                             <template #activator="{ open }">
                                 <kro-list-item
-                                    v-if="canDeletePost"
                                     @click="open" 
                                     class="cursor-pointer">
                                     <template #icon><kro-icon icon="error" /></template>
@@ -59,7 +58,6 @@
     import { useDialog } from '@black-kro/ui';
     import { useI18n } from 'vue-i18n';
     import { IPost } from '/~/types';
-import { post } from '/~/modules/Profile/ProfilePost.vue';
 
     export { format } from 'timeago.js';
 
