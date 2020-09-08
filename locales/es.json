@@ -7,7 +7,8 @@
     "Profile": "Perfil",
     "Settings": "Configuraciones",
     "HelpFeedback": "Ayuda",
-    "SignOut": "Desconectar"
+    "SignOut": "Desconectar",
+    "Admin": "Administrador"
   },
   "footer": {
     "About": "Acerca de",
@@ -15,19 +16,33 @@
     "Help": "Ayuda",
     "PrivacyPolicy": "Política de privacidad",
     "TermsOfService": "Términos de servicio",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Issues": "Cuestiones"
   },
   "common": {
     "Search": "Buscar",
-    "Notice": "aviso"
+    "Notice": "aviso",
+    "Followers": "Seguidores",
+    "Following": "Siguiendo",
+    "Posts": "Publicaciones",
+    "ComingSoon": "Próximamente...",
+    "Follow": "Seguir",
+    "Joined": "Unido",
+    "Cancel": "Cancelar",
+    "Create": "Crear",
+    "Crop": "Cosecha",
+    "Reason": "Razón"
   },
   "post-box": {
     "Post": "Enviar"
   },
   "posts": {
-    "DeletePost": "Eliminar mensaje"
+    "DeletePost": "Eliminar mensaje",
+    "ReportPost": "Reporte"
   },
   "statements": {
-    "AlphaNotice": "Este sitio se encuentra actualmente en estado alfa. \nEl contenido y las funciones están sujetos a cambios, y cualquier contenido puede eliminarse o modificarse para adaptarse a estados alterados en cualquier momento sin previo aviso. \nComo tal, no publique ningún contenido que no desee perder."
+    "AlphaNotice": "Este sitio se encuentra actualmente en estado alfa. \nEl contenido y las funciones están sujetos a cambios, y cualquier contenido puede eliminarse o modificarse para adaptarse a estados alterados en cualquier momento sin previo aviso. \nComo tal, no publique ningún contenido que no desee perder.",
+    "ReportDescription": "Proporcione una breve descripción de por qué cree que esta publicación infringe nuestras políticas de contenido.",
+    "ReportPostTitle": "Reportar publicacion"
   }
 }

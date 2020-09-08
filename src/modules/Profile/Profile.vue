@@ -13,7 +13,7 @@
                             </user-identity>
                         </div>
                         <div class="px-4">
-                            <kro-button>Follow</kro-button>
+                            <kro-button>{{$t('common.Follow')}}</kro-button>
                         </div>
                     </kro-toolbar>
                     <div class="px-4 pt-4 text-sm">
@@ -22,18 +22,18 @@
                     <div class="px-4 pt-4 text-secondary text-xs font-bold">
                         <div class="flex flex-row items-center">
                             <kro-icon icon="calendar" />
-                            <span class="ml-1">Joined {{format(user.created)}}</span>
+                            <span class="ml-1">{{$t('common.Joined')}} {{format(user.created)}}</span>
                         </div>
                     </div>
                     <kro-toolbar small class="grid grid-flow-col text-center">
                         <router-link class="flex items-center justify-center h-full text-current" :to="`/@${user.username}`">
-                            <span class="text-sm font-medium">Posts</span>
+                            <span class="text-sm font-medium">{{$t('common.Posts')}}</span>
                         </router-link>
                         <router-link class="flex items-center justify-center h-full text-current" :to="`/@${user.username}/following`">
-                            <span class="text-sm font-medium">Following</span>
+                            <span class="text-sm font-medium">{{$t('common.Following')}}</span>
                         </router-link>
                         <router-link class="flex items-center justify-center h-full text-current" :to="`/@${user.username}/followers`">
-                            <span class="text-sm font-medium">Followers</span>
+                            <span class="text-sm font-medium">{{$t('common.Followers')}}</span>
                         </router-link>
                     </kro-toolbar>
                 </div>
@@ -51,7 +51,7 @@
                         <user-identity class="pl-0" skeleton :avatar="false" />
                     </div>
                     <div class="px-4">
-                        <kro-button><span class="opacity-0">Follow</span></kro-button>
+                        <kro-button><span class="opacity-0">{{$t('common.Follow')}}</span></kro-button>
                     </div>
                 </kro-toolbar>
                 <div class="px-4 grid gap-3 py-4">
@@ -80,8 +80,10 @@
     import { useRoute } from 'vue-router';
     import { useQuery, useResult } from '@black-kro/use-apollo';
     import { GET_PERSON } from '/~/apollo/query';
+    import { useI18n } from 'vue-i18n';
     export { format } from 'timeago.js';
 
+    export const { t } = useI18n();
     export const { params: { username } } = useRoute();
 
     export const { loading, error, result } = useQuery(GET_PERSON, { username });

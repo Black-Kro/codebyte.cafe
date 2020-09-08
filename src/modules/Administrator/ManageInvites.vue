@@ -35,8 +35,8 @@
                         </template>
                         <template #footer="{ close }">
                             <span class="flex-1"></span>
-                            <kro-button @click="close">Cancel</kro-button>
-                            <kro-button :loading="isCreateLoading" @click="onCreateInvites(close)" primary>Create {{amount}}</kro-button>
+                            <kro-button @click="close">{{$t('common.Cancel')}}</kro-button>
+                            <kro-button :loading="isCreateLoading" @click="onCreateInvites(close)" primary>{{$t('common.Create')}} {{amount}}</kro-button>
                         </template>
                     </kro-dialog>
 

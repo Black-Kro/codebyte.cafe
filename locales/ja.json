@@ -7,7 +7,8 @@
     "Profile": "プロフィール",
     "Settings": "設定",
     "HelpFeedback": "助けて",
-    "SignOut": "サインアウト"
+    "SignOut": "サインアウト",
+    "Admin": "管理者"
   },
   "footer": {
     "About": "約",
@@ -15,19 +16,33 @@
     "Help": "助けて",
     "PrivacyPolicy": "個人情報保護方針",
     "TermsOfService": "利用規約",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Issues": "問題"
   },
   "common": {
     "Search": "探す",
-    "Notice": "通知"
+    "Notice": "通知",
+    "Followers": "フォロワー",
+    "Following": "以下",
+    "Posts": "投稿",
+    "ComingSoon": "近日公開...",
+    "Follow": "従う",
+    "Joined": "参加しました",
+    "Cancel": "キャンセル",
+    "Create": "作成する",
+    "Crop": "作物",
+    "Reason": "理由"
   },
   "post-box": {
     "Post": "役職"
   },
   "posts": {
-    "DeletePost": "投稿を削除"
+    "DeletePost": "投稿を削除",
+    "ReportPost": "報告する"
   },
   "statements": {
-    "AlphaNotice": "このサイトは現在アルファ版です。\nコンテンツと機能は変更される可能性があり、コンテンツはいつでも警告なしに変更された状態に合わせて削除または変更される場合があります。\nそのため、失いたくないコンテンツは投稿しないでください。"
+    "AlphaNotice": "このサイトは現在アルファ版です。\nコンテンツと機能は変更される可能性があり、コンテンツはいつでも警告なしに変更された状態に合わせて削除または変更される場合があります。\nそのため、失いたくないコンテンツは投稿しないでください。",
+    "ReportDescription": "この投稿がコンテンツポリシーに違反していると思われる理由について、簡単に説明してください。",
+    "ReportPostTitle": "レポート投稿"
   }
 }

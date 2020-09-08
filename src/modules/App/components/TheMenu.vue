@@ -13,20 +13,20 @@
                     <kro-divider class="m-0" />
                     <kro-list-item class="cursor-pointer" :to="`/@${me.username}`">
                         <template #icon><kro-icon icon="account"/></template>
-                        {{t('menu.Profile')}}
+                        {{$t('menu.Profile')}}
                     </kro-list-item>
                     <kro-list-item class="cursor-pointer" to="/settings">
                         <template #icon><kro-icon icon="settings"/></template>
-                        {{t('menu.Settings')}}
+                        {{$t('menu.Settings')}}
                     </kro-list-item>
                     <kro-divider class="my-2"/>
                     <kro-list-item class="cursor-pointer" to="/help">
                         <template #icon><kro-icon icon="help"/></template>
-                        {{t('menu.HelpFeedback')}}
+                        {{$t('menu.HelpFeedback')}}
                     </kro-list-item>
                     <kro-list-item class="cursor-pointer" tabindex="0" @click="dispatch('auth/signOut');">
                         <template #icon><kro-icon icon="exit-to-app"/></template>
-                        {{t('menu.SignOut')}}
+                        {{$t('menu.SignOut')}}
                     </kro-list-item>
                 </div>
             </kro-menu>
@@ -40,9 +40,6 @@
 
 <script lang="ts" setup>
     import { useStore } from 'vuex';
-    import { useI18n } from 'vue-i18n';
-
-    export const { t } = useI18n();
 
     export const { dispatch, getters } = useStore();
 

@@ -5,8 +5,8 @@
         </div>
         <div class="flex flex-row flex-1 gap-4 pt-4">
             <span class="flex-1"></span>
-            <kro-button @click="cancel">Cancel</kro-button>
-            <kro-button @click="crop" primary>Crop</kro-button>
+            <kro-button @click="cancel">{{$t('common.Cancel')}}</kro-button>
+            <kro-button @click="crop" primary>{{$t('common.Crop')}}</kro-button>
         </div>
     </div>
 </template>

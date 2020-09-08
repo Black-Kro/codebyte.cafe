@@ -1,7 +1,17 @@
 {
   "common": {
     "Search": "Søk",
-    "Notice": "Legge merke til"
+    "Notice": "Legge merke til",
+    "Followers": "Følgere",
+    "Following": "Følgende",
+    "Posts": "Innlegg",
+    "ComingSoon": "Kommer snart...",
+    "Follow": "Følg",
+    "Joined": "Ble med",
+    "Cancel": "Avbryt",
+    "Create": "Skape",
+    "Crop": "Avling",
+    "Reason": "Grunnen til"
   },
   "footer": {
     "About": "Om",
@@ -9,7 +19,8 @@
     "Help": "Hjelp",
     "PrivacyPolicy": "Personvern",
     "TermsOfService": "Vilkår for bruk",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Issues": "Problemer"
   },
   "menu": {
     "Explore": "Utforske",
@@ -19,15 +30,19 @@
     "Profile": "Profil",
     "Settings": "Innstillinger",
     "HelpFeedback": "Hjelp",
-    "SignOut": "Logg ut"
+    "SignOut": "Logg ut",
+    "Admin": "Administrator"
   },
   "post-box": {
     "Post": "Post"
   },
   "posts": {
-    "DeletePost": "Slett innlegg"
+    "DeletePost": "Slett innlegg",
+    "ReportPost": "Rapportere"
   },
   "statements": {
-    "AlphaNotice": "Dette nettstedet er for tiden i alfa-tilstand. \nInnhold og funksjoner kan endres, og alt innhold kan fjernes eller endres for å passe i endrede tilstander når som helst uten advarsel. \nSom sådan må du ikke legge ut noe innhold du ikke vil miste."
+    "AlphaNotice": "Dette nettstedet er for tiden i alfa-tilstand. \nInnhold og funksjoner kan endres, og alt innhold kan fjernes eller endres for å passe i endrede tilstander når som helst uten advarsel. \nSom sådan må du ikke legge ut noe innhold du ikke vil miste.",
+    "ReportDescription": "Gi en kort beskrivelse av hvorfor du mener dette innlegget bryter med retningslinjene våre for innhold.",
+    "ReportPostTitle": "Rapporter innlegg"
   }
 }

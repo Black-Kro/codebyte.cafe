@@ -8,34 +8,31 @@
                         <kro-button class="w-8 h-8 self-center" @click="open" icon="chevron-down"></kro-button>
                     </template>
                     <div>
-                        <kro-dialog>
-                            
-                        </kro-dialog>
                         <kro-dialog v-model="isReportDialogOpen">
                             <template #activator="{ open }">
                                 <kro-list-item
                                     @click="open" 
                                     class="cursor-pointer">
                                     <template #icon><kro-icon icon="error" /></template>
-                                    {{t('posts.ReportPost')}}
+                                    {{$t('posts.ReportPost')}}
                                 </kro-list-item>
                             </template>
                             <template #header>
                                 <div class="flex flex-row">
                                     <kro-icon icon="error" class="mr-2" />
-                                    Report Post
+                                    {{$t('statements.ReportPostTitle')}}
                                 </div>
                             </template>
                             <div>
                                 <p class="text-secondary font-medium pb-4">
-                                    Please provide a short description as to why you believe this post violates our content policies.
+                                    {{$t('statements.ReportDescription')}}
                                 </p>
                                 <kro-textfield multiline v-model="reportText" label="Reason" />
                             </div>
                             <template #footer="{ close }">
                                 <span class="flex-1"></span>
-                                <kro-button @click="close">Cancel</kro-button>
-                                <kro-button :disabled="reportText.length === 0" @click="reportPost(close)" primary>Report</kro-button>
+                                <kro-button @click="close">{{$t('common.Cancel')}}</kro-button>
+                                <kro-button :disabled="reportText.length === 0" @click="reportPost(close)" primary>{{$t('posts.ReportPost')}}</kro-button>
                             </template>
                         </kro-dialog>
                         <kro-list-item
@@ -43,7 +40,7 @@
                             @click="beforeDeletePost" 
                             class="cursor-pointer">
                             <template #icon><kro-icon icon="delete" /></template>
-                            {{t('posts.DeletePost')}}
+                            {{$t('posts.DeletePost')}}
                         </kro-list-item>
                     </div>
                 </kro-menu>
@@ -56,10 +53,9 @@
     import { computed, ref } from 'vue';
     import { useMutation, useQuery, useResult, useLazyQuery } from '@black-kro/use-apollo';
     import { useContent, usePost } from '/~/apollo/api';
-    import { GET_POSTS, GET_ME, GET_REACTIONS } from '/~/apollo/query';
+    import { GET_POSTS, GET_ME } from '/~/apollo/query';
     import { useMe, useToast } from '/~/composables';
     import { useDialog } from '@black-kro/ui';
-    import { useI18n } from 'vue-i18n';
     import { IPost } from '/~/types';
 
     export { format } from 'timeago.js';
@@ -69,11 +65,8 @@
 
     const { createConfirmationDialog } = useDialog();
 
-    export const { t } = useI18n();
     export const { deletePost, canDeletePost } = usePost(props.post);
     export const { createContentReport } = useContent();
-
-    export const { fetch } = useLazyQuery(GET_REACTIONS);
 
     export const beforeDeletePost = async () => {
         createConfirmationDialog({

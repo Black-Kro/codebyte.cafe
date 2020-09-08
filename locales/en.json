@@ -1,7 +1,17 @@
 {
     "common": {
         "Search": "Search",
-        "Notice": "Notice"
+        "Notice": "Notice",
+        "Posts": "Posts",
+        "Following": "Following",
+        "Followers": "Followers",
+        "Follow": "Follow",
+        "Joined": "Joined",
+        "ComingSoon": "Coming Soon...",
+        "Cancel": "Cancel",
+        "Reason": "Reason",
+        "Crop": "Crop",
+        "Create": "Create"
     },
     "post-box": {
         "Post": "Post"
@@ -31,6 +41,8 @@
         "ReportPost": "Report"
     },
     "statements": {
-        "AlphaNotice": "This site is currently in an alpha state. Content and features are subject to change, and any content may be removed or modified to fit altered states at any point in time without warning. As such, please do not post any content you don't wish to lose."
+        "AlphaNotice": "This site is currently in an alpha state. Content and features are subject to change, and any content may be removed or modified to fit altered states at any point in time without warning. As such, please do not post any content you don't wish to lose.",
+        "ReportPostTitle": "Report Post",
+        "ReportDescription": "Please provide a short description as to why you believe this post violates our content policies."
     }
 }

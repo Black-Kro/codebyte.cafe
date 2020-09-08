@@ -8,7 +8,7 @@
                 @blur="onBlur"
                 @input="search"
                 v-model="query" 
-                :placeholder="t('common.Search')" 
+                :placeholder="$t('common.Search')" 
                 type="text" 
                 class="flex-1 bg-transparent px-4 outline-none" />
         </div>
@@ -40,7 +40,6 @@
 
 <script lang="ts" setup>
     import { ref, watch, computed } from 'vue';
-    import { useI18n } from 'vue-i18n';
     import { useLazyQuery, useResult } from '@black-kro/use-apollo';
     import { SEARCH_USERS } from '/~/apollo/query';
     import { useDebounceFn } from '@vueuse/core';
@@ -51,7 +50,6 @@
     export const { fetch, result, loading, error, onResult, onError } = useLazyQuery(SEARCH_USERS, { query: '' });
     export const users = useResult(result, [], x => x.search.nodes);
 
-    export const { t } = useI18n();
     export const isLoading = ref(false);
 
     export const shouldShowResults = ref(false);

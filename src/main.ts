@@ -44,6 +44,7 @@ import AppPostChildFeed from '/~/components/Posts/PostFeed/AppPostFeed.vue';
  */
 const i18n = createI18n({
     locale: 'en',
+    legacy: true,
     messages,
 })
 

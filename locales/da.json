@@ -1,7 +1,17 @@
 {
   "common": {
     "Search": "Søg",
-    "Notice": "Varsel"
+    "Notice": "Varsel",
+    "Followers": "Følgere",
+    "Following": "Følge",
+    "Posts": "Indlæg",
+    "ComingSoon": "Kommer snart ...",
+    "Follow": "Følge efter",
+    "Joined": "Gik sammen",
+    "Cancel": "Afbestille",
+    "Create": "skab",
+    "Crop": "Afgrøde",
+    "Reason": "Grund"
   },
   "footer": {
     "About": "Om",
@@ -9,7 +19,8 @@
     "Help": "Hjælp",
     "PrivacyPolicy": "Fortrolighedspolitik",
     "TermsOfService": "Servicevilkår",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Issues": "Problemer"
   },
   "menu": {
     "Explore": "Udforske",
@@ -19,15 +30,19 @@
     "Profile": "Profil",
     "Settings": "Indstillinger",
     "HelpFeedback": "Hjælp",
-    "SignOut": "Log ud"
+    "SignOut": "Log ud",
+    "Admin": "Administrator"
   },
   "post-box": {
     "Post": "Stolpe"
   },
   "posts": {
-    "DeletePost": "Slet indlæg"
+    "DeletePost": "Slet indlæg",
+    "ReportPost": "Rapport"
   },
   "statements": {
-    "AlphaNotice": "Dette websted er i øjeblikket i alfa-tilstand. \nIndhold og funktioner kan ændres, og alt indhold kan fjernes eller ændres for at passe til ændrede tilstande på ethvert tidspunkt uden advarsel. \nSom sådan bedes du ikke sende noget indhold, du ikke vil miste."
+    "AlphaNotice": "Dette websted er i øjeblikket i alfa-tilstand. \nIndhold og funktioner kan ændres, og alt indhold kan fjernes eller ændres for at passe til ændrede tilstande på ethvert tidspunkt uden advarsel. \nSom sådan bedes du ikke sende noget indhold, du ikke vil miste.",
+    "ReportDescription": "Giv en kort beskrivelse af, hvorfor du mener, at dette indlæg overtræder vores indholdspolitikker.",
+    "ReportPostTitle": "Rapporter indlæg"
   }
 }
