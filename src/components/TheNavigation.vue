@@ -22,7 +22,7 @@
                 <kro-icon icon="account" />
                 <span>{{t('menu.Profile')}}</span>
             </router-link>
-            <router-link class="[ the-navigation__link ] [ flex ]" to="/administrator">
+            <router-link v-if="me.roles.indexOf('Admin') > -1 || me.roles.indexOf('SuperAdmin') > -1" class="[ the-navigation__link ] [ flex ]" to="/administrator">
                 <kro-icon icon="dashboard" />
                 <span>{{t('menu.Admin')}}</span>
             </router-link>
