@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
     export default {
-        name: '',
+        name: 'NotificationsView',
     }
 </script>
 

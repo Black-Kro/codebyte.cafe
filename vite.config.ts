@@ -1,4 +1,5 @@
 import { UserConfig } from 'vite';
+const mdPlugin = require('vite-plugin-markdown');
 
 import path from 'path';
 import ViteComponents from 'vite-plugin-components';
@@ -28,6 +29,9 @@ const config: UserConfig = {
         ViteComponents({
             alias,
             extensions: ['vue', 'ts'],
+        }),
+        mdPlugin({
+            mode: 'vue'
         })
     ]
 }

@@ -43,6 +43,7 @@
         parent: props.parent, 
         username: props.username
         }, {
+            fetchPolicy: 'cache-and-network',
             notifyOnNetworkStatusChange: true
         });
 

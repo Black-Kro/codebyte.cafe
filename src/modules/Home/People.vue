@@ -21,7 +21,9 @@
     import { GET_PEOPLE } from '/~/apollo/query';
     import { useQuery, useResult } from '@black-kro/use-apollo';
 
-    export const { result, loading, error } = useQuery(GET_PEOPLE);
+    export const { result, loading, error } = useQuery(GET_PEOPLE, {}, {
+        fetchPolicy: 'cache-and-network'
+    });
     export const people = useResult(result, null, data => data.users.nodes);
 
     export default {

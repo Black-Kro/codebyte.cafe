@@ -1,17 +1,21 @@
 <template>
-    <div class="[] [ container mx-auto p-4 ] []">
+    <app-default-layout>
         <kro-surface>
-            <h2 class="text-xl font-medium">Help</h2>
-            <div class="text-center p-4 text-sm font-bold">
-                <span>Coming Soon</span>
+            <div class="markdown-body">
+                <help-markdown></help-markdown>
             </div>
         </kro-surface>
-    </div>
+    </app-default-layout>
 </template>
 
 <script lang="ts" setup>
+    import { VueComponent } from './Help.md';
+
     export default {
         name: 'HelpView',
+        components: {
+            HelpMarkdown: VueComponent
+        }
     }
 </script>
 

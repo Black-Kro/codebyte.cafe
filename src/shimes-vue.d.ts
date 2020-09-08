@@ -3,3 +3,5 @@ declare module '*.vue' {
     var component: ComponentOptions
     export default component
 }
+
+declare module '*.md';
