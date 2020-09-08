@@ -29,7 +29,7 @@
         <app-post-box @posted="() => close()" :parent="post.id" autofocus></app-post-box>
     </kro-dialog>
     <kro-dialog class="p-0 max-w-sm w-full" #default="{ close }" v-model="isReactionsOpen">
-        <div v-if="loading"><kro-spinner /></div>
+        <div v-if="loading" class="flex flex-row justify-center items-center"><kro-spinner /></div>
         <div v-else-if="error">{{error}}</div>
         <div v-else>
             <span 
