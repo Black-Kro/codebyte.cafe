@@ -1,5 +1,5 @@
 <template>
-    <div class="[ app-post-footer ] [ py-4 -ml-2 grid fit ]">
+    <div class="[ app-post-footer ] [ py-4 -ml-2 flex flex-row ]">
         <kro-button :class="{ 'reaction-active': post.liked }" :key="post.likes" @click="react('LIKE')" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="arrow-up-thick"/>
             <span>
@@ -20,20 +20,58 @@
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
         </kro-button>
+        <span class="flex-1"></span>
+        <kro-button @click="viewReactions()" class="h-8 bg-transparent text-secondary">
+            <kro-icon icon="ballot" />
+        </kro-button>
     </div>
     <kro-dialog #default="{ close }" class="w-full overflow-auto max-h-full p-0" :padded="false" v-model="isPostBoxOpen">
         <app-post-box @posted="() => close()" :parent="post.id" autofocus></app-post-box>
+    </kro-dialog>
+    <kro-dialog class="p-0 max-w-sm w-full" #default="{ close }" v-model="isReactionsOpen">
+        <div v-if="loading"><kro-spinner /></div>
+        <div v-else-if="error">{{error}}</div>
+        <div v-else>
+            <span 
+                class="font-bold text-sm text-secondary flex flex-row items-center" 
+                v-if="reactions.filter(t => t.type === 'LIKE').length > 0">
+                <kro-icon icon="arrow-up-thick" class="mr-2" />
+                Upvotes
+            </span>
+            <div v-for="reaction in reactions.filter(t => t.type === 'LIKE')" :key="reaction.id" class="flex flex-row">
+                <user-identity class="pl-0" :user="reaction.user" />
+            </div>
+            <span 
+                class="font-bold text-sm text-secondary flex flex-row items-center" 
+                v-if="reactions.filter(t => t.type === 'DISLIKE').length > 0">
+                <kro-icon icon="arrow-down-thick" class="mr-2" />
+                Downvotes
+            </span>
+            <div v-for="reaction in reactions.filter(t => t.type === 'DISLIKE')" :key="reaction.id" class="flex flex-row">
+                <user-identity class="pl-0" :user="reaction.user" />
+            </div>
+
+            <div class="p-4 text-center" v-if="reactions.length === 0">
+                No Reactions 😔
+            </div>
+
+        </div>
     </kro-dialog>
 </template>
 
 <script lang="ts" setup="props">
     import { computed, ref } from 'vue';
     import { useDialog } from '@black-kro/ui';
-    import { useMutation } from '@black-kro/use-apollo';
+    import { useMutation, useLazyQuery, useResult } from '@black-kro/use-apollo';
+    import { GET_REACTIONS } from '/~/apollo/query';
     import { REACT_TO_POST } from '/~/apollo/mutation';
 
     export const isPostBoxOpen = ref(false);
+    export const isReactionsOpen = ref(false);
+
     const { mutate } = useMutation<any, { id: string, reaction: string }>(REACT_TO_POST);
+    export const { fetch, result, loading, error } = useLazyQuery<any, any>(GET_REACTIONS);
+    export const reactions = useResult(result, [], r => r.reactions.nodes);
 
     export const totalLikes = computed(() => {
         return props.post.likes;
@@ -42,6 +80,11 @@
     export const totalDislikes = computed(() => {
         return props.post.dislikes;
     });
+
+    export const viewReactions = () => {
+        isReactionsOpen.value = true;
+        fetch({ id: props.post.id });
+    }
 
     export const react = async (type) => {
         const { post } = props;

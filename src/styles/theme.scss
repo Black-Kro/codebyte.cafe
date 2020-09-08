@@ -69,12 +69,9 @@ $DefaultTheme: (
         'foreground-secondary': rgba(255, 255, 255, .42),
         'foreground-disabled': hsla(0, 0%, 100%, 0.24),
         
-        // 'divider': rgba(255, 255, 255, .075),
         'divider': #181818,
         'shadow': 0 0 0 1px #181818,
-        // 'shadow': rgba(0, 0, 0, 0.12) 0px 3px 6px 0px,
-            
-        // 'primary': #ffd152,
+
         'primary': #6da696,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
@@ -89,7 +86,7 @@ $DefaultTheme: (
         'success-foreground': hsl(218, 27%, 94%),
         'warning': hsl(45, 100%, 51%),
         'warning-foreground': hsl(45, 100%, 11%),
-    ),
+    )
 );
 
 @include CompileTheme($DefaultTheme, "default");

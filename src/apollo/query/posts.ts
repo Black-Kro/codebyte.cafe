@@ -54,7 +54,12 @@ export const GET_NEW_POSTS = gql`
 export const GET_REACTIONS = gql`
     query Reactions($id: String) {
         reactions(id: $id) {
-            ...ReactionFragment
+            count
+            next
+            hasNextPage
+            nodes {
+               ...ReactionFragment    
+            }
         }
     }
     ${ReactionFragment}

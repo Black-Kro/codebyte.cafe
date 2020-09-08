@@ -100,15 +100,10 @@ export const ReportFragment = gql`
 
 export const ReactionFragment = gql`
     fragment ReactionFragment on PostReaction {
-        count
-        next
-        hasNextpage
-        nodes {
-            id
-            type
-            user {
-                ...UserFragment
-            }
+        id
+        type
+        user {
+            ...UserFragment
         }
     }
     ${UserFragment}
