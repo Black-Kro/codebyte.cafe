@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink, split, ApolloLink } from '
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import { WebSocketLink } from './util';
-import { getMainDefinition } from '@apollo/client/utilities';
+import { getMainDefinition, concatPagination } from '@apollo/client/utilities';
 import { store } from '/~/shared/store';
 import { useToast } from '/~/composables';
 
@@ -49,9 +49,6 @@ const link = ApolloLink.from([
             const { success, error, errors, banReason, banDate } = (networkError as any).result;
 
             const { createToast } = useToast();
-    
-            console.log(networkError)
-            console.log(Object.entries(networkError));
 
             if (error) {
                 if (error === 'User is banned') {
@@ -63,7 +60,6 @@ const link = ApolloLink.from([
                 }
             } else if (errors) {
                 const e = errors[0].message;
-                console.log(e);
                 if (e === 'This account no longer exists. Fuck you') {
                     store.dispatch('auth/signOut');
                 }
@@ -95,6 +91,14 @@ const link = ApolloLink.from([
 
 export const client = new ApolloClient({
     link: authenticationLink.concat(link),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        // typePolicies: {
+        //     PaginatedPostsResult: {
+        //         fields: {
+        //             nodes: concatPagination(['take'])
+        //         }
+        //     }
+        // }
+    }),
     connectToDevTools: true,
 });

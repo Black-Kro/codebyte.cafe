@@ -1,6 +1,6 @@
 <template>
     <div>
-        <template v-if="!posts || skeleton && !prime">
+        <template v-if="!posts || skeleton && !prime && !error">
             <template v-for="i in 5">
                 <app-post-skeleton />
                 <kro-divider />
@@ -26,9 +26,14 @@
                 <kro-button @click="refetch">Try Again</kro-button>
             </div>
         </div>
-        <div v-show="posts && posts.hasNextPage" ref="reloadButton" class="p-4">
-            <kro-button class="w-full" :key="loading" :loading="loading" @click="loadMore">Load More</kro-button>
-        </div>
+        <app-self-intersection 
+            v-if="posts && posts.hasNextPage" 
+            @intersected="loadMore">
+            <kro-button 
+                class="w-full" 
+                :loading="loading" 
+                @click="loadMore">Load More</kro-button>
+        </app-self-intersection>
     </div>
 </template>
 
@@ -37,8 +42,9 @@
     import { GET_POSTS, GET_NEW_POSTS } from '/~/apollo/query';
     import { useQuery, useResult } from '@black-kro/use-apollo';
     import { useElementVisibility } from '@vueuse/core';
+    import { defaultPaginationUpdateQuery } from '/~/composables/usePagination';
 
-    export const { result, loading, error, refetch, fetchMore, subscribeToMore } = useQuery<any, any>(GET_POSTS, {
+    export const { result, loading, error, fetchMore, subscribeToMore } = useQuery<any, any>(GET_POSTS, {
         take: props.take || 10,
         parent: props.parent, 
         username: props.username
@@ -48,36 +54,13 @@
         });
 
     export const posts = useResult(result, null, data => data.posts);
-    export const reloadButton = ref(null);
-
-    const isButtonVisible = useElementVisibility(reloadButton);
 
     if (props.subscribeToMore) {
         subscribeToMore({
             document: GET_NEW_POSTS,
-            updateQuery: (previousValue, { subscriptionData }) => {
-                const post = subscriptionData.data.newPosts;
-
-                if (posts.value.nodes.filter(p => p.id === post.id).length > 0)
-                    return previousValue;
-
-                return {
-                    posts: {
-                        ...previousValue.posts,
-                        nodes: [
-                            post,
-                            ...previousValue.posts.nodes
-                        ]
-                    }
-                };
-            }
+            updateQuery: defaultPaginationUpdateQuery('posts')
         })
     }
-
-    watch(() => isButtonVisible.value, () => {
-        if (!loading.value && posts.value.hasNextPage && !props.preventAutoload)
-            loadMore();
-    });
 
     export const loadMore = async () => {
         if (!loading.value && posts.value.hasNextPage) {
@@ -89,20 +72,7 @@
                     username: props.username,
                     replies: props.replies
                 },
-                updateQuery: (previousResult, { fetchMoreResult }) => {
-                    const next = fetchMoreResult.posts.next;
-                    const nodes = fetchMoreResult.posts.nodes;
-                    const hasNextPage = fetchMoreResult.posts.hasNextPage;
-    
-                    return next ? {
-                        posts: {
-                            __typename: previousResult.posts.__typename,
-                            nodes: [...previousResult.posts.nodes, ...nodes],
-                            hasNextPage,
-                            next,
-                        }
-                    } : previousResult;
-                }
+                updateQuery: defaultPaginationUpdateQuery('posts')
             });
         }
     };

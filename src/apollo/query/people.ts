@@ -11,10 +11,10 @@ export const GET_PERSON = gql`
 `;
 
 export const GET_PEOPLE = gql`
-    query People($after: String) {
-        users(after: $after, take: 10) {
-            count
+    query People($after: String, $take: Int = 10) {
+        users(after: $after, take: $take) {
             next
+            hasNextPage
             nodes {
                 ...UserFragment
             }
