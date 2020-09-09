@@ -44,6 +44,7 @@
 
     export default {
         name: 'PostBoxMedia',
+        emits: ['update:files']
     }
 
     declare const props: {

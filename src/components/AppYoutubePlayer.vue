@@ -17,8 +17,9 @@
 <script lang="ts" setup="props">
     import { ref } from 'vue';
     import { useURLParameters } from '/~/composables/';
+    import { parseYoutubeURL } from '/~/util/parsers';
 
-    export const video = useURLParameters(props.url, 'v');
+    export const video = parseYoutubeURL(props.url).id;
     export const shouldLoadVideo = ref(false);
 
     export default {

@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue';
 import { tokensToRenderFunction } from './util';
+import { parseYoutubeURL } from '/~/util/parsers';
 
 import YoutubePlayer from '/~/components/AppYoutubePlayer.vue';
 import TwitchPlayer from '/~/components/AppTwitchPlayer.vue';
@@ -14,7 +15,7 @@ const selectLinkByPriority = (links) => {
     const PriorityList = ['YOUTUBE', 'SPOTIFY', 'TWITCH', 'CODEPEN'];
     const Priorities = {
         'YOUTUBE': (url: string) => {
-            const r = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+            const r = /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\-_]+)/;
 
             if (url.match(r))
                 return true;

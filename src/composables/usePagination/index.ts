@@ -16,8 +16,6 @@ export const defaultPaginationUpdateQuery = (node: string, subscriptionNode?: st
         const nodes = fetchMoreResult[node].nodes;
         const hasNextPage = fetchMoreResult[node].hasNextPage;
     
-        console.log('Running Fetch MOre', next, nodes, hasNextPage, node, fetchMoreResult)
-
         return next ? {
             [node]: {
                 __typename: previousResult[node].__typename,

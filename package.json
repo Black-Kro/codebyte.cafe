@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.1.4",
-    "@black-kro/ui": "^0.1.44",
+    "@black-kro/ui": "^0.1.45",
     "@black-kro/use-apollo": "^0.0.3",
     "@giphy/js-fetch-api": "^1.6.2",
     "@vueuse/core": "^4.0.0-beta.2",

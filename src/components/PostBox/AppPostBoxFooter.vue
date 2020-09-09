@@ -46,6 +46,7 @@
 
     export default {
         name: 'PostBoxFooter',
+        emits: ['update:files']
     }
 
     declare const props: {

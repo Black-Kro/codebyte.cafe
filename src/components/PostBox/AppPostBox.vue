@@ -94,6 +94,7 @@
 
     export default {
         name: 'AppPostBox',
+        emits: ['posted']
     }
 
     declare const props: {

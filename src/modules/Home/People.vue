@@ -38,7 +38,6 @@
     export const hasNextPage = useResult(result, [], data => data.users.hasNextPage);
 
     export const loadMore = async () => {
-        console.log('ok go');
         if (!loading.value && hasNextPage.value && people.value.length > 0)
             fetchMore({
                 variables: { take: 10, after: next.value },

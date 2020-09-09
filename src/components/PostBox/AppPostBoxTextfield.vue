@@ -54,6 +54,7 @@
 
     export default {
         name: 'PostTextfield',
+        emits: ['update:modelValue']
     }
 
     declare const props: {

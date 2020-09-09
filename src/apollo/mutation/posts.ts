@@ -3,11 +3,11 @@ import { PostFragment } from '/~/apollo/fragments';
 
 export const CREATE_POST = gql`
     mutation CreatePost($content: String, $media: [String!], $parent: String) {
-        createPost(
+        createPost( input: {
             text: $content,
             media: $media,
             parent: $parent
-        ) {
+        }) {
             ...PostFragment
             children {
                 ...PostFragment
