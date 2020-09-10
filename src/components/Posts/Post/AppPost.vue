@@ -1,4 +1,4 @@
-<template>
++<template>
     <div>
         <div class="app-post flex flex-row" :class="{ 'rounded-md': post.level > 0 }" >
             <div class="pt-3 pl-4 flex flex-col items-center">
@@ -35,7 +35,7 @@
                         prevent-autoload 
                         reply-thread 
                         hide-empty-message
-                        :prime="post.childCount === 0" 
+                        no-skeleton
                         :take="3" 
                         :replies="true" 
                         :parent="post.id" />

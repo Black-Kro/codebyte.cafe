@@ -4,7 +4,7 @@ import { IMedia, IExternalMedia } from './IMedia';
 export interface IPost {
     id: string;
     text: string;
-    parent: string;
+    parent: IPost;
     childCount: number;
     children: IPost[];
     level: number;

@@ -1,23 +1,21 @@
 <template>
     <div>
-        <template v-if="!posts || skeleton && !prime && !error">
+        <template v-if="!noSkeleton && !prime && !error && posts.length === 0 && loading">
             <template v-for="i in 5">
                 <app-post-skeleton />
                 <kro-divider />
             </template>
         </template>
-        <div v-else-if="posts">
-            <template v-for="post in posts.nodes" :key="post.id">
+        <div v-else-if="posts.length > 0">
+            <template v-for="post in posts" :key="post.id">
                 <app-post :post="post" />
                 <kro-divider v-if="!replyThread" class="m-0" />
             </template>
 
-            <div 
-                v-if="posts.nodes.length === 0 && !hideEmptyMessage"
-                class="feed-empty p-4 flex flex-col text-center items-center justify-center" >
-                <kro-icon icon="cactus" class="text-secondary" />
-                <span class="text-sm font-medium">Fresh Outta Posts</span>
-            </div>
+        </div>
+        <div v-else-if="!hideEmptyMessage" class="feed-empty p-4 flex flex-col text-center items-center justify-center">
+            <kro-icon icon="cactus" class="text-secondary" />
+            <span class="text-sm font-medium">Fresh Outta Posts</span>
         </div>
 
         <div v-if="error" class="p-4 text-center flex flex-col justify-center">
@@ -27,7 +25,7 @@
             </div>
         </div>
         <app-self-intersection 
-            v-if="posts && posts.hasNextPage" 
+            v-if="hasNextPage" 
             @intersected="loadMore">
             <kro-button 
                 class="w-full" 
@@ -53,7 +51,9 @@
             notifyOnNetworkStatusChange: true
         });
 
-    export const posts = useResult(result, null, data => data.posts);
+    export const posts = useResult(result, [], data => data.posts.nodes);
+    export const hasNextPage = useResult(result, true, data => data.posts.hasNextPage);
+    export const next = useResult(result, null, data => data.posts.next);
 
     if (props.subscribeToMore) {
         subscribeToMore({
@@ -63,11 +63,11 @@
     }
 
     export const loadMore = async () => {
-        if (!loading.value && posts.value.hasNextPage) {
+        if (!loading.value && hasNextPage.value) {
             fetchMore({
                 variables: {
                     take: props.take || 10,
-                    after: posts.value.next,
+                    after: next.value,
                     parent: props.parent,
                     username: props.username,
                     replies: props.replies
@@ -86,7 +86,7 @@
         username?: string;
         replyThread?: boolean,
         hideEmptyMessage?: boolean,
-        skeleton?: boolean,
+        noSkeleton?: boolean,
         subscribeToMore?: boolean,
         replies?: boolean,
         take?: number;

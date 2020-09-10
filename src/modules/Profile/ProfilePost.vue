@@ -1,19 +1,58 @@
 <template>
     <app-default-layout>
         <kro-surface :padded="false">
-            <div v-if="loading" class="pb-4"><app-post-skeleton /></div>
-            <div v-else-if="source">
-                <app-post :post="source"></app-post>
+            
+            <!-- Skeleton -->
+            
+            <div v-if="loading">
+                <app-post-skeleton />
+                <kro-divider />
+                <div class="px-4 py-2 bg-primary rounded-md mx-4">
+                    <div class="h-8 w-8"></div>
+                </div>
+                <kro-divider />
+                <app-post-skeleton />
+                <app-post-skeleton />
+                <app-post-skeleton />
             </div>
-            <kro-divider class="mt-0" />
-            <div class="px-4 py-2 bg-primary rounded-md mx-4 flex flex-row items-center cursor-pointer" @click="isPostBoxOpen = true">
-                <user-me #me="{ me }">
-                    <user-avatar :size="32" :user="me" />
-                    <span class="text-secondary ml-2 font-medium text-sm">Reply...</span>
-                </user-me>
+
+            <!-- Error -->
+
+            <div v-else-if="error || !source" class="p-4 text-center flex flex-col font-bold text-sm text-secondary">
+                Oops, there was an error displaying this post.
+                <router-link class="pt-2" to="/">Return Home</router-link>
             </div>
-            <kro-divider class="mb-0" />
-            <app-post-feed v-if="source" :parent="source.id" />
+
+            <!-- Render Post -->
+
+            <div v-else>
+
+                <!-- {{source.parent}} -->
+                <template v-if="source.parent">
+                    <router-link :to="`/@${source.parent.author.username}/${source.parent.id}`" class="flex flex-row items-center p-4 text-secondary">
+                        <kro-icon icon="arrow-up-thick" class="mr-2" />
+                        <div class="text-sm font-medium">
+                            <span>
+                                Go up to original post
+                            </span>
+                        </div>
+                    </router-link>
+                    <kro-divider class="m-0" />
+                </template>
+                <app-post :post="source" />
+                <template v-if="source.level === 0">
+                    <kro-divider class="mt-0" />
+                        <user-me #me="{ me }">
+                            <div class="px-4 py-2 bg-primary rounded-md mx-4 flex flex-row items-center cursor-pointer" @click="isPostBoxOpen = true">
+                                <user-avatar :size="32" :user="me" />
+                                <span class="text-secondary ml-2 font-medium text-sm">Reply...</span>
+                            </div>
+                        </user-me>
+                    <kro-divider />
+                    <app-post-feed :parent="source.id" />
+                </template>
+            </div>
+
         </kro-surface>
     </app-default-layout>
 

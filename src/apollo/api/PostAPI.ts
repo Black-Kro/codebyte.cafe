@@ -29,7 +29,7 @@ export const usePost = (post: IPost) => {
         update(cache, { data }) {
             const oldQuery = cache.readQuery({
                 query: GET_POSTS,
-                variables: post.parent ? { parent: post.parent } : {},
+                variables: post.parent ? { parent: post.parent.id } : {},
             }) as any;
 
             const posts = {
@@ -42,7 +42,7 @@ export const usePost = (post: IPost) => {
 
             cache.writeQuery({
                 query: GET_POSTS,
-                variables: post.parent ? { parent: post.parent } : {},
+                variables: post.parent ? { parent: post.parent.id } : {},
                 data: posts
             })
         }
@@ -58,12 +58,14 @@ export const usePost = (post: IPost) => {
                 duration: 5,
             })
         } catch (error) {
+            console.error(error);
+
             createToast({
                 title: 'Failed to delete post.',
                 message: 'There was an error deleting this post.',
                 icon: 'error',
                 duration: 5
-            })
+            });
         }
     }
 

@@ -12,11 +12,15 @@
                 {{post.dislikes}}
             </span>
         </kro-button>
+        <kro-button v-if="post.level === 0" :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
+            <kro-icon icon="posts" />
+            {{post.childCount > 0 ? post.childCount : ''}}
+        </kro-button>
         <kro-button v-if="post.level === 1" @click="isPostBoxOpen = true" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
         </kro-button>
-        <kro-button v-else-if="post.level !== 2" :to="`/@${post.author.username}/${post.id}`" class="h-8 bg-transparent text-secondary">
+        <kro-button v-if="post.level === 2" @click="isPostBoxOpen = true" class="h-8 bg-transparent text-secondary">
             <kro-icon icon="posts" />
             {{post.childCount > 0 ? post.childCount : ''}}
         </kro-button>
@@ -26,29 +30,23 @@
         </kro-button>
     </div>
     <kro-dialog #default="{ close }" class="w-full overflow-auto max-h-full p-0" :padded="false" v-model="isPostBoxOpen">
-        <app-post-box @posted="() => close()" :parent="post.id" autofocus></app-post-box>
+        <app-post-box 
+            @posted="() => close()" 
+            :initialText="post.level === 2 ? `@${post.parent.author.username} ` : ''"
+            :parent="post.level === 2 ? post.parent.id : post.id" 
+            autofocus />
     </kro-dialog>
     <kro-dialog class="p-0 max-w-sm w-full" #default="{ close }" v-model="isReactionsOpen">
         <div v-if="loading" class="flex flex-row justify-center items-center"><kro-spinner /></div>
         <div v-else-if="error">{{error}}</div>
         <div v-else>
             <span 
-                class="font-bold text-sm text-secondary flex flex-row items-center" 
-                v-if="reactions.filter(t => t.type === 'LIKE').length > 0">
-                <kro-icon icon="arrow-up-thick" class="mr-2" />
-                Upvotes
+                class="font-bold text-sm text-secondary flex flex-row items-center">
+                Reactions
             </span>
-            <div v-for="reaction in reactions.filter(t => t.type === 'LIKE')" :key="reaction.id" class="flex flex-row">
-                <user-identity class="pl-0" :user="reaction.user" />
-            </div>
-            <span 
-                class="font-bold text-sm text-secondary flex flex-row items-center" 
-                v-if="reactions.filter(t => t.type === 'DISLIKE').length > 0">
-                <kro-icon icon="arrow-down-thick" class="mr-2" />
-                Downvotes
-            </span>
-            <div v-for="reaction in reactions.filter(t => t.type === 'DISLIKE')" :key="reaction.id" class="flex flex-row">
-                <user-identity class="pl-0" :user="reaction.user" />
+            <div v-for="reaction in reactions" :key="reaction.id" class="flex flex-row items-center">
+                <user-identity class="pl-0 flex-1" :user="reaction.user" />
+                <kro-icon :icon="{ 'LIKE': 'arrow-up-thick', 'DISLIKE': 'arrow-down-thick' }[reaction.type]" />
             </div>
 
             <div class="p-4 text-center" v-if="reactions.length === 0">

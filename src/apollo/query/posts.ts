@@ -5,6 +5,12 @@ export const GET_POST = gql`
     query Post($id: String!) {
         post(id: $id) {
             ...PostFragment
+            parent {
+                id
+                author {
+                    username
+                }
+            }
         }
     }
     ${PostFragment}
@@ -30,10 +36,19 @@ export const GET_POSTS = gql`
             hasNextPage
             nodes {
                 ...PostFragment
+                parent {
+                    ...PostFragment
+                }
                 children @include(if: $replies) {
                     ...PostFragment
+                    parent {
+                        ...PostFragment
+                    }
                     children {
                         ...PostFragment
+                        parent {
+                            ...PostFragment
+                        }
                     }
                 }
             }

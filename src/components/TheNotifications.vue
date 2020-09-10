@@ -53,7 +53,7 @@
 
         // Mark all notifications as read. Not sure if this is the best solution, but for right now
         // it is what we will use.
-        markAllAsRead();
+        markAllAsRead()
     }
 
     subscribeToMore(() => ({

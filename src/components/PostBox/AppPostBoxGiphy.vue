@@ -5,23 +5,39 @@
                 <kro-button icon="gif" @click="open"></kro-button>
             </template>
             <div class="giphy-content flex flex-col h-full">
-                <div class="p-4">
+                <div class="p-4 cla">
                     <div class="flex flex-row items-center px-4 bg-primary rounded-md">
                         <kro-icon icon="search" />
-                        <input type="text" class="w-full px-4 py-2 rounded-sm bg-transparent focus:outline-none" placeholder="Search...">
+                        <input v-model="query" type="text" class="w-full px-4 py-2 rounded-sm bg-transparent focus:outline-none" placeholder="Search...">
                     </div>
                 </div>
                 <kro-divider class="my-0" />
-                <div v-if="isLoading" class="block p-4 flex flex-row justify-center">
-                    <kro-spinner></kro-spinner>
-                </div>
-                <div v-else class="[ giphy-container ] [ max-h-full overflow-auto p-4 bg-primary ]">
-                    <div v-for="category in categories" class="relative mb-4">
-                        <img class="w-full" :src="category.gif.images.downsized_medium.url"/>
-                        <div class="giphy-category-scrim absolute inset-0 flex flex-row items-center justify-center">
-                            <span class="[ giphy-category-label ] font-bold capitalize sh">{{category.subcategories[0].name}}</span>
-                        </div>
+                <div class="max-h-full h-full overflow-auto relative">
+                    <div v-if="query.length === 0" class="p-4 grid gap-4 grid-cols-2">
+                        <app-post-box-giphy-category @click="query = 'annoyed'" name="Annoyed" src="https://media2.giphy.com/media/kpzfYwBT7nUVW/giphy.gif?cid=ecf05e47rle9e28w62d7kbfps1qiy9ko4igbc82jhcmn8tjd&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'shrug'" name="Shrug" src="https://media3.giphy.com/media/jPAdK8Nfzzwt2/giphy.gif?cid=ecf05e47asxhp8thuqp4rxos09gmn8e0sngk5b4u5sdxcu0i&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'awkward'" name="Awkward" src="https://media1.giphy.com/media/unFLKoAV3TkXe/giphy.gif?cid=ecf05e47vwtgnffenr0sesi7ozgyhi6kd2zwr4h9bv2syiwt&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'ew'" name="Ew" src="https://media1.giphy.com/media/3oriOiN0eR08su5G4E/giphy.gif?cid=ecf05e47biaawpgsradl9qde7c09zpm6ktra4gwsla68josu&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'surprised'" name="Surprised" src="https://media0.giphy.com/media/XR9Dp54ZC4dji/giphy.gif?cid=ecf05e47kh8ckulz46n9ddohabk708r5y6b9wgbt1p9922hn&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'president'" name="President" src="https://media3.giphy.com/media/d5fOmhU24QKMZ2Wv3m/giphy.gif?cid=ecf05e47wbw8lxv4ym0xax6c04okqlcg3g53sh02ywag3s1i&rid=giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'bruh'" name="Bruh" src="https://media.giphy.com/media/3o7TKVfu4rwyscasla/giphy.gif" />
+                        <app-post-box-giphy-category @click="query = 'ok boomer'" name="ok boomer" src="https://media.giphy.com/media/PnggNmuamz7kbgfUTL/giphy-downsized.gif" />
                     </div>
+
+                    <div v-if="isLoading" class="w-full h-full flex items-center justify-center p-4 pt-8">
+                        <kro-spinner />
+                    </div>
+
+                    <div v-else class="p-4 grid gap-4 grid-cols-2">
+                        <app-post-box-gif-preview
+                            v-for="gif in gifs"
+                            :key="gif.id"
+                            :gif="gif"/>
+                    </div>
+                </div>
+
+                <div class="flex flex-row justify-center py-4">
+                    <img src="/~/assets/giphy.png" />
                 </div>
             </div>
         </kro-dialog>
@@ -29,27 +45,37 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import { useGiphy } from '/~/composables'
-    
+    import { ref, watch } from 'vue';
+    import { useGiphy } from '/~/composables';
+    import { useDebounceFn } from '@vueuse/core';
+
     const { giphy } = useGiphy();
 
-
-    export const isLoading = ref(true);
+    export const isLoading = ref(false);
     export const isOpen = ref(false);
     export const gifs = ref<any>([]);
-    export const categories = ref<any>([]);
-    // const categories = [
-    //     'trending', 'agree', 'applause', 'awww', 'dance', 'deal with it', 'do not want', 'eww', 'eye roll', 'facepalm', 'fist bump',
-    //     'good luck', 'hearts', 'high five', 'hug', 'idk', 'kiss', 'mic drop', 'no', 'omg', 'oh snap', 'ok', 'oops', 'please',
-    //     'popcorn', 'SMH', 'scared', 'shocked', 'shrug', 'sigh', 'slow clap', 'sorry', 'thank you', 'thumbs down', 'thumbs up', 'want']
+    export const query = ref('');
+    export const offset = ref(0);
+
+    export const search = useDebounceFn(async () => {
+        const results = await giphy.search(query.value, { limit: 30, offset: offset.value });
+
+        offset.value = results.pagination.offset
+        gifs.value = results.data;
+        isLoading.value = false;
+    }, 250);
+
+    watch(() => query.value, async () => {
+        offset.value = 0;
+        isLoading.value = true;
+        search();
+    });
 
     export const onOpen = async () => {
 
-        categories.value = (await giphy.categories()).data;
-        isLoading.value = false;
+        // isLoading.value = false;
 
-        console.log('on open')
+        // console.log('on open')
         // const results = await giphy.search('one punch man', { limit: 15, offset: 0 });
         // console.log(results.data[0]);
     
@@ -87,6 +113,10 @@
 
     .giphy-category-label {
         text-shadow: 2px 2px 0 black;
+    }
+
+    .giphy__prompt {
+        --kro-icon-size: 5rem;
     }
 
 </style>

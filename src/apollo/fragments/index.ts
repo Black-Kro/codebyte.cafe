@@ -52,7 +52,7 @@ export const PostFragment = gql`
         dislikes
         liked
         disliked
-        parent
+        # parent
         media {
             ...MediaFragment
         }

@@ -10,7 +10,8 @@
                 class="absolute top-0 left-0 w-full h-full opacity-0"
                 type="file" />
         </div>
-        <!-- <app-post-box-giphy /> -->
+        <app-post-box-poll class="ml-2" />
+        <app-post-box-giphy />
         <span class="flex-1"></span>
         <app-progress-ring
             v-if="content.length > 0"
@@ -46,7 +47,7 @@
 
     export default {
         name: 'PostBoxFooter',
-        emits: ['update:files']
+        emits: ['update:files', 'submit']
     }
 
     declare const props: {

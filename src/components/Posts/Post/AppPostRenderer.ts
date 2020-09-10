@@ -5,6 +5,7 @@ import { parseYoutubeURL } from '/~/util/parsers';
 import YoutubePlayer from '/~/components/AppYoutubePlayer.vue';
 import TwitchPlayer from '/~/components/AppTwitchPlayer.vue';
 import CodepenEmbed from '/~/components/AppCodepenEmbed.vue';
+import SpotifyPlayer from '/~/components/AppSpotifyPlayer.vue';
 
 import marked from 'marked';
 
@@ -23,7 +24,9 @@ const selectLinkByPriority = (links) => {
             return false;
         },
         'SPOTIFY': (url: string) => {
-            if (url.indexOf('open.spotify.com') > -1)
+            const r = /^(spotify:|https:\/\/[a-z]+\.spotify\.com\/)/;
+
+            if (url.match(r))
                 return true;
 
             return false;
@@ -97,7 +100,7 @@ export default defineComponent({
                     },
 
                     SPOTIFY: (link) => {
-                        return h('span', 'SPOTIFY PLAYER')
+                        return h(SpotifyPlayer, { url: link.href })
                     },
                     
                     TWITCH: (link) => {

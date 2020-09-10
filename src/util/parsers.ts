@@ -1,3 +1,7 @@
+const getIDfromRegEx = (src, reg) => {
+    return (src.match(reg)) ? RegExp.$1 : null;
+}
+
 export const parseYoutubeURL = (url: string) => {
   
     var timeToSec = function(str) {
@@ -21,3 +25,13 @@ export const parseYoutubeURL = (url: string) => {
     };
     
 };
+
+export const parseSpotifyURL = (url: string) => {
+    const id = new URL(url).pathname.substring(1);
+
+    return {
+        id,
+        type: id.split('/')[0]
+    };
+
+}

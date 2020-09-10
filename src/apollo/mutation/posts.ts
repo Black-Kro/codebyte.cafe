@@ -9,6 +9,9 @@ export const CREATE_POST = gql`
             parent: $parent
         }) {
             ...PostFragment
+            parent {
+                ...PostFragment
+            }
             children {
                 ...PostFragment
             }

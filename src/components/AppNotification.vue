@@ -7,12 +7,15 @@
             <div class="text-xs ml-2">
                 <span class="font-bold">@{{notification.from.username}}</span>
                 mentioned you in a post
+                <div class="text-secondary font-bold text-xs">{{format(notification.created)}}</div>
             </div>
         </template>
     </router-link>
 </template>
 
 <script lang="ts" setup="props">
+    export { format } from 'timeago.js';
+
     export default {
         name: '',
     }
