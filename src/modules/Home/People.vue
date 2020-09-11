@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
     import { GET_PEOPLE } from '/~/apollo/query';
-    import { usePaginationResult, defaultPaginationUpdateQuery } from '/~/composables/usePagination';
+    import { defaultPaginationUpdateQuery } from '/~/composables/usePagination';
     import { useQuery, useResult } from '@black-kro/use-apollo';
 
     export const { result, loading, error, fetchMore, refetch } = useQuery<any, any>(GET_PEOPLE, { 

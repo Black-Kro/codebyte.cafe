@@ -2,7 +2,9 @@
     <div>
         <div class="app-post flex flex-row" :class="{ 'rounded-md': post.level > 0 }" >
             <div class="pt-3 pl-4 flex flex-col items-center">
-                <user-avatar :user="post.author" />
+                <router-link :to="`/@${post.author.username}`">
+                    <user-avatar :user="post.author" />
+                </router-link>
                 <div v-if="post.childCount > 0 && post.parent" class="flex-1 py-1">
                     <div @click="collapseChildren" class="post-trail cursor-pointer"></div>
                 </div>
@@ -23,8 +25,15 @@
                         :class="{ 'mt-4': post.text }"
                         class=" rounded-md overflow-hidden mr-4">
                         <app-post-media
-                            
                             :media="post.media" />
+                    </div>
+
+                    <div
+                        v-if="post.externalMedia && post.externalMedia.length > 0"
+                        :class="{ 'mt-4': post.text }"
+                        class="rounded-md overflow-hidden mr-4">
+                        <app-post-gif
+                            :gifs="post.externalMedia" />
                     </div>
 
                     <app-post-footer 
@@ -70,8 +79,6 @@
 </script>
 
 <style lang="scss">
-
-    
 
     .lightbox-container {
         padding: 0 !important;

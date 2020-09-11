@@ -8,9 +8,8 @@ export const GET_NOTIFICATION_COUNT = gql`
 `;
 
 export const GET_NOTIFICATIONS = gql`
-    query Notifications($after: String, $all: Boolean) {
-        notifications(after: $after, all: $all, take: 5) {
-            count
+    query Notifications($after: String, $all: Boolean, $take: Int = 5) {
+        notifications(after: $after, all: $all, take: $take) {
             next
             hasNextPage
             nodes {

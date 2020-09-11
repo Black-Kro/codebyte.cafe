@@ -1,17 +1,19 @@
 <template>
     <div class="flex flex-row px-4 pb-4 items-center">
         <div class="relative">
-            <kro-button icon="photo" />
+            <kro-button :disabled="giphy" icon="photo" />
             <input
                  @change="onFilesSelected"
-
+                :disabled="giphy"
                 multiple 
                 accept="image/*"
                 class="absolute top-0 left-0 w-full h-full opacity-0"
                 type="file" />
         </div>
         <app-post-box-poll class="ml-2" />
-        <app-post-box-giphy />
+        <app-post-box-giphy 
+            :disabled="media.length > 0" 
+            @select="gif => $emit('update:giphy', gif)" />
         <span class="flex-1"></span>
         <app-progress-ring
             v-if="content.length > 0"
@@ -36,7 +38,7 @@
 
 
     export const canPost = computed(() => {
-        return props.content.length > 0 && props.content.length < 500 || props.media.length > 0;
+        return props.content.length > 0 && props.content.length < 500 || props.media.length > 0 || props.giphy;
     });
 
     export const onFilesSelected = (e) => {
@@ -47,12 +49,13 @@
 
     export default {
         name: 'PostBoxFooter',
-        emits: ['update:files', 'submit']
+        emits: ['update:files', 'submit', 'update:giphy']
     }
 
     declare const props: {
         content: string;
         media: any;
+        giphy
     }
 
     declare const emit: any;

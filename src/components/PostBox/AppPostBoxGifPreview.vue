@@ -4,13 +4,20 @@
             :src="gif.images.downsized_still.url"
             :intrinsicWidth="1920"
             :intrinsicHeight="1080" />
-        <div class="[ giphy-category__scrim ] absolute inset-0 w-full h-full flex items-center justify-center font-bold text-white">
-            <video class="w-full" autoplay :src="gif.images.original_mp4.mp4" loop></video>
+        <div ref="container" class="[ giphy-category__scrim ] absolute inset-0 flex items-center justify-center font-bold text-white">
+            <video v-if="isIntersecting" class="min-h-full min-w-full absolute object-cover" autoplay loop muted playsinline :src="gif.images.downsized_small.mp4"></video>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+    import { ref } from 'vue';
+    import { useIntersection } from '/~/composables';
+
+
+    export const container = ref();
+    export const { isIntersecting } = useIntersection(container, false);
+
     export default {
         name: '',
         props: {

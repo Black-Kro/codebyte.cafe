@@ -5,7 +5,6 @@
                 <kro-button @click="isHelpOpen = true" icon="help" />
             </user-identity>
         </user-me>
-
             <app-post-box-textfield
                 :autofocus="autofocus"
                 :isEmpty="content.length === 0"
@@ -13,13 +12,16 @@
 
             <app-post-box-footer
                 v-model:files="files"
+                v-model:giphy="gif"
                 :media="files"
                 @submit="onSubmit"
                 :content="content" />
 
             <app-post-box-media
-                v-model:files="files"
-            />
+                v-model:files="files" />
+            
+            <app-post-box-gif
+                v-model:giphy="gif" />
         <div 
             v-if="isLoading"
             class="[ post-box__loading-overlay ] [ absolute inset-0 w-full h-full ] [ flex flex-col items-center justify-center ]">
@@ -49,11 +51,12 @@
 
     export const content = ref(props.initialText || '');
     export const files = ref([]);
+    export const gif = ref<any>(null);
     export const isLoading = ref(false);
     export const textfield = ref<any>(null);
 
     const { uploadMedia } = useMedia();
-    const { mutate, loading, error } = useMutation<any, { content: string, media: string[], parent?: string }>(CREATE_POST, {
+    const { mutate, loading, error } = useMutation<any, { content: string, media: string[], giphy: string[], parent?: string }>(CREATE_POST, {
         update(cache, { data }) {
             try {
                 const query = cache.readQuery({ query: GET_POSTS, variables: { parent: props.parent } }) as any;
@@ -79,11 +82,12 @@
 
         try {
             const media =   await uploadMedia(files.value);
-                            await mutate({ content: content.value, media: media, parent: props.parent });
+                            await mutate({ content: content.value, media: media, giphy: [gif.value && (gif.value as any).id].filter(x => x), parent: props.parent });
 
             // Finish Up
             content.value = '';
             files.value = [];
+            gif.value = null;
             emit('posted')
         } catch (error) {
             

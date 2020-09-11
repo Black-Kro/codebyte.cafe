@@ -9,7 +9,7 @@
     import { useIntersection } from '/~/composables';
 
     export const self = ref(null);
-    const { onIntersected } = useIntersection(self,)
+    const { onIntersected } = useIntersection(self, false)
 
     onIntersected(() => {
         emit('intersected')
