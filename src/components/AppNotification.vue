@@ -22,7 +22,7 @@
                 <div class="text-secondary font-bold text-xs">{{format(notification.created)}}</div>
             </div>
         </template>
-        <template v-if="notification.notificationType === 'Comment'">
+        <template v-if="notification.notificationType === 'Comment' || notification.notificationType === 'CommentReply'">
             <user-avatar :size="36" :user="notification.from" />
             <div class="text-xs ml-2">
                 <div>

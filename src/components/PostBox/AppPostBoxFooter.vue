@@ -10,7 +10,7 @@
                 class="absolute top-0 left-0 w-full h-full opacity-0"
                 type="file" />
         </div>
-        <app-post-box-poll class="ml-2" />
+        <!-- <app-post-box-poll class="ml-2" /> -->
         <app-post-box-giphy 
             :disabled="media.length > 0" 
             @select="gif => $emit('update:giphy', gif)" />
