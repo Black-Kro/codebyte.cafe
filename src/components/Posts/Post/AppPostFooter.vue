@@ -32,7 +32,7 @@
     <kro-dialog #default="{ close }" class="w-full overflow-auto max-h-full p-0" :padded="false" v-model="isPostBoxOpen">
         <app-post-box 
             @posted="() => close()" 
-            :initialText="post.level === 2 ? `@${post.parent.author.username} ` : ''"
+            :initialText="post.level === 2 ? `@${post.author.username} ` : ''"
             :parent="post.level === 2 ? post.parent.id : post.id" 
             autofocus />
     </kro-dialog>
