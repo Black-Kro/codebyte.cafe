@@ -34,8 +34,21 @@
 </template>
 
 <script lang="ts" setup="props, { emit, attrs }">
-    import { computed } from 'vue';
+    import { onMounted, onUnmounted, computed } from 'vue';
 
+    const onPaste = (e) => {
+        const items = Array.from((e.clipboardData || e.originalEvent.clipboardData).items)
+            .filter((item: any) => item.kind === 'file')
+            .forEach((item: any) => {
+                // console.log(item);
+                const blob = item.getAsFile();
+                
+                emit('update:files', [...attrs.files, blob]);
+            });
+    };
+
+    onMounted(() => { document.addEventListener('paste', onPaste); })
+    onUnmounted(() => { document.removeEventListener('paste', onPaste); })
 
     export const canPost = computed(() => {
         return props.content.length > 0 && props.content.length < 500 || props.media.length > 0 || props.giphy;

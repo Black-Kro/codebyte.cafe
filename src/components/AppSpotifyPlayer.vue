@@ -34,6 +34,7 @@
         height: 80px;
     }
 
+    .app-spotify-player__album,
     .app-spotify-player__playlist {
         height: 380px;
     }
