@@ -1,104 +1,60 @@
 <template>
-    <div>
-        <template v-if="!noSkeleton && !prime && !error && posts.length === 0 && loading">
-            <template v-for="i in 5">
-                <app-post-skeleton />
-                <kro-divider />
-            </template>
-        </template>
-        <div v-else-if="posts.length > 0">
-            <template v-for="post in posts" :key="post.id">
-                <app-post :post="post" />
-                <kro-divider v-if="!replyThread" class="m-0" />
-            </template>
-
-        </div>
-        <div v-else-if="!hideEmptyMessage" class="feed-empty p-4 flex flex-col text-center items-center justify-center">
-            <kro-icon icon="cactus" class="text-secondary" />
-            <span class="text-sm font-medium">Fresh Outta Posts</span>
-        </div>
-
-        <div v-if="error" class="p-4 text-center flex flex-col justify-center">
-            <span class="text-secondary font-bold text-sm">OOPSIE WOOPSIE!! UwU You made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to ban you!</span>
-            <div class="mt-2">
-                <kro-button @click="refetch">Try Again</kro-button>
-            </div>
-        </div>
-        <app-self-intersection 
-            v-if="hasNextPage" 
-            @intersected="loadMore">
-            <kro-button 
-                class="w-full" 
-                :loading="loading" 
-                @click="loadMore">Load More</kro-button>
-        </app-self-intersection>
-    </div>
+  <div v-for="(post, index) in posts" :key="post.id">
+    <app-post :post="post" />
+    <kro-divider v-if="index < posts.length - 1" class="my-0" />
+  </div>
 </template>
 
 <script lang="ts" setup="props">
-    import { ref, watch } from 'vue';
-    import { GET_POSTS, GET_NEW_POSTS } from '/~/apollo/query';
-    import { useQuery, useResult } from '@black-kro/use-apollo';
-    import { useElementVisibility } from '@vueuse/core';
-    import { defaultPaginationUpdateQuery } from '/~/composables/usePagination';
+import { GET_POSTS } from '/~/apollo/query'
+import { useQuery, useResult } from '@black-kro/use-apollo'
+// import { defaultPaginationUpdateQuery } from '/~/composables/usePagination'
 
-    export const { result, loading, error, fetchMore, subscribeToMore } = useQuery<any, any>(GET_POSTS, {
-        take: props.take || 10,
-        parent: props.parent, 
-        username: props.username
-        }, {
-            fetchPolicy: 'cache-and-network',
-            notifyOnNetworkStatusChange: true
-        });
+declare const props: {
+  /*
+  * Possible Options: home, explore, @*
+  *
+  * home: Sources the users homepage feed.
+  * explore: Sources the global feed showing posts from everyone
+  * {uid}: Sources the child posts from a parent with given uid
+  * @*: Sources a user profile for posts. ex: @wheat
+  **/
+  source?: string
 
-    export const posts = useResult(result, [], data => data.posts.nodes);
-    export const hasNextPage = useResult(result, true, data => data.posts.hasNextPage);
-    export const next = useResult(result, null, data => data.posts.next);
+  /** The amount of posts to load */
+  take?: number
 
-    if (props.subscribeToMore) {
-        subscribeToMore({
-            document: GET_NEW_POSTS,
-            updateQuery: defaultPaginationUpdateQuery('posts')
-        })
-    }
+  /** Should the replies be loaded? */
+  replies?: boolean
 
-    export const loadMore = async () => {
-        if (!loading.value && hasNextPage.value) {
-            fetchMore({
-                variables: {
-                    take: props.take || 10,
-                    after: next.value,
-                    parent: props.parent,
-                    username: props.username,
-                    replies: props.replies
-                },
-                updateQuery: defaultPaginationUpdateQuery('posts')
-            });
-        }
-    };
+  /** If set to true, posts will be updated as things like replies, upvotes, and downvotes change */
+  keepAlive?: boolean
+}
 
-    export default {
-        name: 'AppPostFeed',
-    }
+const sourceType = (source: string) => {
+  if (source.includes('@')) return { type: 'user', value: source }
+  if (source === 'home') return { type: 'home', value: source }
+  if (source === 'explore') return { type: 'explore', value: source }
+  if (source.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) return { type: 'parent', value: source }
+  return { type: 'unknown', value: null }
+}
 
-    declare const props: {
-        parent?: string,
-        username?: string;
-        replyThread?: boolean,
-        hideEmptyMessage?: boolean,
-        noSkeleton?: boolean,
-        subscribeToMore?: boolean,
-        replies?: boolean,
-        take?: number;
-        preventAutoload?: boolean,
-        prime: boolean,
-    }
+const sourceToParameters = (source: string) => {
+  const { type, value } = sourceType(source)
+
+  if (type === 'user') return { username: value }
+  if (type === 'home') return {} // TODO: Update parameters when server supports home feed
+  if (type === 'explore') return {} // TODO: Update parameters when server supports explore feed
+  if (type === 'parent') return { parent: value }
+
+  return {}
+}
+
+export const { result, loading, error, fetchMore, subscribeToMore } = useQuery(
+  GET_POSTS,
+  { take: props.take || 10, ...sourceToParameters(props.source || '') },
+  { fetchPolicy: 'cache-and-network', notifyOnNetworkStatusChange: true })
+
+export const posts = useResult(result, [], data => data.posts.nodes)
+
 </script>
-
-<style lang="scss">
-    
-    .feed-empty {
-        --kro-icon-size: 5rem;
-    }
-
-</style>

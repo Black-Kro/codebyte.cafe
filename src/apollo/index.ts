@@ -67,7 +67,7 @@ const link = ApolloLink.from([
 
             if ((networkError as any).statusCode === 429)
                 createToast({
-                    icon: 'error',
+                    icon: 'mdi:alert',
                     title: 'Slow down there',
                     message: 'You are doing things too fast, slow down a little.',
                     duration: 5,

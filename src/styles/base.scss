@@ -1,3 +1,4 @@
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -11,33 +12,33 @@ input::placeholder {
     color: var(--kro-foreground-secondary);
 }
 
-.text-primary {
-    color: var(--kro-foreground);
-}
+// .text-primary {
+//     color: var(--kro-foreground);
+// }
 
-.text-secondary {
-    color: var(--kro-foreground-secondary);
-}
+// .text-secondary {
+//     color: var(--kro-foreground-secondary);
+// }
 
-.text-disabled {
-    color: var(--kro-foreground-disabled);
-}
+// .text-disabled {
+//     color: var(--kro-foreground-disabled);
+// }
 
-.text-bg-primary {
-    color: var(--kro-background);
-}
+// .text-bg-primary {
+//     color: var(--kro-background);
+// }
 
-.text-bg-secondary {
-    color: var(--kro-secondary);
-}
+// .text-bg-secondary {
+//     color: var(--kro-secondary);
+// }
 
-.bg-primary {
-    background-color: var(--kro-background);
-}
+// .bg-primary {
+//     background-color: var(--kro-background);
+// }
 
-.bg-secondary {
-    background-color: var(--kro-background-secondary);
-}
+// .bg-secondary {
+//     background-color: var(--kro-background-secondary);
+// }
 
 input[type=file], /* FF, IE7+, chrome (except button) */
 input[type=file]::-webkit-file-upload-button { /* chromes and blink button */

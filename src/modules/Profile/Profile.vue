@@ -19,9 +19,9 @@
                     <div class="px-4 pt-4 text-sm">
                         <app-minimal-markdown :content="user.profile.bio" />
                     </div>
-                    <div class="px-4 pt-4 text-secondary text-xs font-bold">
+                    <div class="px-4 pt-4 text-foregroundSecondary text-xs font-bold">
                         <div class="flex flex-row items-center">
-                            <kro-icon icon="calendar" />
+                            <kro-icon icon="mdi:calendar" />
                             <span class="ml-1">{{$t('common.Joined')}} {{format(user.created)}}</span>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ export const usePost = (post: IPost) => {
             createToast({
                 title: 'Post Deleted',
                 message: 'Post Successfully Deleted!',
-                icon: 'success',
+                 icon:'mdi:check',
                 duration: 5,
             })
         } catch (error) {
@@ -63,7 +63,7 @@ export const usePost = (post: IPost) => {
             createToast({
                 title: 'Failed to delete post.',
                 message: 'There was an error deleting this post.',
-                icon: 'error',
+                icon: 'mdi:alert',
                 duration: 5
             });
         }

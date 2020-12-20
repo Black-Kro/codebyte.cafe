@@ -1,42 +1,43 @@
 <template>
-    <app-default-layout>
-        <kro-surface :padded="false">
-            <kro-list-item
-                :to="`/administrator/reports/${report.id}`"
-                class="cursor-pointer"
-                v-for="report in reports">
-                {{report.content}}
-                <template #subtitle>
-                    <span>Reported by @{{report.author.username}}</span>
-                    <span class="mx-2">·</span>
-                    <span>Reported {{format(report.created)}}</span>
-                </template>
-                <template #action>
-                    <kro-icon icon="arrow-right" />
-                </template>
-            </kro-list-item>
+  <app-default-layout>
+    <kro-surface :padded="false">
+      <kro-list-item
+        v-for="report in reports"
+        :key="report.id"
+        :to="`/administrator/reports/${report.id}`"
+        class="cursor-pointer"
+      >
+        {{ report.content }}
+        <template #subtitle>
+          <span>Reported by @{{ report.author.username }}</span>
+          <span class="mx-2">·</span>
+          <span>Reported {{ format(report.created) }}</span>
+        </template>
+        <template #action>
+          <kro-icon icon="mdi:arrow-right" />
+        </template>
+      </kro-list-item>
 
-            <div v-if="loading" class="p-4 flex flex-row justify-center">
-                <kro-spinner />
-            </div>
-        </kro-surface>
-    </app-default-layout>
+      <div v-if="loading" class="p-4 flex flex-row justify-center">
+        <kro-spinner />
+      </div>
+    </kro-surface>
+  </app-default-layout>
 </template>
 
 <script lang="ts" setup>
-    import { GET_REPORTS } from '/~/apollo/query';
-    import { useQuery, useResult } from '@black-kro/use-apollo';
-    
-    export { format } from 'timeago.js';
+import { GET_REPORTS } from '/~/apollo/query'
+import { useQuery, useResult } from '@black-kro/use-apollo'
 
-    export const { result, loading, error } = useQuery(GET_REPORTS);
-    export const reports = useResult(result, null, data => data.reports.nodes);
+export { format } from 'timeago.js'
 
-    export default {
-        name: 'ManageReports',
-    }
+export const { result, loading, error } = useQuery(GET_REPORTS)
+export const reports = useResult(result, null, data => data.reports.nodes)
+
+export default {
+  name: 'ManageReports',
+}
 </script>
 
 <style lang="scss">
-    
 </style>

@@ -1,73 +1,77 @@
 <template>
-    <div ref="self" class="[ app-lazy-image ] [ relative overflow-hidden ]">
-        <img v-bind="$attrs" v-if="intrinsicSizeURL" :src="intrinsicSizeURL" />
-        <transition name="fade">
-            <img 
-                v-if="!shouldLoad && placeholder"
-                class="[ app-lazy-image__placeholder ] [ w-full h-full absolute inset-0 ] [ object-cover ]" 
-                :src="placeholder">
-        </transition>
-        <transition entry name="fade">
-            <img v-if="shouldLoad && src" class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]" :src="src">
-        </transition>
-    </div>
+  <div ref="self" class="[ app-lazy-image ] [ relative overflow-hidden ]">
+    <img v-if="intrinsicSizeURL" v-bind="$attrs" :src="intrinsicSizeURL">
+    <transition name="fade">
+      <img
+        v-if="!shouldLoad && placeholder"
+        class="[ app-lazy-image__placeholder ] [ w-full h-full absolute inset-0 ] [ object-cover ]"
+        :src="placeholder"
+      >
+    </transition>
+    <transition entry name="fade">
+      <img
+        v-if="shouldLoad && src"
+        class="[ app-lazy-image__source ] [ w-full h-full absolute inset-0 ] [ object-cover ]"
+        :src="src"
+      >
+    </transition>
+  </div>
 </template>
 
 <script lang="ts" setup="props">
-    import { ref } from 'vue';
-    import { useIntersection } from '/~/composables/';
+import { ref } from 'vue'
+import { useIntersection } from '/~/composables/'
 
-    export const self = ref(null);
-    export const { onIntersected } = useIntersection(self);
+declare const props: {
+  intrinsicWidth?: number
+  intrinsicHeight?: number
+  placeholder?: string
+  src?: string
+}
 
-    export const intrinsicSizeURL = ref<any>(null);
-    export const shouldLoad = ref(false);
+export const self = ref(null)
+export const { onIntersected } = useIntersection(self)
 
-    if (props.intrinsicWidth && props.intrinsicHeight) {
-        const c = document.createElement('canvas');
-        c.width = props.intrinsicWidth;
-        c.height = props.intrinsicHeight;
-        
-        intrinsicSizeURL.value = c.toDataURL();
+export const intrinsicSizeURL = ref<any>(null)
+export const shouldLoad = ref(false)
+
+if (props.intrinsicWidth && props.intrinsicHeight) {
+  const c = document.createElement('canvas')
+  c.width = props.intrinsicWidth
+  c.height = props.intrinsicHeight
+
+  intrinsicSizeURL.value = c.toDataURL()
+}
+
+onIntersected(() => {
+  if (props.src) {
+    const img = new Image()
+    img.onload = () => {
+      shouldLoad.value = true
     }
+    img.src = props.src
+  }
+})
 
-    onIntersected(() => {
-        if (props.src) {
-            const img = new Image();
-            img.onload = () => {
-                shouldLoad.value = true;
-            };
-            img.src = props.src;        
-        }
-    });
+export default {
+  name: 'AppLazyImage',
+  inheritAttrs: false,
+}
 
-    export default {
-        name: 'AppLazyImage',
-        inheritAttrs: false
-    }
-
-    declare const props: {
-        intrinsicWidth?: number;
-        intrinsicHeight?: number;
-        placeholder?: string;
-        src?: string;
-    }
 </script>
 
 <style lang="scss">
-    
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.5s ease;
-    }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 
-    .fade-enter-from,
-    .fade-leave-to {
-        opacity: 0;
-    }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
-    .kro-dialog__container {
-        grid-template-columns: 1fr;
-    }
-
+.kro-dialog__container {
+  grid-template-columns: 1fr;
+}
 </style>

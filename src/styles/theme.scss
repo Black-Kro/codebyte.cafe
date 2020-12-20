@@ -2,18 +2,18 @@
 
 $DefaultTheme: (
     light: (
-        'background': #f7f7f7,
-        'background-secondary': white,
+        'background': hsl(30, 19%, 89%),
+        'background-secondary': hsl(30, 19%, 92%),
         'background-highlight': rgba(0, 0, 0, .12),
         
         'foreground': hsla(0, 0%, 0%, 0.72),
         'foreground-secondary': hsla(0, 0%, 0%, 0.56),
         'foreground-disabled': hsla(0, 0%, 100%, 0.24),
         
-        'divider': #eaeaea,
+        'divider': hsl(0, 0%, 85%),
         'shadow': 0 0 0 1px hsl(0, 0%, 85%),
             
-        'primary': #6da696,
+        'primary': #69B0AC,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
         'primary-foreground': hsl(163, 24%, 18%),
@@ -44,7 +44,7 @@ $DefaultTheme: (
         // 'shadow': rgba(0, 0, 0, 0.12) 0px 3px 6px 0px,
             
         // 'primary': #ffd152,
-        'primary': #6da696,
+        'primary': #69B0AC,
         'primary-lighten': hsl(167, 52%, 57%),
         'primary-darken': hsl(167, 52%, 27%),
         'primary-foreground': hsl(163, 24%, 18%),

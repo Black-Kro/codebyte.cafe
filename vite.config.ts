@@ -1,39 +1,45 @@
-import { UserConfig } from 'vite';
-const mdPlugin = require('vite-plugin-markdown');
+import path from 'path'
+import { UserConfig } from 'vite'
+import ViteComponents from 'vite-plugin-components'
+import PurgeIcons from 'vite-plugin-purge-icons'
+import ViteMarkdown, { Mode } from '@black-kro/vite-plugin-markdown'
 
-import path from 'path';
-import ViteComponents from 'vite-plugin-components';
+// const mdPlugin = require('vite-plugin-markdown')
 
 const alias = {
-    '/~/': path.resolve(__dirname, 'src'),
+  '/~/': path.resolve(__dirname, 'src'),
 }
 
 const config: UserConfig = {
-    alias,
-    optimizeDeps: {
-        include: [
-            'fast-json-stable-stringify',
-            'zen-observable',
-            'graphql-tag',
-            'subscriptions-transport-ws.js',
-            'graphql/language/visitor',
-            'graphql/language/printer',
-        ]
-    },
-    rollupInputOptions: {
-        external: [
-            'react',
-        ]
-    },
-    plugins: [
-        ViteComponents({
-            alias,
-            extensions: ['vue', 'ts'],
-        }),
-        mdPlugin({
-            mode: 'vue'
-        })
-    ]
+  alias,
+  optimizeDeps: {
+    include: [
+      'fast-json-stable-stringify',
+      'zen-observable',
+      'graphql-tag',
+      'subscriptions-transport-ws.js',
+      '@apollo/src/errors/index.ts',
+      'graphql/language/visitor',
+      'graphql/language/printer',
+    ],
+  },
+  rollupInputOptions: {
+    external: [
+      'react',
+    ],
+  },
+  plugins: [
+    ViteComponents({
+      alias,
+      extensions: ['vue', 'ts'],
+    }),
+    ViteMarkdown({
+      mode: [Mode.VUE],
+    }),
+    PurgeIcons({
+
+    }),
+  ],
 }
 
-export default config;
+export default config

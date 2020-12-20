@@ -1,8 +1,72 @@
 .markdown-body {
+  h1 {
+    @apply font-bold;
+    @apply text-2xl;
+  }
+}
 
-    h1 {
-        @apply font-bold;
-        @apply text-2xl;
+.markdown {
+
+  * + * {
+    @apply mt-4;
+  }
+
+  a {
+    color: var(--kro-primary);
+  }
+
+  ul {
+    @apply list-none;
+    @apply mt-6;
+  }
+
+  li {
+    @apply pl-5;
+    @apply relative;
+    color: var(--kro-foreground-secondary);
+
+    &::before {
+      @apply absolute;
+      @apply left-0;
+      @apply inline-block;
+      @apply mr-3;
+      color: var(--kro-primary);
+      content: "\2022";
     }
+  }
 
+  p {
+    @apply text-base;
+    color: var(--kro-foreground-secondary);
+  }
+
+  h1 {
+    @apply font-medium;
+    @apply text-2xl;
+    @apply mb-4;
+  }
+  
+  h2 {
+    @apply text-xl;
+    @apply font-normal;
+    @apply mt-12;
+    @apply mb-4;
+  }
+
+  h1, h2 {
+    @apply relative;
+    
+    :hover .permalink {
+      @apply opacity-100;
+    }
+    .permalink {
+      @apply transform;
+      @apply -translate-x-5;
+      @apply absolute;
+      @apply opacity-50;
+
+
+      color: var(--kro-primary);
+    }
+  }
 }

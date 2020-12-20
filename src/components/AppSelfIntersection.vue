@@ -1,29 +1,27 @@
 <template>
-    <div ref="self">
-        <slot />
-    </div>
+  <div ref="self">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts" setup="props, { emit }">
-    import { ref } from 'vue';
-    import { useIntersection } from '/~/composables';
+import { ref } from 'vue'
+import { useIntersection } from '/~/composables'
 
-    export const self = ref(null);
-    const { onIntersected } = useIntersection(self, false)
+export const self = ref(null)
+const { onIntersected } = useIntersection(self, false)
 
-    onIntersected(() => {
-        emit('intersected')
-    });
+onIntersected(() => {
+  emit('intersected')
+})
 
-    export default {
-        name: 'AppSelfIntersection',
-        emits: ['intersected']
-    }
+export default {
+  name: 'AppSelfIntersection',
+  emits: ['intersected'],
+}
 
-    declare const emit;
-
+declare const emit
 </script>
 
 <style lang="scss">
-    
 </style>

@@ -1,62 +1,72 @@
 <template>
-    <div class="app-post-media">
-        <div class="[] [ relative ] [ cursor-pointer ]" v-for="item in media" :key="item.id" @click="openPreview(item)">
-            <app-lazy-image
-                :style="{ height: media.length > 1 ? '200px' : 'auto' }"
-                :placeholder="item.metadata.base64"
-                :intrinsicWidth="item.metadata.width"
-                :intrinsicHeight="item.metadata.height"
-                :src="media.length > 1 ? `${item.url}?size=350` : `${item.url}?size=700`" />
-        </div>
+  <div class="app-post-media">
+    <div
+      v-for="item in media"
+      :key="item.id"
+      class="[] [ relative ] [ cursor-pointer ]"
+      @click="openPreview(item)"
+    >
+      <app-lazy-image
+        :style="{ height: media.length > 1 ? '200px' : 'auto' }"
+        :placeholder="item.metadata.base64"
+        :intrinsic-width="item.metadata.width"
+        :intrinsic-height="item.metadata.height"
+        :src="
+          media.length > 1 ? `${item.url}?size=350` : `${item.url}?size=700`
+        "
+      />
     </div>
-    <div>
-        <kro-dialog class="max-w-6xl app-preview__container" v-model="shouldOpenPreview">
-                <app-lazy-image 
-                    v-if="preview"
-                    class="[ app-preview-image ]"
-                    :intrinsicWidth="preview.metadata.width"
-                    :intrinsicHeight="preview.metadata.height"
-                    :placeholder="preview.metadata.base64" 
-                    :src="preview.url" />
-        </kro-dialog>
-    </div>
+  </div>
+  <div>
+    <kro-dialog
+      v-model="shouldOpenPreview"
+      class="max-w-6xl app-preview__container"
+    >
+      <app-lazy-image
+        v-if="preview"
+        class="[ app-preview-image ]"
+        :intrinsic-width="preview.metadata.width"
+        :intrinsic-height="preview.metadata.height"
+        :placeholder="preview.metadata.base64"
+        :src="preview.url"
+      />
+    </kro-dialog>
+  </div>
 </template>
 
 <script lang="ts" setup="props">
-    import { ref } from 'vue';
+import { ref } from 'vue'
 
-    export const preview = ref(null);
-    export const shouldOpenPreview = ref(false);
+declare const props: {
+  media: object[]
+}
 
-    export const openPreview = (item) => {
-        shouldOpenPreview.value = true;
-        preview.value = item;
-    };
+export const preview = ref(null)
+export const shouldOpenPreview = ref(false)
 
-    export default {
-        name: 'PostMedia',
-    }
+export const openPreview = (item) => {
+  shouldOpenPreview.value = true
+  preview.value = item
+}
 
-    declare const props: {
-        media: object[],
-    }
+export default {
+  name: 'PostMedia',
+}
 </script>
 
 <style lang="scss">
+.app-post-media {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+}
 
-    .app-post-media {
-        display: grid;
-        grid-template-columns: repeat( auto-fit, minmax(50%, 1fr) );
-    }
+.app-preview-image {
+  // width: auto;
+  max-height: 80vh;
+}
 
-    .app-preview-image {
-        // width: auto;
-        max-height: 80vh;
-    }
-
-    .app-preview__container {
-        padding: 0 !important;
-        overflow: hidden;
-    }
-
+.app-preview__container {
+  padding: 0 !important;
+  overflow: hidden;
+}
 </style>

@@ -6,24 +6,30 @@
     "build": "NODE_ENV=production vite build"
   },
   "devDependencies": {
+    "@antfu/eslint-config-vue": "^0.3.3",
+    "@black-kro/vite-plugin-markdown": "^0.0.7",
+    "@iconify/json": "^1.1.236",
+    "@purge-icons/generated": "^0.4.1",
     "@types/cropperjs": "^1.3.0",
-    "@vue/compiler-sfc": "3.0.0-rc.10",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@vue/compiler-sfc": "^3.0.0",
     "autoprefixer": "^9.8.5",
-    "eslint": "^7.5.0",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint": "^7.10.0",
     "sass": "^1.26.10",
-    "tailwindcss": "^1.5.2",
-    "typescript": "^3.9.7",
+    "tailwindcss": "^1.8.10",
+    "typescript": "^4.0.3",
     "vite": "^1.0.0-rc.4",
     "vite-plugin-components": "^0.2.13",
-    "vite-plugin-markdown": "^1.1.0"
+    "vite-plugin-markdown": "^1.1.0",
+    "vite-plugin-purge-icons": "^0.4.2"
   },
   "dependencies": {
     "@apollo/client": "^3.1.4",
-    "@black-kro/ui": "^0.1.45",
+    "@black-kro/ui": "^0.1.49",
     "@black-kro/use-apollo": "^0.0.3",
     "@giphy/js-fetch-api": "^1.6.2",
-    "@vueuse/core": "^4.0.0-beta.2",
+    "@iconify/iconify": "2.0.0-rc.1",
+    "@vueuse/core": "^4.0.0-beta.30",
     "axios": "^0.19.2",
     "cropperjs": "^1.5.7",
     "firebase": "^7.17.1",
@@ -34,9 +40,9 @@
     "prismjs": "^1.21.0",
     "subscriptions-transport-ws": "^0.9.18",
     "timeago.js": "^4.0.2",
-    "vue": "3.0.0-rc.10",
-    "vue-i18n": "9.0.0-alpha.17",
-    "vue-router": "4.0.0-beta.9",
+    "vue": "^3.0.0",
+    "vue-i18n": "9.0.0-beta.3",
+    "vue-router": "4.0.0-beta.13",
     "vuex": "4.0.0-beta.4"
   }
 }

@@ -1,30 +1,38 @@
 <template>
-    <span class="flex flex-row items-center">
-        <span class="[] [] [ text-primary ]">{{user.profile.nickname}}</span> 
-        <kro-icon class="[ nickname-verified ] ml-2" v-if="user.verified" icon="verified" />
-    </span>
+  <span class="flex flex-row items-center">
+    <span class="[] [] [ text-primary ]">{{ user.profile.nickname }}</span>
+    <kro-icon
+      v-if="user.verified"
+      class="[ nickname-verified ] ml-2"
+      icon="mdi:check"
+    />
+  </span>
 </template>
 
 <script lang="ts" setup>
-    export default {
-        name: 'UserNickname',
-        props: {
-            user: Object,
-        }
-    }
+export default {
+  name: 'UserNickname',
+  props: {
+    user: Object,
+  },
+}
 </script>
 
 <style lang="scss">
-    .nickname-verified {
-        color: #ffd152;
+.nickname-verified {
+  color: #ffd152;
 
-        &:hover {
-            animation: spin 500ms normal cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-    }
+  &:hover {
+    animation: spin 500ms normal cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
 
-    @keyframes spin {
-        from { transform: roate(0deg); }
-        to { transform: roate(360deg); }
-    }
+@keyframes spin {
+  from {
+    transform: roate(0deg);
+  }
+  to {
+    transform: roate(360deg);
+  }
+}
 </style>

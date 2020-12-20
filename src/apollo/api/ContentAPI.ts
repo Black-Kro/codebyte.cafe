@@ -17,7 +17,7 @@ export const useContent = () => {
             createToast({
                 title: 'Post Reported',
                 message: 'This post has been reported and will be reviewed by moderators',
-                icon: 'success',
+                icon: 'mdi:check',
                 duration: 5,
             });
         } catch (error) {

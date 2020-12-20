@@ -18,7 +18,7 @@
 
             <!-- Error -->
 
-            <div v-else-if="error || !source" class="p-4 text-center flex flex-col font-bold text-sm text-secondary">
+            <div v-else-if="error || !source" class="p-4 text-center flex flex-col font-bold text-sm text-foregroundSecondary">
                 Oops, there was an error displaying this post.
                 <router-link class="pt-2" to="/">Return Home</router-link>
             </div>
@@ -29,8 +29,8 @@
 
                 <!-- {{source.parent}} -->
                 <template v-if="source.parent">
-                    <router-link :to="`/@${source.parent.author.username}/${source.parent.id}`" class="flex flex-row items-center p-4 text-secondary">
-                        <kro-icon icon="arrow-up-thick" class="mr-2" />
+                    <router-link :to="`/@${source.parent.author.username}/${source.parent.id}`" class="flex flex-row items-center p-4 text-foregroundSecondary">
+                        <kro-icon icon="mdi:arrow-up-thick" class="mr-2" />
                         <div class="text-sm font-medium">
                             <span>
                                 Go up to original post
@@ -45,7 +45,7 @@
                         <user-me #me="{ me }">
                             <div class="px-4 py-2 bg-primary rounded-md mx-4 flex flex-row items-center cursor-pointer" @click="isPostBoxOpen = true">
                                 <user-avatar :size="32" :user="me" />
-                                <span class="text-secondary ml-2 font-medium text-sm">Reply...</span>
+                                <span class="text-foregroundSecondary ml-2 font-medium text-sm">Reply...</span>
                             </div>
                         </user-me>
                     <kro-divider />
